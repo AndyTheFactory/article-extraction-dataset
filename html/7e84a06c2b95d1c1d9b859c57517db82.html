@@ -1,0 +1,630 @@
+<!DOCTYPE html><html class="controller-contents"><head>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"def25c5cff","applicationID":"282811705,282811706","transactionName":"dVwIF0NcWF5cQksHDFhHAw1FHFddV0QBChdFHBULXkQ=","queueTime":0,"applicationTime":502,"agent":""}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).init={privacy:{cookies_enabled:true},ajax:{deny_list:[]},distributed_tracing:{enabled:true}};(window.NREUM||(NREUM={})).loader_config={agentID:"282812995",accountID:"809163",trustKey:"2526950",xpid:"XAYOUFBQGwEIVllTBgYHUw==",licenseKey:"def25c5cff",applicationID:"282811705"};;/*! For license information please see nr-loader-spa-1.252.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={234:(e,t,r)=>{"use strict";r.d(t,{P_:()=>m,Mt:()=>b,C5:()=>s,DL:()=>w,OP:()=>D,lF:()=>O,Yu:()=>E,Dg:()=>v,CX:()=>c,GE:()=>x,sU:()=>N});var n=r(8632),i=r(9567);const o={beacon:n.ce.beacon,errorBeacon:n.ce.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0},a={};function s(e){if(!e)throw new Error("All info objects require an agent identifier!");if(!a[e])throw new Error("Info for ".concat(e," was never set"));return a[e]}function c(e,t){if(!e)throw new Error("All info objects require an agent identifier!");a[e]=(0,i.D)(t,o);const r=(0,n.ek)(e);r&&(r.info=a[e])}const u=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var d=r(7056),l=r(50);const f="[data-nr-mask]",h=()=>{const e={mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{feature_flags:[],proxy:{assets:void 0,beacon:void 0},privacy:{cookies_enabled:!0},ajax:{deny_list:void 0,block_internal:!0,enabled:!0,harvestTimeSeconds:10,autoStart:!0},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},session:{domain:void 0,expiresMs:d.oD,inactiveMs:d.Hb},ssl:void 0,obfuscate:void 0,jserrors:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},metrics:{enabled:!0,autoStart:!0},page_action:{enabled:!0,harvestTimeSeconds:30,autoStart:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,harvestTimeSeconds:30,long_task:!1,autoStart:!0},session_trace:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},harvest:{tooManyRequestsDelay:60},session_replay:{autoStart:!0,enabled:!1,harvestTimeSeconds:60,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,inline_stylesheet:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){u(t)?e.mask_selector="".concat(t,",").concat(f):""===t||null===t?e.mask_selector=f:(0,l.Z)("An invalid session_replay.mask_selector was provided. '*' will be used.",t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){u(t)?e.block_selector+=",".concat(t):""!==t&&(0,l.Z)("An invalid session_replay.block_selector was provided and will not be used",t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,l.Z)("An invalid session_replay.mask_input_option was provided and will not be used",t)}},spa:{enabled:!0,harvestTimeSeconds:10,autoStart:!0}}},p={},g="All configuration objects require an agent identifier!";function m(e){if(!e)throw new Error(g);if(!p[e])throw new Error("Configuration for ".concat(e," was never set"));return p[e]}function v(e,t){if(!e)throw new Error(g);p[e]=(0,i.D)(t,h());const r=(0,n.ek)(e);r&&(r.init=p[e])}function b(e,t){if(!e)throw new Error(g);var r=m(e);if(r){for(var n=t.split("."),i=0;i<n.length-1;i++)if("object"!=typeof(r=r[n[i]]))return;r=r[n[n.length-1]]}return r}const y={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},A={};function w(e){if(!e)throw new Error("All loader-config objects require an agent identifier!");if(!A[e])throw new Error("LoaderConfig for ".concat(e," was never set"));return A[e]}function x(e,t){if(!e)throw new Error("All loader-config objects require an agent identifier!");A[e]=(0,i.D)(t,y);const r=(0,n.ek)(e);r&&(r.loader_config=A[e])}const E=(0,n.mF)().o;var _=r(385),T=r(6818);const S={buildEnv:T.Re,customTransaction:void 0,disabled:!1,distMethod:T.gF,isolatedBacklog:!1,loaderType:void 0,maxBytes:3e4,offset:Math.floor(_._A?.performance?.timeOrigin||_._A?.performance?.timing?.navigationStart||Date.now()),onerror:void 0,origin:""+_._A.location,ptid:void 0,releaseIds:{},session:void 0,xhrWrappable:"function"==typeof _._A.XMLHttpRequest?.prototype?.addEventListener,version:T.q4,denyList:void 0},R={};function D(e){if(!e)throw new Error("All runtime objects require an agent identifier!");if(!R[e])throw new Error("Runtime for ".concat(e," was never set"));return R[e]}function N(e,t){if(!e)throw new Error("All runtime objects require an agent identifier!");R[e]=(0,i.D)(t,S);const r=(0,n.ek)(e);r&&(r.runtime=R[e])}function O(e){return function(e){try{const t=s(e);return!!t.licenseKey&&!!t.errorBeacon&&!!t.applicationID}catch(e){return!1}}(e)}},9567:(e,t,r)=>{"use strict";r.d(t,{D:()=>i});var n=r(50);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.Z)("Setting a Configurable requires an object as input");if(!t||"object"!=typeof t)return(0,n.Z)("Setting a Configurable requires a model to set its initial properties");const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),o=0===Object.keys(r).length?e:r;for(let a in o)if(void 0!==e[a])try{Array.isArray(e[a])&&Array.isArray(t[a])?r[a]=Array.from(new Set([...e[a],...t[a]])):"object"==typeof e[a]&&"object"==typeof t[a]?r[a]=i(e[a],t[a]):r[a]=e[a]}catch(e){(0,n.Z)("An error occurred while setting a property of a Configurable",e)}return r}catch(e){(0,n.Z)("An error occured while setting a Configurable",e)}}},6818:(e,t,r)=>{"use strict";r.d(t,{Re:()=>i,gF:()=>o,lF:()=>a,q4:()=>n});const n="1.252.0",i="PROD",o="CDN",a="2.0.0-alpha.11"},385:(e,t,r)=>{"use strict";r.d(t,{FN:()=>c,IF:()=>l,LW:()=>a,Nk:()=>h,Tt:()=>u,_A:()=>o,cv:()=>p,iS:()=>s,il:()=>n,ux:()=>d,v6:()=>i,w1:()=>f});const n="undefined"!=typeof window&&!!window.document,i="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),o=n?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),a="complete"===o?.document?.readyState,s=Boolean("hidden"===o?.document?.visibilityState),c=""+o?.location,u=/iPad|iPhone|iPod/.test(o.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=(()=>{const e=o.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);return Array.isArray(e)&&e.length>=2?+e[1]:0})(),f=Boolean(n&&window.document.documentMode),h=!!o.navigator?.sendBeacon,p=Math.floor(o?.performance?.timeOrigin||o?.performance?.timing?.navigationStart||Date.now())},1117:(e,t,r)=>{"use strict";r.d(t,{w:()=>o});var n=r(50);const i={agentIdentifier:"",ee:void 0};class o{constructor(e){try{if("object"!=typeof e)return(0,n.Z)("shared context requires an object as input");this.sharedContext={},Object.assign(this.sharedContext,i),Object.entries(e).forEach((e=>{let[t,r]=e;Object.keys(i).includes(t)&&(this.sharedContext[t]=r)}))}catch(e){(0,n.Z)("An error occured while setting SharedContext",e)}}}},8e3:(e,t,r)=>{"use strict";r.d(t,{L:()=>d,R:()=>c});var n=r(8325),i=r(1284),o=r(4322),a=r(3325);const s={};function c(e,t){const r={staged:!1,priority:a.p[t]||0};u(e),s[e].get(t)||s[e].set(t,r)}function u(e){e&&(s[e]||(s[e]=new Map))}function d(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"feature",r=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if(u(e),!e||!s[e].get(t)||r)return c(t);s[e].get(t).staged=!0;const a=[...s[e]];function c(t){const r=e?n.ee.get(e):n.ee,a=o.X.handlers;if(r.backlog&&a){var s=r.backlog[t],c=a[t];if(c){for(var u=0;s&&u<s.length;++u)l(s[u],c);(0,i.D)(c,(function(e,t){(0,i.D)(t,(function(t,r){r[0].on(e,r[1])}))}))}delete a[t],r.backlog[t]=null,r.emit("drain-"+t,[])}}a.every((e=>{let[t,r]=e;return r.staged}))&&(a.sort(((e,t)=>e[1].priority-t[1].priority)),a.forEach((t=>{let[r]=t;s[e].delete(r),c(r)})))}function l(e,t){var r=e[1];(0,i.D)(t[r],(function(t,r){var n=e[0];if(r[0]===n){var i=r[1],o=e[3],a=e[2];i.apply(o,a)}}))}},8325:(e,t,r)=>{"use strict";r.d(t,{A:()=>c,ee:()=>u});var n=r(8632),i=r(2210),o=r(234);class a{constructor(e){this.contextId=e}}var s=r(3117);const c="nr@context:".concat(s.a),u=function e(t,r){var n={},s={},d={},f=!1;try{f=16===r.length&&(0,o.OP)(r).isolatedBacklog}catch(e){}var h={on:g,addEventListener:g,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,o){!1!==o&&(o=!0);if(u.aborted&&!i)return;t&&o&&t.emit(e,r,n);for(var a=p(n),c=m(e),d=c.length,l=0;l<d;l++)c[l].apply(a,r);var f=b()[s[e]];f&&f.push([h,e,r,a]);return a},get:v,listeners:m,context:p,buffer:function(e,t){const r=b();if(t=t||"feature",h.aborted)return;Object.entries(e||{}).forEach((e=>{let[n,i]=e;s[i]=t,t in r||(r[t]=[])}))},abort:l,aborted:!1,isBuffering:function(e){return!!b()[s[e]]},debugId:r,backlog:f?{}:t&&"object"==typeof t.backlog?t.backlog:{}};return h;function p(e){return e&&e instanceof a?e:e?(0,i.X)(e,c,(()=>new a(c))):new a(c)}function g(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function v(t){return d[t]=d[t]||e(h,t)}function b(){return h.backlog}}(void 0,"globalEE"),d=(0,n.fP)();function l(){u.aborted=!0,Object.keys(u.backlog).forEach((e=>{delete u.backlog[e]}))}d.ee||(d.ee=u)},5546:(e,t,r)=>{"use strict";r.d(t,{E:()=>n,p:()=>i});var n=r(8325).ee.get("handle");function i(e,t,r,i,o){o?(o.buffer([e],i),o.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},4322:(e,t,r)=>{"use strict";r.d(t,{X:()=>o});var n=r(5546);o.on=a;var i=o.handlers={};function o(e,t,r,o){a(o||n.E,i,e,t,r)}function a(e,t,r,i,o){o||(o="feature"),e||(e=n.E);var a=t[o]=t[o]||{};(a[r]=a[r]||[]).push([e,i])}},3239:(e,t,r)=>{"use strict";r.d(t,{bP:()=>s,iz:()=>c,m$:()=>a});var n=r(385);let i=!1,o=!1;try{const e={get passive(){return i=!0,!1},get signal(){return o=!0,!1}};n._A.addEventListener("test",null,e),n._A.removeEventListener("test",null,e)}catch(e){}function a(e,t){return i||o?{capture:!!e,passive:i,signal:t}:!!e}function s(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3?arguments[3]:void 0;window.addEventListener(e,t,a(r,n))}function c(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3?arguments[3]:void 0;document.addEventListener(e,t,a(r,n))}},3117:(e,t,r)=>{"use strict";r.d(t,{a:()=>n});const n=(0,r(4402).Rl)()},4402:(e,t,r)=>{"use strict";r.d(t,{Ht:()=>u,M:()=>c,Rl:()=>a,ky:()=>s});var n=r(385);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function o(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n._A?.crypto||n._A?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),i.split("").map((e=>"x"===e?o(t,r++).toString(16):"y"===e?(3&o()|8).toString(16):e)).join("")}function s(e){const t=n._A?.crypto||n._A?.msCrypto;let r,i=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const a=[];for(var s=0;s<e;s++)a.push(o(r,i++).toString(16));return a.join("")}function c(){return s(16)}function u(){return s(32)}},7056:(e,t,r)=>{"use strict";r.d(t,{Bq:()=>n,Hb:()=>o,IK:()=>c,oD:()=>i,uT:()=>s,wO:()=>a});const n="NRBA",i=144e5,o=18e5,a={PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},s={SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},c={OFF:0,FULL:1,ERROR:2}},7894:(e,t,r)=>{"use strict";function n(){return Math.round(performance.now())}r.d(t,{z:()=>n})},7243:(e,t,r)=>{"use strict";r.d(t,{e:()=>i});var n=r(385);function i(e){if(0===(e||"").indexOf("data:"))return{protocol:"data"};try{const t=new URL(e,location.href),r={port:t.port,hostname:t.hostname,pathname:t.pathname,search:t.search,protocol:t.protocol.slice(0,t.protocol.indexOf(":")),sameOrigin:t.protocol===n._A?.location?.protocol&&t.host===n._A?.location?.host};return r.port&&""!==r.port||("http:"===t.protocol&&(r.port="80"),"https:"===t.protocol&&(r.port="443")),r.pathname&&""!==r.pathname?r.pathname.startsWith("/")||(r.pathname="/".concat(r.pathname)):r.pathname="/",r}catch(e){return{}}}},50:(e,t,r)=>{"use strict";function n(e,t){"function"==typeof console.warn&&(console.warn("New Relic: ".concat(e)),t&&console.warn(t))}r.d(t,{Z:()=>n})},2825:(e,t,r)=>{"use strict";r.d(t,{N:()=>d,T:()=>l});var n=r(8325),i=r(5546),o=r(3325),a=r(385);const s="newrelic";const c={stn:[o.D.sessionTrace],err:[o.D.jserrors,o.D.metrics],ins:[o.D.pageAction],spa:[o.D.spa],sr:[o.D.sessionReplay,o.D.sessionTrace]},u=new Set;function d(e,t){const r=n.ee.get(t);e&&"object"==typeof e&&(u.has(t)||(Object.entries(e).forEach((e=>{let[t,n]=e;c[t]?c[t].forEach((e=>{n?(0,i.p)("feat-"+t,[],void 0,e,r):(0,i.p)("block-"+t,[],void 0,e,r),(0,i.p)("rumresp-"+t,[Boolean(n)],void 0,e,r)})):n&&(0,i.p)("feat-"+t,[],void 0,void 0,r),l[t]=Boolean(n)})),Object.keys(c).forEach((e=>{void 0===l[e]&&(c[e]?.forEach((t=>(0,i.p)("rumresp-"+e,[!1],void 0,t,r))),l[e]=!1)})),u.add(t),function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{a._A.dispatchEvent(new CustomEvent(s,{detail:e}))}catch(e){}}({loaded:!0})))}const l={}},2210:(e,t,r)=>{"use strict";r.d(t,{X:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},1284:(e,t,r)=>{"use strict";r.d(t,{D:()=>n});const n=(e,t)=>Object.entries(e||{}).map((e=>{let[r,n]=e;return t(r,n)}))},4351:(e,t,r)=>{"use strict";r.d(t,{P:()=>o});var n=r(8325);const i=()=>{const e=new WeakSet;return(t,r)=>{if("object"==typeof r&&null!==r){if(e.has(r))return;e.add(r)}return r}};function o(e){try{return JSON.stringify(e,i())}catch(e){try{n.ee.emit("internal-error",[e])}catch(e){}}}},3960:(e,t,r)=>{"use strict";r.d(t,{KB:()=>a,b2:()=>o});var n=r(3239);function i(){return"undefined"==typeof document||"complete"===document.readyState}function o(e,t){if(i())return e();(0,n.bP)("load",e,t)}function a(e){if(i())return e();(0,n.iz)("DOMContentLoaded",e)}},8632:(e,t,r)=>{"use strict";r.d(t,{EZ:()=>d,ce:()=>o,ek:()=>u,fP:()=>a,gG:()=>l,h5:()=>c,mF:()=>s});var n=r(7894),i=r(385);const o={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function a(){return i._A.NREUM||(i._A.NREUM={}),void 0===i._A.newrelic&&(i._A.newrelic=i._A.NREUM),i._A.NREUM}function s(){let e=a();return e.o||(e.o={ST:i._A.setTimeout,SI:i._A.setImmediate,CT:i._A.clearTimeout,XHR:i._A.XMLHttpRequest,REQ:i._A.Request,EV:i._A.Event,PR:i._A.Promise,MO:i._A.MutationObserver,FETCH:i._A.fetch}),e}function c(e,t){let r=a();r.initializedAgents??={},t.initializedAt={ms:(0,n.z)(),date:new Date},r.initializedAgents[e]=t}function u(e){let t=a();return t.initializedAgents?.[e]}function d(e,t){a()[e]=t}function l(){return function(){let e=a();const t=e.info||{};e.info={beacon:o.beacon,errorBeacon:o.errorBeacon,...t}}(),function(){let e=a();const t=e.init||{};e.init={...t}}(),s(),function(){let e=a();const t=e.loader_config||{};e.loader_config={...t}}(),a()}},7956:(e,t,r)=>{"use strict";r.d(t,{N:()=>i});var n=r(3239);function i(e){let t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],r=arguments.length>2?arguments[2]:void 0,i=arguments.length>3?arguments[3]:void 0;(0,n.iz)("visibilitychange",(function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)}),r,i)}},1214:(e,t,r)=>{"use strict";r.d(t,{em:()=>b,u5:()=>R,QU:()=>O,_L:()=>P,Gm:()=>M,Lg:()=>L,BV:()=>Z,Kf:()=>Y});var n=r(8325),i=r(3117);const o="nr@original:".concat(i.a);var a=Object.prototype.hasOwnProperty,s=!1;function c(e,t){return e||(e=n.ee),r.inPlace=function(e,t,n,i,o){n||(n="");const a="-"===n.charAt(0);for(let s=0;s<t.length;s++){const c=t[s],u=e[c];d(u)||(e[c]=r(u,a?c+n:n,i,c,o))}},r.flag=o,r;function r(t,r,n,s,c){return d(t)?t:(r||(r=""),nrWrapper[o]=t,function(e,t,r){if(Object.defineProperty&&Object.keys)try{return Object.keys(e).forEach((function(r){Object.defineProperty(t,r,{get:function(){return e[r]},set:function(t){return e[r]=t,t}})})),t}catch(e){u([e],r)}for(var n in e)a.call(e,n)&&(t[n]=e[n])}(t,nrWrapper,e),nrWrapper);function nrWrapper(){var o,a,d,l;try{a=this,o=[...arguments],d="function"==typeof n?n(o,a):n||{}}catch(t){u([t,"",[o,a,s],d],e)}i(r+"start",[o,a,s],d,c);try{return l=t.apply(a,o)}catch(e){throw i(r+"err",[o,a,e],d,c),e}finally{i(r+"end",[o,a,l],d,c)}}}function i(r,n,i,o){if(!s||t){var a=s;s=!0;try{e.emit(r,n,i,t,o)}catch(t){u([t,r,n,i],e)}s=a}}}function u(e,t){t||(t=n.ee);try{t.emit("internal-error",e)}catch(e){}}function d(e){return!(e&&"function"==typeof e&&e.apply&&!e[o])}var l=r(2210),f=r(385);const h={},p=f._A.XMLHttpRequest,g="addEventListener",m="removeEventListener",v="nr@wrapped:".concat(n.A);function b(e){var t=function(e){return(e||n.ee).get("events")}(e);if(h[t.debugId]++)return t;h[t.debugId]=1;var r=c(t,!0);function i(e){r.inPlace(e,[g,m],"-",o)}function o(e,t){return e[1]}return"getPrototypeOf"in Object&&(f.il&&y(document,i),y(f._A,i),y(p.prototype,i)),t.on(g+"-start",(function(e,t){var n=e[1];if(null!==n&&("function"==typeof n||"object"==typeof n)){var i=(0,l.X)(n,v,(function(){var e={object:function(){if("function"!=typeof n.handleEvent)return;return n.handleEvent.apply(n,arguments)},function:n}[typeof n];return e?r(e,"fn-",null,e.name||"anonymous"):n}));this.wrapped=e[1]=i}})),t.on(m+"-start",(function(e){e[1]=this.wrapped||e[1]})),t}function y(e,t){let r=e;for(;"object"==typeof r&&!Object.prototype.hasOwnProperty.call(r,g);)r=Object.getPrototypeOf(r);for(var n=arguments.length,i=new Array(n>2?n-2:0),o=2;o<n;o++)i[o-2]=arguments[o];r&&t(r,...i)}var A="fetch-",w=A+"body-",x=["arrayBuffer","blob","json","text","formData"],E=f._A.Request,_=f._A.Response,T="prototype";const S={};function R(e){const t=function(e){return(e||n.ee).get("fetch")}(e);if(!(E&&_&&f._A.fetch))return t;if(S[t.debugId]++)return t;function r(e,r,i){var o=e[r];"function"==typeof o&&(e[r]=function(){var e,r=[...arguments],a={};t.emit(i+"before-start",[r],a),a[n.A]&&a[n.A].dt&&(e=a[n.A].dt);var s=o.apply(this,r);return t.emit(i+"start",[r,e],s),s.then((function(e){return t.emit(i+"end",[null,e],s),e}),(function(e){throw t.emit(i+"end",[e],s),e}))})}return S[t.debugId]=1,x.forEach((e=>{r(E[T],e,w),r(_[T],e,w)})),r(f._A,"fetch",A),t.on(A+"end",(function(e,r){var n=this;if(r){var i=r.headers.get("content-length");null!==i&&(n.rxSize=i),t.emit(A+"done",[null,r],n)}else t.emit(A+"done",[e],n)})),t}const D={},N=["pushState","replaceState"];function O(e){const t=function(e){return(e||n.ee).get("history")}(e);return!f.il||D[t.debugId]++||(D[t.debugId]=1,c(t).inPlace(window.history,N,"-")),t}var I=r(3239);const j={},C=["appendChild","insertBefore","replaceChild"];function P(e){const t=function(e){return(e||n.ee).get("jsonp")}(e);if(!f.il||j[t.debugId])return t;j[t.debugId]=!0;var r=c(t),i=/[?&](?:callback|cb)=([^&#]+)/,o=/(.*)\.([^.]+)/,a=/^(\w+)(\.|$)(.*)$/;function s(e,t){if(!e)return t;const r=e.match(a),n=r[1];return s(r[3],t[n])}return r.inPlace(Node.prototype,C,"dom-"),t.on("dom-start",(function(e){!function(e){if(!e||"string"!=typeof e.nodeName||"script"!==e.nodeName.toLowerCase())return;if("function"!=typeof e.addEventListener)return;var n=(a=e.src,c=a.match(i),c?c[1]:null);var a,c;if(!n)return;var u=function(e){var t=e.match(o);if(t&&t.length>=3)return{key:t[2],parent:s(t[1],window)};return{key:e,parent:window}}(n);if("function"!=typeof u.parent[u.key])return;var d={};function l(){t.emit("jsonp-end",[],d),e.removeEventListener("load",l,(0,I.m$)(!1)),e.removeEventListener("error",f,(0,I.m$)(!1))}function f(){t.emit("jsonp-error",[],d),t.emit("jsonp-end",[],d),e.removeEventListener("load",l,(0,I.m$)(!1)),e.removeEventListener("error",f,(0,I.m$)(!1))}r.inPlace(u.parent,[u.key],"cb-",d),e.addEventListener("load",l,(0,I.m$)(!1)),e.addEventListener("error",f,(0,I.m$)(!1)),t.emit("new-jsonp",[e.src],d)}(e[0])})),t}const k={};function M(e){const t=function(e){return(e||n.ee).get("mutation")}(e);if(!f.il||k[t.debugId])return t;k[t.debugId]=!0;var r=c(t),i=f._A.MutationObserver;return i&&(window.MutationObserver=function(e){return this instanceof i?new i(r(e,"fn-")):i.apply(this,arguments)},MutationObserver.prototype=i.prototype),t}const H={};function L(e){const t=function(e){return(e||n.ee).get("promise")}(e);if(H[t.debugId])return t;H[t.debugId]=!0;var r=t.context,i=c(t),a=f._A.Promise;return a&&function(){function e(r){var n=t.context(),o=i(r,"executor-",n,null,!1);const s=Reflect.construct(a,[o],e);return t.context(s).getCtx=function(){return n},s}f._A.Promise=e,Object.defineProperty(e,"name",{value:"Promise"}),e.toString=function(){return a.toString()},Object.setPrototypeOf(e,a),["all","race"].forEach((function(r){const n=a[r];e[r]=function(e){let i=!1;[...e||[]].forEach((e=>{this.resolve(e).then(a("all"===r),a(!1))}));const o=n.apply(this,arguments);return o;function a(e){return function(){t.emit("propagate",[null,!i],o,!1,!1),i=i||!e}}}})),["resolve","reject"].forEach((function(r){const n=a[r];e[r]=function(e){const r=n.apply(this,arguments);return e!==r&&t.emit("propagate",[e,!0],r,!1,!1),r}})),e.prototype=a.prototype;const n=a.prototype.then;a.prototype.then=function(){var e=this,o=r(e);o.promise=e;for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];s[0]=i(s[0],"cb-",o,null,!1),s[1]=i(s[1],"cb-",o,null,!1);const u=n.apply(this,s);return o.nextPromise=u,t.emit("propagate",[e,!0],u,!1,!1),u},a.prototype.then[o]=n,t.on("executor-start",(function(e){e[0]=i(e[0],"resolve-",this,null,!1),e[1]=i(e[1],"resolve-",this,null,!1)})),t.on("executor-err",(function(e,t,r){e[1](r)})),t.on("cb-end",(function(e,r,n){t.emit("propagate",[n,!0],this.nextPromise,!1,!1)})),t.on("propagate",(function(e,r,n){this.getCtx&&!r||(this.getCtx=function(){if(e instanceof Promise)var r=t.context(e);return r&&r.getCtx?r.getCtx():this})}))}(),t}const z={},F="setTimeout",B="setInterval",U="clearTimeout",V="-start",q="-",G=[F,"setImmediate",B,U,"clearImmediate"];function Z(e){const t=function(e){return(e||n.ee).get("timer")}(e);if(z[t.debugId]++)return t;z[t.debugId]=1;var r=c(t);return r.inPlace(f._A,G.slice(0,2),F+q),r.inPlace(f._A,G.slice(2,3),B+q),r.inPlace(f._A,G.slice(3),U+q),t.on(B+V,(function(e,t,n){e[0]=r(e[0],"fn-",null,n)})),t.on(F+V,(function(e,t,n){this.method=n,this.timerDuration=isNaN(e[1])?0:+e[1],e[0]=r(e[0],"fn-",this,n)})),t}var W=r(50);const X={},K=["open","send"];function Y(e){var t=e||n.ee;const r=function(e){return(e||n.ee).get("xhr")}(t);if(X[r.debugId]++)return r;X[r.debugId]=1,b(t);var i=c(r),o=f._A.XMLHttpRequest,a=f._A.MutationObserver,s=f._A.Promise,u=f._A.setInterval,d="readystatechange",l=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],h=[],p=f._A.XMLHttpRequest=function(e){const t=new o(e),n=r.context(t);try{r.emit("new-xhr",[t],n),t.addEventListener(d,(a=n,function(){var e=this;e.readyState>3&&!a.resolved&&(a.resolved=!0,r.emit("xhr-resolved",[],e)),i.inPlace(e,l,"fn-",w)}),(0,I.m$)(!1))}catch(e){(0,W.Z)("An error occurred while intercepting XHR",e);try{r.emit("internal-error",[e])}catch(e){}}var a;return t};function g(e,t){i.inPlace(t,["onreadystatechange"],"fn-",w)}if(function(e,t){for(var r in e)t[r]=e[r]}(o,p),p.prototype=o.prototype,i.inPlace(p.prototype,K,"-xhr-",w),r.on("send-xhr-start",(function(e,t){g(e,t),function(e){h.push(e),a&&(m?m.then(A):u?u(A):(v=-v,y.data=v))}(t)})),r.on("open-xhr-start",g),a){var m=s&&s.resolve();if(!u&&!s){var v=1,y=document.createTextNode(v);new a(A).observe(y,{characterData:!0})}}else t.on("fn-end",(function(e){e[0]&&e[0].type===d||A()}));function A(){for(var e=0;e<h.length;e++)g(0,h[e]);h.length&&(h=[])}function w(e,t){return t}return r}},7825:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.ajax},6660:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.jserrors},3081:(e,t,r)=>{"use strict";r.d(t,{gF:()=>o,mY:()=>i,t9:()=>n,vz:()=>s,xS:()=>a});const n=r(3325).D.metrics,i="sm",o="cm",a="storeSupportabilityMetrics",s="storeEventMetrics"},4649:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageAction},7633:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageViewEvent},9251:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageViewTiming},7144:(e,t,r)=>{"use strict";r.d(t,{J0:()=>l,Mi:()=>d,Vb:()=>o,Ye:()=>s,fm:()=>c,i9:()=>a,t9:()=>i,u0:()=>u});var n=r(7056);const i=r(3325).D.sessionReplay,o=.12,a={DomContentLoaded:0,Load:1,FullSnapshot:2,IncrementalSnapshot:3,Meta:4,Custom:5},s=1e6,c=64e3,u={[n.IK.ERROR]:15e3,[n.IK.FULL]:3e5,[n.IK.OFF]:0},d={RESET:{message:"Session was reset",sm:"Reset"},IMPORT:{message:"Recorder failed to import",sm:"Import"},TOO_MANY:{message:"429: Too Many Requests",sm:"Too-Many"},TOO_BIG:{message:"Payload was too large",sm:"Too-Big"},CROSS_TAB:{message:"Session Entity was set to OFF on another tab",sm:"Cross-Tab"},ENTITLEMENTS:{message:"Session Replay is not allowed and will not be started",sm:"Entitlement"}},l=5e3},3614:(e,t,r)=>{"use strict";r.d(t,{BST_RESOURCE:()=>i,END:()=>s,FEATURE_NAME:()=>n,FN_END:()=>u,FN_START:()=>c,PUSH_STATE:()=>d,RESOURCE:()=>o,START:()=>a});const n=r(3325).D.sessionTrace,i="bstResource",o="resource",a="-start",s="-end",c="fn"+a,u="fn"+s,d="pushState"},7836:(e,t,r)=>{"use strict";r.d(t,{BODY:()=>x,CB_END:()=>E,CB_START:()=>u,END:()=>w,FEATURE_NAME:()=>i,FETCH:()=>T,FETCH_BODY:()=>v,FETCH_DONE:()=>m,FETCH_START:()=>g,FN_END:()=>c,FN_START:()=>s,INTERACTION:()=>f,INTERACTION_API:()=>d,INTERACTION_EVENTS:()=>o,JSONP_END:()=>b,JSONP_NODE:()=>p,JS_TIME:()=>_,MAX_TIMER_BUDGET:()=>a,REMAINING:()=>l,SPA_NODE:()=>h,START:()=>A,originalSetTimeout:()=>y});var n=r(234);const i=r(3325).D.spa,o=["click","submit","keypress","keydown","keyup","change"],a=999,s="fn-start",c="fn-end",u="cb-start",d="api-ixn-",l="remaining",f="interaction",h="spaNode",p="jsonpNode",g="fetch-start",m="fetch-done",v="fetch-body-",b="jsonp-end",y=n.Yu.ST,A="-start",w="-end",x="-body",E="cb"+w,_="jsTime",T="fetch"},5938:(e,t,r)=>{"use strict";r.d(t,{W:()=>i});var n=r(8325);class i{constructor(e,t,r){this.agentIdentifier=e,this.aggregator=t,this.ee=n.ee.get(e),this.featureName=r,this.blocked=!1}}},7530:(e,t,r)=>{"use strict";r.d(t,{j:()=>b});var n=r(3325),i=r(234),o=r(5546),a=r(8325),s=r(7894),c=r(8e3),u=r(3960),d=r(385),l=r(50),f=r(3081),h=r(8632);function p(){const e=(0,h.gG)();["setErrorHandler","finished","addToTrace","addRelease","addPageAction","setCurrentRouteName","setPageViewName","setCustomAttribute","interaction","noticeError","setUserId","setApplicationVersion","start","recordReplay","pauseReplay"].forEach((t=>{e[t]=function(){for(var r=arguments.length,n=new Array(r),i=0;i<r;i++)n[i]=arguments[i];return function(t){for(var r=arguments.length,n=new Array(r>1?r-1:0),i=1;i<r;i++)n[i-1]=arguments[i];let o=[];return Object.values(e.initializedAgents).forEach((e=>{e.exposed&&e.api[t]&&o.push(e.api[t](...n))})),o.length>1?o:o[0]}(t,...n)}}))}var g=r(2825);const m=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};let v=!1;function b(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},b=arguments.length>2?arguments[2]:void 0,y=arguments.length>3?arguments[3]:void 0,{init:A,info:w,loader_config:x,runtime:E={loaderType:b},exposed:_=!0}=t;const T=(0,h.gG)();w||(A=T.init,w=T.info,x=T.loader_config),(0,i.Dg)(e.agentIdentifier,A||{}),(0,i.GE)(e.agentIdentifier,x||{}),w.jsAttributes??={},d.v6&&(w.jsAttributes.isWorker=!0),(0,i.CX)(e.agentIdentifier,w);const S=(0,i.P_)(e.agentIdentifier),R=[w.beacon,w.errorBeacon];v||(S.proxy.assets&&(m(S.proxy.assets),R.push(S.proxy.assets)),S.proxy.beacon&&R.push(S.proxy.beacon),p(),(0,h.EZ)("activatedFeatures",g.T)),E.denyList=[...S.ajax.deny_list||[],...S.ajax.block_internal?R:[]],(0,i.sU)(e.agentIdentifier,E),void 0===e.api&&(e.api=function(e,t){t||(0,c.R)(e,"api");const h={};var p=a.ee.get(e),g=p.get("tracer"),m="api-",v=m+"ixn-";function b(t,r,n,o){const a=(0,i.C5)(e);return null===r?delete a.jsAttributes[t]:(0,i.CX)(e,{...a,jsAttributes:{...a.jsAttributes,[t]:r}}),w(m,n,!0,o||null===r?"session":void 0)(t,r)}function y(){}["setErrorHandler","finished","addToTrace","addRelease"].forEach((e=>{h[e]=w(m,e,!0,"api")})),h.addPageAction=w(m,"addPageAction",!0,n.D.pageAction),h.setCurrentRouteName=w(m,"routeName",!0,n.D.spa),h.setPageViewName=function(t,r){if("string"==typeof t)return"/"!==t.charAt(0)&&(t="/"+t),(0,i.OP)(e).customTransaction=(r||"http://custom.transaction")+t,w(m,"setPageViewName",!0)()},h.setCustomAttribute=function(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if("string"==typeof e){if(["string","number","boolean"].includes(typeof t)||null===t)return b(e,t,"setCustomAttribute",r);(0,l.Z)("Failed to execute setCustomAttribute.\nNon-null value must be a string, number or boolean type, but a type of <".concat(typeof t,"> was provided."))}else(0,l.Z)("Failed to execute setCustomAttribute.\nName must be a string type, but a type of <".concat(typeof e,"> was provided."))},h.setUserId=function(e){if("string"==typeof e||null===e)return b("enduser.id",e,"setUserId",!0);(0,l.Z)("Failed to execute setUserId.\nNon-null value must be a string type, but a type of <".concat(typeof e,"> was provided."))},h.setApplicationVersion=function(e){if("string"==typeof e||null===e)return b("application.version",e,"setApplicationVersion",!1);(0,l.Z)("Failed to execute setApplicationVersion. Expected <String | null>, but got <".concat(typeof e,">."))},h.start=e=>{try{const t=e?"defined":"undefined";(0,o.p)(f.xS,["API/start/".concat(t,"/called")],void 0,n.D.metrics,p);const r=Object.values(n.D);if(void 0===e)e=r;else{if((e=Array.isArray(e)&&e.length?e:[e]).some((e=>!r.includes(e))))return(0,l.Z)("Invalid feature name supplied. Acceptable feature names are: ".concat(r));e.includes(n.D.pageViewEvent)||e.push(n.D.pageViewEvent)}e.forEach((e=>{p.emit("".concat(e,"-opt-in"))}))}catch(e){(0,l.Z)("An unexpected issue occurred",e)}},h.recordReplay=function(){(0,o.p)(f.xS,["API/recordReplay/called"],void 0,n.D.metrics,p),(0,o.p)("recordReplay",[],void 0,n.D.sessionReplay,p)},h.pauseReplay=function(){(0,o.p)(f.xS,["API/pauseReplay/called"],void 0,n.D.metrics,p),(0,o.p)("pauseReplay",[],void 0,n.D.sessionReplay,p)},h.interaction=function(){return(new y).get()};var A=y.prototype={createTracer:function(e,t){var r={},i=this,a="function"==typeof t;return(0,o.p)(f.xS,["API/createTracer/called"],void 0,n.D.metrics,p),(0,o.p)(v+"tracer",[(0,s.z)(),e,r],i,n.D.spa,p),function(){if(g.emit((a?"":"no-")+"fn-start",[(0,s.z)(),i,a],r),a)try{return t.apply(this,arguments)}catch(e){throw g.emit("fn-err",[arguments,this,e],r),e}finally{g.emit("fn-end",[(0,s.z)()],r)}}}};function w(e,t,r,i){return function(){return(0,o.p)(f.xS,["API/"+t+"/called"],void 0,n.D.metrics,p),i&&(0,o.p)(e+t,[(0,s.z)(),...arguments],r?null:this,i,p),r?void 0:this}}function x(){r.e(111).then(r.bind(r,7438)).then((t=>{let{setAPI:r}=t;r(e),(0,c.L)(e,"api")})).catch((()=>{(0,l.Z)("Downloading runtime APIs failed..."),(0,c.L)(e,"api",!0)}))}return["actionText","setName","setAttribute","save","ignore","onEnd","getContext","end","get"].forEach((e=>{A[e]=w(v,e,void 0,n.D.spa)})),h.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),(0,o.p)(f.xS,["API/noticeError/called"],void 0,n.D.metrics,p),(0,o.p)("err",[e,(0,s.z)(),!1,t],void 0,n.D.jserrors,p)},d.il?(0,u.b2)((()=>x()),!0):x(),h}(e.agentIdentifier,y)),void 0===e.exposed&&(e.exposed=_),v=!0}},1926:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},3325:(e,t,r)=>{"use strict";r.d(t,{D:()=>n,p:()=>i});const n={ajax:"ajax",jserrors:"jserrors",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",spa:"spa"},i={[n.pageViewEvent]:1,[n.pageViewTiming]:2,[n.metrics]:3,[n.jserrors]:4,[n.ajax]:5,[n.sessionTrace]:6,[n.pageAction]:7,[n.spa]:8,[n.sessionReplay]:9}}},n={};function i(e){var t=n[e];if(void 0!==t)return t.exports;var o=n[e]={exports:{}};return r[e](o,o.exports,i),o.exports}i.m=r,i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,r)=>(i.f[r](e,t),t)),[])),i.u=e=>({111:"nr-spa",164:"nr-spa-compressor",433:"nr-spa-recorder"}[e]+"-1.252.0.min.js"),i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.252.0.PROD:",i.l=(r,n,o,a)=>{if(e[r])e[r].push(n);else{var s,c;if(void 0!==o)for(var u=document.getElementsByTagName("script"),d=0;d<u.length;d++){var l=u[d];if(l.getAttribute("src")==r||l.getAttribute("data-webpack")==t+o){s=l;break}}if(!s){c=!0;var f={111:"sha512-EIHTFh/PyMHLspjr+lbpdxFHzJXOF7HH8nedLZZTJSO0SyJ4rECM57ibYM67sib1O2FH0nhyrm4QKgl30mtD8w==",433:"sha512-wCJ0jwoj4FyJOrl6z7VLilNolSSxqqm/5L08FBzY2sXjVPFpnyu6p3obblBOv9lj2u9awQrvcEGqvjyYflheow==",164:"sha512-we5lwLCaVV8XgmWsFLhIuQ0Ja0mW9HH9YHLBzjhalvM84n3Rpvmg1iFz7BOZeYnHrjU5dcWOHrtqxvdjDNy2ag=="};(s=document.createElement("script")).charset="utf-8",s.timeout=120,i.nc&&s.setAttribute("nonce",i.nc),s.setAttribute("data-webpack",t+o),s.src=r,0!==s.src.indexOf(window.location.origin+"/")&&(s.crossOrigin="anonymous"),f[a]&&(s.integrity=f[a])}e[r]=[n];var h=(t,n)=>{s.onerror=s.onload=null,clearTimeout(p);var i=e[r];if(delete e[r],s.parentNode&&s.parentNode.removeChild(s),i&&i.forEach((e=>e(n))),t)return t(n)},p=setTimeout(h.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=h.bind(null,s.onerror),s.onload=h.bind(null,s.onload),c&&document.head.appendChild(s)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={801:0,92:0};i.f.j=(t,r)=>{var n=i.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var o=new Promise(((r,i)=>n=e[t]=[r,i]));r.push(n[2]=o);var a=i.p+i.u(t),s=new Error;i.l(a,(r=>{if(i.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var o=r&&("load"===r.type?"missing":r.type),a=r&&r.target&&r.target.src;s.message="Loading chunk "+t+" failed.\n("+o+": "+a+")",s.name="ChunkLoadError",s.type=o,s.request=a,n[1](s)}}),"chunk-"+t,t)}};var t=(t,r)=>{var n,o,[a,s,c]=r,u=0;if(a.some((t=>0!==e[t]))){for(n in s)i.o(s,n)&&(i.m[n]=s[n]);if(c)c(i)}for(t&&t(r);u<a.length;u++)o=a[u],i.o(e,o)&&e[o]&&e[o][0](),e[o]=0},r=self["webpackChunk:NRBA-1.252.0.PROD"]=self["webpackChunk:NRBA-1.252.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";i(1926);var e=i(50);class t{#e(t){for(var r=arguments.length,n=new Array(r>1?r-1:0),i=1;i<r;i++)n[i-1]=arguments[i];if("function"==typeof this.api?.[t])return this.api[t](...n);(0,e.Z)("Call to agent api ".concat(t," failed. The API is not currently initialized."))}addPageAction(e,t){return this.#e("addPageAction",e,t)}setPageViewName(e,t){return this.#e("setPageViewName",e,t)}setCustomAttribute(e,t,r){return this.#e("setCustomAttribute",e,t,r)}noticeError(e,t){return this.#e("noticeError",e,t)}setUserId(e){return this.#e("setUserId",e)}setApplicationVersion(e){return this.#e("setApplicationVersion",e)}setErrorHandler(e){return this.#e("setErrorHandler",e)}finished(e){return this.#e("finished",e)}addRelease(e,t){return this.#e("addRelease",e,t)}start(e){return this.#e("start",e)}recordReplay(){return this.#e("recordReplay")}pauseReplay(){return this.#e("pauseReplay")}addToTrace(e){return this.#e("addToTrace",e)}setCurrentRouteName(e){return this.#e("setCurrentRouteName",e)}interaction(){return this.#e("interaction")}}var r=i(3325),n=i(234);const o=Object.values(r.D);function a(e){const t={};return o.forEach((r=>{t[r]=function(e,t){return!1!==(0,n.Mt)(t,"".concat(e,".enabled"))}(r,e)})),t}var s=i(7530);var c=i(8e3),u=i(5938),d=i(3960),l=i(385);class f extends u.W{constructor(e,t,r){let i=!(arguments.length>3&&void 0!==arguments[3])||arguments[3];super(e,t,r),this.auto=i,this.abortHandler=void 0,this.featAggregate=void 0,this.onAggregateImported=void 0,!1===(0,n.Mt)(this.agentIdentifier,"".concat(this.featureName,".autoStart"))&&(this.auto=!1),this.auto&&(0,c.R)(e,r)}importAggregator(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(this.featAggregate)return;if(!this.auto)return void this.ee.on("".concat(this.featureName,"-opt-in"),(()=>{(0,c.R)(this.agentIdentifier,this.featureName),this.auto=!0,this.importAggregator()}));const r=l.il&&!0===(0,n.Mt)(this.agentIdentifier,"privacy.cookies_enabled");let o;this.onAggregateImported=new Promise((e=>{o=e}));const a=async()=>{let n;try{if(r){const{setupAgentSession:e}=await i.e(111).then(i.bind(i,1656));n=e(this.agentIdentifier)}}catch(t){(0,e.Z)("A problem occurred when starting up session manager. This page will not start or extend any session.",t)}try{if(!this.shouldImportAgg(this.featureName,n))return(0,c.L)(this.agentIdentifier,this.featureName),void o(!1);const{lazyFeatureLoader:e}=await i.e(111).then(i.bind(i,8582)),{Aggregate:r}=await e(this.featureName,"aggregate");this.featAggregate=new r(this.agentIdentifier,this.aggregator,t),o(!0)}catch(t){(0,e.Z)("Downloading and initializing ".concat(this.featureName," failed..."),t),this.abortHandler?.(),(0,c.L)(this.agentIdentifier,this.featureName,!0),o(!1)}};l.il?(0,d.b2)((()=>a()),!0):a()}shouldImportAgg(e,t){return e!==r.D.sessionReplay||!!n.Yu.MO&&(!1!==(0,n.Mt)(this.agentIdentifier,"session_trace.enabled")&&(!!t?.isNew||!!t?.state.sessionReplayMode))}}var h=i(7633);class p extends f{static featureName=h.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,h.t,r),this.importAggregator()}}var g=i(1117),m=i(1284);class v extends g.w{constructor(e){super(e),this.aggregatedData={}}store(e,t,r,n,i){var o=this.getBucket(e,t,r,i);return o.metrics=function(e,t){t||(t={count:0});return t.count+=1,(0,m.D)(e,(function(e,r){t[e]=b(r,t[e])})),t}(n,o.metrics),o}merge(e,t,r,n,i){var o=this.getBucket(e,t,n,i);if(o.metrics){var a=o.metrics;a.count+=r.count,(0,m.D)(r,(function(e,t){if("count"!==e){var n=a[e],i=r[e];i&&!i.c?a[e]=b(i.t,n):a[e]=function(e,t){if(!t)return e;t.c||(t=y(t.t));return t.min=Math.min(e.min,t.min),t.max=Math.max(e.max,t.max),t.t+=e.t,t.sos+=e.sos,t.c+=e.c,t}(i,a[e])}}))}else o.metrics=r}storeMetric(e,t,r,n){var i=this.getBucket(e,t,r);return i.stats=b(n,i.stats),i}getBucket(e,t,r,n){this.aggregatedData[e]||(this.aggregatedData[e]={});var i=this.aggregatedData[e][t];return i||(i=this.aggregatedData[e][t]={params:r||{}},n&&(i.custom=n)),i}get(e,t){return t?this.aggregatedData[e]&&this.aggregatedData[e][t]:this.aggregatedData[e]}take(e){for(var t={},r="",n=!1,i=0;i<e.length;i++)t[r=e[i]]=A(this.aggregatedData[r]),t[r].length&&(n=!0),delete this.aggregatedData[r];return n?t:null}}function b(e,t){return null==e?function(e){e?e.c++:e={c:1};return e}(t):t?(t.c||(t=y(t.t)),t.c+=1,t.t+=e,t.sos+=e*e,e>t.max&&(t.max=e),e<t.min&&(t.min=e),t):{t:e}}function y(e){return{t:e,min:e,max:e,sos:e*e,c:1}}function A(e){return"object"!=typeof e?[]:(0,m.D)(e,w)}function w(e,t){return t}var x=i(8632),E=i(4402),_=i(4351);var T=i(5546),S=i(7956),R=i(3239),D=i(7894),N=i(9251);class O extends f{static featureName=N.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,N.t,r),l.il&&((0,S.N)((()=>(0,T.p)("docHidden",[(0,D.z)()],void 0,N.t,this.ee)),!0),(0,R.bP)("pagehide",(()=>(0,T.p)("winPagehide",[(0,D.z)()],void 0,N.t,this.ee))),this.importAggregator())}}var I=i(3081);class j extends f{static featureName=I.t9;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,I.t9,r),this.importAggregator()}}var C=i(6660);class P{constructor(e,t,r,n){this.name="UncaughtError",this.message=e,this.sourceURL=t,this.line=r,this.column=n}}class k extends f{static featureName=C.t;#t=new Set;constructor(e,t){let n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,C.t,n);try{this.removeOnAbort=new AbortController}catch(e){}this.ee.on("fn-err",((e,t,n)=>{this.abortHandler&&!this.#t.has(n)&&(this.#t.add(n),(0,T.p)("err",[this.#r(n),(0,D.z)()],void 0,r.D.jserrors,this.ee))})),this.ee.on("internal-error",(e=>{this.abortHandler&&(0,T.p)("ierr",[this.#r(e),(0,D.z)(),!0],void 0,r.D.jserrors,this.ee)})),l._A.addEventListener("unhandledrejection",(e=>{this.abortHandler&&(0,T.p)("err",[this.#n(e),(0,D.z)(),!1,{unhandledPromiseRejection:1}],void 0,r.D.jserrors,this.ee)}),(0,R.m$)(!1,this.removeOnAbort?.signal)),l._A.addEventListener("error",(e=>{this.abortHandler&&(this.#t.has(e.error)?this.#t.delete(e.error):(0,T.p)("err",[this.#i(e),(0,D.z)()],void 0,r.D.jserrors,this.ee))}),(0,R.m$)(!1,this.removeOnAbort?.signal)),this.abortHandler=this.#o,this.importAggregator()}#o(){this.removeOnAbort?.abort(),this.#t.clear(),this.abortHandler=void 0}#r(e){return e instanceof Error?e:void 0!==e?.message?new P(e.message,e.filename||e.sourceURL,e.lineno||e.line,e.colno||e.col):new P("string"==typeof e?e:(0,_.P)(e))}#n(e){let t="Unhandled Promise Rejection: ";if(e?.reason instanceof Error)try{return e.reason.message=t+e.reason.message,e.reason}catch(t){return e.reason}if(void 0===e.reason)return new P(t);const r=this.#r(e.reason);return r.message=t+r.message,r}#i(e){if(e.error instanceof SyntaxError&&!/:\d+$/.test(e.error.stack?.trim())){const t=new P(e.message,e.filename,e.lineno,e.colno);return t.name=SyntaxError.name,t}return e.error instanceof Error?e.error:new P(e.message,e.filename,e.lineno,e.colno)}}var M=i(2210);let H=1;const L="nr@id";function z(e){const t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===l._A?0:(0,M.X)(e,L,(function(){return H++}))}function F(e){if("string"==typeof e&&e.length)return e.length;if("object"==typeof e){if("undefined"!=typeof ArrayBuffer&&e instanceof ArrayBuffer&&e.byteLength)return e.byteLength;if("undefined"!=typeof Blob&&e instanceof Blob&&e.size)return e.size;if(!("undefined"!=typeof FormData&&e instanceof FormData))try{return(0,_.P)(e).length}catch(e){return}}}var B=i(1214),U=i(7243);class V{constructor(e){this.agentIdentifier=e}generateTracePayload(e){if(!this.shouldGenerateTrace(e))return null;var t=(0,n.DL)(this.agentIdentifier);if(!t)return null;var r=(t.accountID||"").toString()||null,i=(t.agentID||"").toString()||null,o=(t.trustKey||"").toString()||null;if(!r||!i)return null;var a=(0,E.M)(),s=(0,E.Ht)(),c=Date.now(),u={spanId:a,traceId:s,timestamp:c};return(e.sameOrigin||this.isAllowedOrigin(e)&&this.useTraceContextHeadersForCors())&&(u.traceContextParentHeader=this.generateTraceContextParentHeader(a,s),u.traceContextStateHeader=this.generateTraceContextStateHeader(a,c,r,i,o)),(e.sameOrigin&&!this.excludeNewrelicHeader()||!e.sameOrigin&&this.isAllowedOrigin(e)&&this.useNewrelicHeaderForCors())&&(u.newrelicHeader=this.generateTraceHeader(a,s,c,r,i,o)),u}generateTraceContextParentHeader(e,t){return"00-"+t+"-"+e+"-01"}generateTraceContextStateHeader(e,t,r,n,i){return i+"@nr=0-1-"+r+"-"+n+"-"+e+"----"+t}generateTraceHeader(e,t,r,n,i,o){if(!("function"==typeof l._A?.btoa))return null;var a={v:[0,1],d:{ty:"Browser",ac:n,ap:i,id:e,tr:t,ti:r}};return o&&n!==o&&(a.d.tk=o),btoa((0,_.P)(a))}shouldGenerateTrace(e){return this.isDtEnabled()&&this.isAllowedOrigin(e)}isAllowedOrigin(e){var t=!1,r={};if((0,n.Mt)(this.agentIdentifier,"distributed_tracing")&&(r=(0,n.P_)(this.agentIdentifier).distributed_tracing),e.sameOrigin)t=!0;else if(r.allowed_origins instanceof Array)for(var i=0;i<r.allowed_origins.length;i++){var o=(0,U.e)(r.allowed_origins[i]);if(e.hostname===o.hostname&&e.protocol===o.protocol&&e.port===o.port){t=!0;break}}return t}isDtEnabled(){var e=(0,n.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!!e.enabled}excludeNewrelicHeader(){var e=(0,n.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!!e.exclude_newrelic_header}useNewrelicHeaderForCors(){var e=(0,n.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!1!==e.cors_use_newrelic_header}useTraceContextHeadersForCors(){var e=(0,n.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!!e.cors_use_tracecontext_headers}}var q=i(7825),G=["load","error","abort","timeout"],Z=G.length,W=n.Yu.REQ,X=n.Yu.XHR;class K extends f{static featureName=q.t;constructor(e,t){let i=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];if(super(e,t,q.t,i),(0,n.OP)(e).xhrWrappable){this.dt=new V(e),this.handler=(e,t,r,n)=>(0,T.p)(e,t,r,n,this.ee);try{const e={xmlhttprequest:"xhr",fetch:"fetch",beacon:"beacon"};l._A?.performance?.getEntriesByType("resource").forEach((t=>{if(t.initiatorType in e&&0!==t.responseStatus){const n={status:t.responseStatus},i={rxSize:t.transferSize,duration:Math.floor(t.duration),cbTime:0};Y(n,t.name),this.handler("xhr",[n,i,t.startTime,t.responseEnd,e[t.initiatorType]],void 0,r.D.ajax)}}))}catch(e){}(0,B.u5)(this.ee),(0,B.Kf)(this.ee),function(e,t,i,o){function a(e){var t=this;t.totalCbs=0,t.called=0,t.cbTime=0,t.end=x,t.ended=!1,t.xhrGuids={},t.lastSize=null,t.loadCaptureCalled=!1,t.params=this.params||{},t.metrics=this.metrics||{},e.addEventListener("load",(function(r){E(t,e)}),(0,R.m$)(!1)),l.IF||e.addEventListener("progress",(function(e){t.lastSize=e.loaded}),(0,R.m$)(!1))}function s(e){this.params={method:e[0]},Y(this,e[1]),this.metrics={}}function c(t,r){var i=(0,n.DL)(e);i.xpid&&this.sameOrigin&&r.setRequestHeader("X-NewRelic-ID",i.xpid);var a=o.generateTracePayload(this.parsedOrigin);if(a){var s=!1;a.newrelicHeader&&(r.setRequestHeader("newrelic",a.newrelicHeader),s=!0),a.traceContextParentHeader&&(r.setRequestHeader("traceparent",a.traceContextParentHeader),a.traceContextStateHeader&&r.setRequestHeader("tracestate",a.traceContextStateHeader),s=!0),s&&(this.dt=a)}}function u(e,r){var n=this.metrics,i=e[0],o=this;if(n&&i){var a=F(i);a&&(n.txSize=a)}this.startTime=(0,D.z)(),this.body=i,this.listener=function(e){try{"abort"!==e.type||o.loadCaptureCalled||(o.params.aborted=!0),("load"!==e.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof r.onload)&&"function"==typeof o.end)&&o.end(r)}catch(e){try{t.emit("internal-error",[e])}catch(e){}}};for(var s=0;s<Z;s++)r.addEventListener(G[s],this.listener,(0,R.m$)(!1))}function d(e,t,r){this.cbTime+=e,t?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof r.onload||"function"!=typeof this.end||this.end(r)}function f(e,t){var r=""+z(e)+!!t;this.xhrGuids&&!this.xhrGuids[r]&&(this.xhrGuids[r]=!0,this.totalCbs+=1)}function h(e,t){var r=""+z(e)+!!t;this.xhrGuids&&this.xhrGuids[r]&&(delete this.xhrGuids[r],this.totalCbs-=1)}function p(){this.endTime=(0,D.z)()}function g(e,r){r instanceof X&&"load"===e[0]&&t.emit("xhr-load-added",[e[1],e[2]],r)}function m(e,r){r instanceof X&&"load"===e[0]&&t.emit("xhr-load-removed",[e[1],e[2]],r)}function v(e,t,r){t instanceof X&&("onload"===r&&(this.onload=!0),("load"===(e[0]&&e[0].type)||this.onload)&&(this.xhrCbStart=(0,D.z)()))}function b(e,r){this.xhrCbStart&&t.emit("xhr-cb-time",[(0,D.z)()-this.xhrCbStart,this.onload,r],r)}function y(e){var t,r=e[1]||{};if("string"==typeof e[0]?0===(t=e[0]).length&&l.il&&(t=""+l._A.location.href):e[0]&&e[0].url?t=e[0].url:l._A?.URL&&e[0]&&e[0]instanceof URL?t=e[0].href:"function"==typeof e[0].toString&&(t=e[0].toString()),"string"==typeof t&&0!==t.length){t&&(this.parsedOrigin=(0,U.e)(t),this.sameOrigin=this.parsedOrigin.sameOrigin);var n=o.generateTracePayload(this.parsedOrigin);if(n&&(n.newrelicHeader||n.traceContextParentHeader))if(e[0]&&e[0].headers)s(e[0].headers,n)&&(this.dt=n);else{var i={};for(var a in r)i[a]=r[a];i.headers=new Headers(r.headers||{}),s(i.headers,n)&&(this.dt=n),e.length>1?e[1]=i:e.push(i)}}function s(e,t){var r=!1;return t.newrelicHeader&&(e.set("newrelic",t.newrelicHeader),r=!0),t.traceContextParentHeader&&(e.set("traceparent",t.traceContextParentHeader),t.traceContextStateHeader&&e.set("tracestate",t.traceContextStateHeader),r=!0),r}}function A(e,t){this.params={},this.metrics={},this.startTime=(0,D.z)(),this.dt=t,e.length>=1&&(this.target=e[0]),e.length>=2&&(this.opts=e[1]);var r,n=this.opts||{},i=this.target;"string"==typeof i?r=i:"object"==typeof i&&i instanceof W?r=i.url:l._A?.URL&&"object"==typeof i&&i instanceof URL&&(r=i.href),Y(this,r);var o=(""+(i&&i instanceof W&&i.method||n.method||"GET")).toUpperCase();this.params.method=o,this.body=n.body,this.txSize=F(n.body)||0}function w(e,t){var n;this.endTime=(0,D.z)(),this.params||(this.params={}),this.params.status=t?t.status:0,"string"==typeof this.rxSize&&this.rxSize.length>0&&(n=+this.rxSize);var o={txSize:this.txSize,rxSize:n,duration:(0,D.z)()-this.startTime};i("xhr",[this.params,o,this.startTime,this.endTime,"fetch"],this,r.D.ajax)}function x(e){var t=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var o=0;o<Z;o++)e.removeEventListener(G[o],this.listener,!1);t.aborted||(n.duration=(0,D.z)()-this.startTime,this.loadCaptureCalled||4!==e.readyState?null==t.status&&(t.status=0):E(this,e),n.cbTime=this.cbTime,i("xhr",[t,n,this.startTime,this.endTime,"xhr"],this,r.D.ajax))}}function E(e,n){e.params.status=n.status;var i=function(e,t){var r=e.responseType;return"json"===r&&null!==t?t:"arraybuffer"===r||"blob"===r||"json"===r?F(e.response):"text"===r||""===r||void 0===r?F(e.responseText):void 0}(n,e.lastSize);if(i&&(e.metrics.rxSize=i),e.sameOrigin){var o=n.getResponseHeader("X-NewRelic-App-Data");o&&((0,T.p)(I.mY,["Ajax/CrossApplicationTracing/Header/Seen"],void 0,r.D.metrics,t),e.params.cat=o.split(", ").pop())}e.loadCaptureCalled=!0}t.on("new-xhr",a),t.on("open-xhr-start",s),t.on("open-xhr-end",c),t.on("send-xhr-start",u),t.on("xhr-cb-time",d),t.on("xhr-load-added",f),t.on("xhr-load-removed",h),t.on("xhr-resolved",p),t.on("addEventListener-end",g),t.on("removeEventListener-end",m),t.on("fn-end",b),t.on("fetch-before-start",y),t.on("fetch-start",A),t.on("fn-start",v),t.on("fetch-done",w)}(e,this.ee,this.handler,this.dt),this.importAggregator()}}}function Y(e,t){var r=(0,U.e)(t),n=e.params||e;n.hostname=r.hostname,n.port=r.port,n.protocol=r.protocol,n.host=r.hostname+":"+r.port,n.pathname=r.pathname,e.parsedOrigin=r,e.sameOrigin=r.sameOrigin}var J=i(3614);const{BST_RESOURCE:Q,RESOURCE:ee,START:te,END:re,FEATURE_NAME:ne,FN_END:ie,FN_START:oe,PUSH_STATE:ae}=J;var se=i(7056),ce=i(7144);class ue extends f{static featureName=ce.t9;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,ce.t9,r);try{const e=JSON.parse(localStorage.getItem("NRBA_SESSION"));e.sessionReplayMode!==se.IK.OFF?this.#a(e.sessionReplayMode):this.importAggregator({})}catch(e){this.importAggregator({})}}async#a(e){const{Recorder:t}=await Promise.all([i.e(111),i.e(433)]).then(i.bind(i,4136));this.recorder=new t({mode:e,agentIdentifier:this.agentIdentifier}),this.recorder.startRecording(),this.importAggregator({recorder:this.recorder})}}var de=i(7836);const{FEATURE_NAME:le,START:fe,END:he,BODY:pe,CB_END:ge,JS_TIME:me,FETCH:ve,FN_START:be,CB_START:ye,FN_END:Ae}=de;var we=i(4649);class xe extends f{static featureName=we.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,we.t,r),this.importAggregator()}}new class extends t{constructor(t){let r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:(0,E.ky)(16);super(),l._A?(this.agentIdentifier=r,this.sharedAggregator=new v({agentIdentifier:this.agentIdentifier}),this.features={},(0,x.h5)(r,this),this.desiredFeatures=new Set(t.features||[]),this.desiredFeatures.add(p),(0,s.j)(this,t,t.loaderType||"agent"),this.run()):(0,e.Z)("Failed to initial the agent. Could not determine the runtime environment.")}get config(){return{info:(0,n.C5)(this.agentIdentifier),init:(0,n.P_)(this.agentIdentifier),loader_config:(0,n.DL)(this.agentIdentifier),runtime:(0,n.OP)(this.agentIdentifier)}}run(){try{const t=a(this.agentIdentifier),n=[...this.desiredFeatures];n.sort(((e,t)=>r.p[e.featureName]-r.p[t.featureName])),n.forEach((n=>{if(t[n.featureName]||n.featureName===r.D.pageViewEvent){const i=function(e){switch(e){case r.D.ajax:return[r.D.jserrors];case r.D.sessionTrace:return[r.D.ajax,r.D.pageViewEvent];case r.D.sessionReplay:return[r.D.sessionTrace];case r.D.pageViewTiming:return[r.D.pageViewEvent];default:return[]}}(n.featureName);i.every((e=>t[e]))||(0,e.Z)("".concat(n.featureName," is enabled but one or more dependent features has been disabled (").concat((0,_.P)(i),"). This may cause unintended consequences or missing data...")),this.features[n.featureName]=new n(this.agentIdentifier,this.sharedAggregator)}}))}catch(t){(0,e.Z)("Failed to initialize all enabled instrument classes (agent aborted) -",t);for(const e in this.features)this.features[e].abortHandler?.();const r=(0,x.fP)();return delete r.initializedAgents[this.agentIdentifier]?.api,delete r.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator,r.ee?.abort(),delete r.ee?.get(this.agentIdentifier),!1}}}({features:[K,p,O,class extends f{static featureName=ne;constructor(e,t){if(super(e,t,ne,!(arguments.length>2&&void 0!==arguments[2])||arguments[2]),!l.il)return;const n=this.ee;let i;(0,B.QU)(n),this.eventsEE=(0,B.em)(n),this.eventsEE.on(oe,(function(e,t){this.bstStart=(0,D.z)()})),this.eventsEE.on(ie,(function(e,t){(0,T.p)("bst",[e[0],t,this.bstStart,(0,D.z)()],void 0,r.D.sessionTrace,n)})),n.on(ae+te,(function(e){this.time=(0,D.z)(),this.startPath=location.pathname+location.hash})),n.on(ae+re,(function(e){(0,T.p)("bstHist",[location.pathname+location.hash,this.startPath,this.time],void 0,r.D.sessionTrace,n)}));try{i=new PerformanceObserver((e=>{const t=e.getEntries();(0,T.p)(Q,[t],void 0,r.D.sessionTrace,n)})),i.observe({type:ee,buffered:!0})}catch(e){}this.importAggregator({resourceObserver:i})}},ue,j,xe,k,class extends f{static featureName=le;constructor(e,t){if(super(e,t,le,!(arguments.length>2&&void 0!==arguments[2])||arguments[2]),!l.il)return;if(!(0,n.OP)(e).xhrWrappable)return;try{this.removeOnAbort=new AbortController}catch(e){}let r,i=0;const o=this.ee.get("tracer"),a=(0,B._L)(this.ee),s=(0,B.Lg)(this.ee),c=(0,B.BV)(this.ee),u=(0,B.Kf)(this.ee),d=this.ee.get("events"),f=(0,B.u5)(this.ee),h=(0,B.QU)(this.ee),p=(0,B.Gm)(this.ee);function g(e,t){h.emit("newURL",[""+window.location,t])}function m(){i++,r=window.location.hash,this[be]=(0,D.z)()}function v(){i--,window.location.hash!==r&&g(0,!0);var e=(0,D.z)();this[me]=~~this[me]+e-this[be],this[Ae]=e}function b(e,t){e.on(t,(function(){this[t]=(0,D.z)()}))}this.ee.on(be,m),s.on(ye,m),a.on(ye,m),this.ee.on(Ae,v),s.on(ge,v),a.on(ge,v),this.ee.buffer([be,Ae,"xhr-resolved"],this.featureName),d.buffer([be],this.featureName),c.buffer(["setTimeout"+he,"clearTimeout"+fe,be],this.featureName),u.buffer([be,"new-xhr","send-xhr"+fe],this.featureName),f.buffer([ve+fe,ve+"-done",ve+pe+fe,ve+pe+he],this.featureName),h.buffer(["newURL"],this.featureName),p.buffer([be],this.featureName),s.buffer(["propagate",ye,ge,"executor-err","resolve"+fe],this.featureName),o.buffer([be,"no-"+be],this.featureName),a.buffer(["new-jsonp","cb-start","jsonp-error","jsonp-end"],this.featureName),b(f,ve+fe),b(f,ve+"-done"),b(a,"new-jsonp"),b(a,"jsonp-end"),b(a,"cb-start"),h.on("pushState-end",g),h.on("replaceState-end",g),window.addEventListener("hashchange",g,(0,R.m$)(!0,this.removeOnAbort?.signal)),window.addEventListener("load",g,(0,R.m$)(!0,this.removeOnAbort?.signal)),window.addEventListener("popstate",(function(){g(0,i>1)}),(0,R.m$)(!0,this.removeOnAbort?.signal)),this.abortHandler=this.#o,this.importAggregator()}#o(){this.removeOnAbort?.abort(),this.abortHandler=void 0}}],loaderType:"spa"})})()})();</script>
+<script src="https://cdn.rivals.com/production/assets/window_name-eeafd2f511721aa0025369f2f72b6654d53f4d36c0cbce344539949f6db58e0a.js"></script>
+<!-- GUCE -->
+<meta content="false" name="oath:guce:product-eu">
+<meta content="guce.rivals.com" name="oath:guce:consent-host">
+<meta content="true" name="oath:guce:report-only">
+<script src="https://s.yimg.com/oa/guce.js" async="async"></script>
+<script src="https://consent.cmp.oath.com/cmp.js"></script>
+<meta content="guce.rivals.com" name="conf:cjs:consent-host">
+<script src="https://s.yimg.com/oa/consent.js" async="async"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Merriweather:400,700,italic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,500,700|Merriweather:400,700,italic" rel="stylesheet">
+<link rel="stylesheet" media="all" href="https://cdn.rivals.com/production/assets/application-5db92ee1256e032b09425c8c1ab6ca55534464b722852c7528b72dccfc884c98.css">
+
+<script src="https://cdn.rivals.com/production/assets/lib-bf5de26f8e14cb2c49b5d6a84727daeb3fa15f9c7e87556cfb947ffc89c3b084.js"></script>
+<script src="https://cdn.rivals.com/production/assets/application-1f960793bcb7d06a3e7a6e7ca726ce886e28c53098b097c387f3f4856bb9c2fc.js"></script>
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="AGOWehdjteJO26veWXF7O6lEKoWGmxsu8NsG6FEy6tW5mqV43csX03guvonbjfsbOxR9nMCzgAmTxNVvc55r1g==">
+<script src="/javascript/config.js"></script>
+<meta content="initial-scale=1.0, width=device-width, maximum-scale=1.0" name="viewport">
+<meta content="https://cdn.rivals.com/production/assets/favicons/browserconfig-424da53178d41fe718c7c35196302173e4d408436d53d9af08bf9d92b5eb326b.xml" name="msapplication-config">
+<meta content="#0a4ea3" name="msapplication-TileColor">
+<meta content="https://cdn.rivals.com/production/assets/favicons/mstile-144x144-05d9a828c91c5cb694ecf54c9deaebe8a2f1a60a17bd6ef0fb3912d4d02d0dc9.png" name="msapplication-TileImage">
+<meta content="#ffffff" name="theme-color">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-57x57-fa19a5fb3e8e32377788af25a3357a50d74833bbdc8b867581697f30e3c8cd39.png" rel="apple-touch-icon" sizes="57x57">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-60x60-ce125222f3f9656e41974c0e21bdd604906f7fc3fb9e98ef68be7b92aa21e763.png" rel="apple-touch-icon" sizes="60x60">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-72x72-5cb15eb3147e1590f7b74a5c104d9c619c210d5e94a50524a458341978043f4b.png" rel="apple-touch-icon" sizes="72x72">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-76x76-3e007055d7d2923c93617be6d7165e53ed1982813c0c7fa48a661feae2c7a7e6.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-114x114-1d129ef30d4787ff259014ac8b26ee5e68fc5e3c214f848e2ee5dc7c7deddda1.png" rel="apple-touch-icon" sizes="114x114">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-120x120-6a5a5b48965a695c78ee3ed23fdfc00db8ee63fed3bb79a6c9be769bf89e78d3.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-144x144-79bb2981c2db50207fff2a25088c1cbf13ca77170ceeeb75ca832d818165d840.png" rel="apple-touch-icon" sizes="144x144">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-152x152-3a99122e15ae7df9964f514754996387e3c29df2fb01a454f5d6fb613acd2e54.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://cdn.rivals.com/production/assets/favicons/apple-touch-icon-180x180-a3aa0d3e2309f736df34f3f7b4498b6936b1436eb76885dc14155acf34fa26fc.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://cdn.rivals.com/production/assets/favicons/favicon-16x16-24e59ba16fdb2d632eba18ce98e0d36788906139ea311d2137832d89a46894ce.png" rel="icon" sizes="16x16" type="image/png">
+<link href="https://cdn.rivals.com/production/assets/favicons/favicon-32x32-9dc66c44bc7f301ea5c1af172648d4c82e4ab2871de17c5f0c41a4243292165a.png" rel="icon" sizes="32x32" type="image/png">
+<link href="https://cdn.rivals.com/production/assets/favicons/favicon-96x96-7a796a0295b2631471e9fd68842be171578feca689722649c200b8cd92d95dd9.png" rel="icon" sizes="96x96" type="image/png">
+<link href="https://cdn.rivals.com/production/assets/favicons/favicon-194x194-996e0c79a474a05a209d8c12b87f66cd2eaec0187153d50f0ae71e0c4e85b94e.png" rel="icon" sizes="194x194" type="image/png">
+<link href="https://cdn.rivals.com/production/assets/favicons/android-chrome-192x192-8c3152cc17488b38c8e743427582c4e2b7c6ce44b9f201dc45942040f9f97a26.png" rel="icon" sizes="192x192" type="image/png">
+<link href="https://cdn.rivals.com/production/assets/favicons/production-5251dd3434625aeb93bfe9a458834a9b6664ea1dd95bb63e6366f5a78341568c.ico" rel="shortcut icon">
+<link href="https://cdn.rivals.com/production/assets/favicons/production-5251dd3434625aeb93bfe9a458834a9b6664ea1dd95bb63e6366f5a78341568c.ico" rel="apple-touch-icon">
+<link href="https://cdn.rivals.com/production/assets/favicons/manifest-1110b65976589f7fbd732f6740c4d1b1e8db9a55258e754ebdcb4c0518f59a5f.json" rel="manifest">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Merriweather:400,700,italic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,500,700|Merriweather:400,700,italic" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css" rel="stylesheet">
+<link href="https://cdn.rivals.com/production/assets/YahooSansFonts-12dedf23ea93670bfc72fb288de536b6d51553814aae378f7c878d5af7a24754.css" rel="stylesheet">
+<link href="https://cdn.rivals.com/production/assets/YahooSansCondFonts-0e96b958d6c698d1ee0c9858d54c0019d25541330b026d4fd22d975b89e1ea1e.css" rel="stylesheet">
+<link href="https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win" rel="canonical">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": "https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win",
+  "datePublished": "2023-12-22 23:21:43 -0600",
+  "dateModified": "2023-12-22 23:22:26 -0600",
+  "description": "TAMPA, Fla.- Georgia Tech started slow trailing 14-0 to\r\nUCF, but a forced fumble by Horace Lockett in the first quarter",
+  "publisher": {
+    "@type": "Organization",
+    "name": "JacketsOnline",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://images.rivals.com/image/upload/b_rgb:00263a,c_lpad,f_auto,h_110,q_auto,w_300/jp29cisfsncscantco5o",
+      "width": 300,
+      "height": 110
+    },
+    "url": "https://georgiatech.rivals.com"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Kelly  Quinlan",
+    "jobTitle": "Publisher "
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Kelly  Quinlan",
+    "jobTitle": "Publisher "
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Rivals.com",
+    "url": "https://n.rivals.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://images.rivals.com/image/upload/b_rgb:0A4EA3,c_lpad,f_auto,h_110,q_auto,w_300/rrflfaefebpwlnibpbwq",
+      "width": 300,
+      "height": 110
+    }
+  },
+  "thumbnailUrl": "https://images.rivals.com/image/upload/f_auto,q_auto,t_thumbnail/rhcdhmkahbqfxfw8d4pf",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://images.rivals.com/image/upload/f_auto,q_auto,t_thumbnail/rhcdhmkahbqfxfw8d4pf",
+    "width": 180,
+    "height": 130
+  }
+}
+</script>
+<title>Tech dominates UCF in a 30-17 Gasparilla Bowl win - JacketsOnline</title>
+<meta content="JacketsOnline  -  Tech dominates UCF in a 30-17 Gasparilla Bowl win" property="og:title">
+<meta content="TAMPA, Fla.- Georgia Tech started slow trailing 14-0 to
+UCF, but a forced fumble by Horace Lockett in the first quarter" name="description">
+
+<script src="https://www.googletagmanager.com/gtag/js?id=G-DW6R3G34DZ" type="text/javascript"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DW6R3G34DZ', {
+    page_location: window.location.href,
+    page_path: window.location.pathname,
+    page_title: window.document.title,
+    page_running_tech: "angular"
+  });
+</script>
+
+
+
+<script src="/javascript/url_factory.js"></script>
+<meta content="https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win" property="og:url">
+<meta content="https://images.rivals.com/image/upload/f_auto,q_auto,t_headline_primary/rhcdhmkahbqfxfw8d4pf" property="og:image">
+<meta content="TAMPA, Fla.- Georgia Tech started slow trailing 14-0 to
+UCF, but a forced fumble by Horace Lockett in the first quarter" property="og:description">
+<meta content="article" property="og:type">
+<meta content="2023-12-22 23:21:43 -0600" property="article:published_time">
+<meta content="2023-12-22 23:22:26 -0600" property="article:modified_time">
+<meta content="Article" property="article:section">
+</head><body class="georgiatech contents-show" ng-app="rivals"><rv-chartbeat-config-header ng-hide="" subdomain="georgiatech.rivals.com"></rv-chartbeat-config-header>
+
+
+
+<div class="third_party_consent_embed" style="display: none;">
+<div class="encoded_embed_content">
+PHNjcmlwdD4KICAoZnVuY3Rpb24odyxkLHMsbCxpKXsKICAgICAgICBpZiAo
+d2luZG93Ll9kaWRBc3luY0luamVjdEdvb2dsZVRhZ01hbmFnZXIpIHJldHVy
+bjsKICAgICAgICB3W2xdPXdbbF18fFtdO3dbbF0ucHVzaCh7J2d0bS5zdGFy
+dCc6CiAgICAgICAgbmV3IERhdGUoKS5nZXRUaW1lKCksZXZlbnQ6J2d0bS5q
+cyd9KTt2YXIgZj1kLmdldEVsZW1lbnRzQnlUYWdOYW1lKHMpWzBdLAogICAg
+ICAgIGo9ZC5jcmVhdGVFbGVtZW50KHMpLGRsPWwhPSdkYXRhTGF5ZXInPycm
+bD0nK2w6Jyc7ai5hc3luYz10cnVlO2ouc3JjPQogICAgICAgICdodHRwczov
+L3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbS9ndG0uanM/aWQ9JytpK2RsKycm
+Z3RtX2F1dGg9JysnS2hINmhlQ3BvV0pVSG5xVnpkRWE3dycrCiAgICAgICAg
+JyZndG1fcHJldmlldz0nKydlbnYtMScrJyZndG1fY29va2llc193aW49eCc7
+Zi5wYXJlbnROb2RlLmluc2VydEJlZm9yZShqLGYpOwogICAgICAgIHdpbmRv
+dy5fZGlkQXN5bmNJbmplY3RHb29nbGVUYWdNYW5hZ2VyID0gdHJ1ZTsKICAg
+ICAgfSkod2luZG93LGRvY3VtZW50LCdzY3JpcHQnLCdkYXRhTGF5ZXInLCdH
+VE0tTUY2UFhYQycpOwo8L3NjcmlwdD4KPG5vc2NyaXB0Pgo8aWZyYW1lIGhl
+aWdodD0nMCcgc3JjPSdodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNv
+bS9ucy5odG1sP2lkPUdUTS1NRjZQWFhDJmFtcDtndG1fYXV0aD1LaEg2aGVD
+cG9XSlVIbnFWemRFYTd3JmFtcDtndG1fcHJldmlldz1lbnYtMSZhbXA7Z3Rt
+X2Nvb2tpZXNfd2luPXgnIHN0eWxlPSdkaXNwbGF5Om5vbmU7dmlzaWJpbGl0
+eTpoaWRkZW4nIHdpZHRoPScwJz48L2lmcmFtZT4KPC9ub3NjcmlwdD4KCgo=
+
+</div>
+</div>
+<script>
+  angular.module('rivals').run(function(googleAnalyticsService) {
+    googleAnalyticsService.setGaClientId('G-DW6R3G34DZ');
+  });
+</script>
+
+<!--[if lte IE 9]><div class='browser-unsupported'>
+<div class='browser-unsupported-text'>
+You are using an
+<strong>outdated</strong>
+browser. Please
+<a href='http://browsehappy.com/'>upgrade your browser</a>
+to use Rivals.com
+</div>
+</div><![endif]-->
+
+<style>
+  @media screen and (max-width: 1023px) {
+    .georgiatech #programming > h1 {
+      background-color: #00263a !important; } }
+  
+  .georgiatech .wrapper-container .team-colors-line {
+    background-color: #b3a369; }
+  
+  @media screen and (min-width: 768px) {
+    .georgiatech .solid-team-line {
+      width: 100%;
+      height: 8px;
+      display: flex;
+      background-color: #b3a369; } }
+  
+  .georgiatech .team-colors-line {
+    width: 100%;
+    height: 8px;
+    display: flex;
+    background-color: #00263a; }
+    .georgiatech .team-colors-line .color {
+      width: 33.33%; }
+    .georgiatech .team-colors-line .first-opacity {
+      background-color: white;
+      opacity: 0.2; }
+    .georgiatech .team-colors-line .second-opacity {
+      background-color: white;
+      opacity: 0.4; }
+    .georgiatech .team-colors-line.vertical {
+      flex-direction: column;
+      height: auto;
+      width: 8px; }
+      .georgiatech .team-colors-line.vertical .color {
+        width: 100%;
+        height: 33.33%; }
+    .georgiatech .team-colors-line.header {
+      height: 6px; }
+  
+  .georgiatech > header .notification-link .count-container {
+    background-color: #00263a !important; }
+  
+  .georgiatech > header .wrapper-container {
+    background-color: #00263a !important;
+    display: block;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 999; }
+  
+  .georgiatech > header .invalid-email-banner {
+    background-color: #00263a;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 998; }
+    .georgiatech > header .invalid-email-banner a {
+      color: #fff;
+      vertical-align: middle; }
+    .georgiatech > header .invalid-email-banner a:hover {
+      color: #b3a369; }
+  
+  @media screen and (max-width: 767px) {
+    .georgiatech > header .mobile-header {
+      background-color: #b3a369 !important;
+      height: 5px;
+      position: fixed;
+      width: 100%;
+      z-index: 50; } }
+  
+  .georgiatech > header hr {
+    background-color: rgba(255, 255, 255, 0.55) !important; }
+  
+  .georgiatech > header .home {
+    border-right: 1px solid rgba(255, 255, 255, 0.55) !important; }
+  
+  .georgiatech > header .second-nav {
+    background-color: white !important; }
+  
+  @media screen and (max-width: 1023px) {
+    .georgiatech > header .nav-row > ul,
+    .georgiatech > header .third-nav {
+      background-color: white !important; }
+    .georgiatech > header .dropdown-toggle > i.fa {
+      color: #00263a !important; } }
+  
+  .georgiatech > header .active {
+    font-family: "Roboto", "Helvetica Neue", arial, sans-serif;
+    font-weight: 500;
+    color: #00263a; }
+  
+  .site-primary-font-color {
+    color: #00263a; }
+  
+  .site-primary-background-color {
+    background-color: #00263a; }
+  
+  .site-secondary-font-color {
+    color: #b3a369; }
+  
+  .site-secondary-background-color {
+    background-color: #b3a369; }
+  
+  :root {
+    --primary-color: #00263a;
+    --primary-color-overlay: rgba(0, 38, 58, .4);
+    --secondary-color: #b3a369;
+    --accent-color: #00263a;
+    --button-color: #00263a;
+    --subscription-button-color: #0A4EA3; }
+</style>
+
+<header><nav ng-class="ctrl.currentUser ? &quot;signed-in&quot; : &quot;signed-out&quot;" ng-cloak="" ng-controller="NavController as ctrl" ng-init="ctrl.init(&quot;georgiatech&quot;)" role="navigation">
+<div class="wrapper-container">
+<div class="wrapper logo-row">
+<a alt="Rivals" href="https://n.rivals.com"><div class="rivals-logo-navbar-white"></div>
+</a><a class="nav-menu-mobile" ng-click="ctrl.toggleContentNav($event)"></a>
+<a alt="Georgia Tech" class="site-header logo-image-wrapper" href="https://georgiatech.rivals.com/"><img src="https://images.rivals.com/image/upload/f_auto,q_auto/jp29cisfsncscantco5o">
+</a><div class="nav-right-controls">
+<div class="subscribe-section" ng-cloak="" ng-if="ctrl.showSubscribe()">
+<span class="upsell-text">
+Join the team!
+</span>
+<div class="subscribe-button" ng-click="ctrl.subscribeEvent()">
+Subscribe
+</div>
+</div>
+<rv-universal-search></rv-universal-search>
+<rv-user-dropdown current_user="ctrl.currentUser"></rv-user-dropdown>
+<rv-forums-info current_user="ctrl.currentUser" ng-if="ctrl.currentUser &amp;&amp; !ctrl.isMobile"></rv-forums-info>
+</div>
+</div>
+<div class="solid-team-line header"></div>
+</div>
+<div class="mobile-header"></div>
+<div class="nav-row-container">
+<div class="wrapper nav-row navbar-full" ng-cloak="" ng-if="!ctrl.isTablet">
+<ul><li class="home top-nav"><a href="https://georgiatech.rivals.com/">Home</a></li>
+<rv-forum-navigation site-identifier="'georgiatech'" limit="8"></rv-forum-navigation>
+<rv-navigation navigation="ctrl.advancedSearch"></rv-navigation>
+<rv-navigation navigation="ctrl.futureCast"></rv-navigation>
+<rv-navigation navigation="ctrl.schoolByGroupDivision"></rv-navigation>
+<li class="touch-screens-only-subscribe-link top-nav"><a href="/sign_up">Subscribe</a></li></ul>
+</div>
+<div class="wrapper nav-row navbar-ellipsed" ng-cloak="" ng-if="ctrl.isTablet">
+<ul><li class="home top-nav"><a href="https://georgiatech.rivals.com/">Home</a></li>
+<rv-forum-navigation site-identifier="'georgiatech'" limit="4"></rv-forum-navigation>
+<rv-navigation navigation="ctrl.advancedSearch"></rv-navigation>
+<rv-navigation navigation="ctrl.futureCast"></rv-navigation>
+<rv-navigation navigation="ctrl.schoolByGroupDivision"></rv-navigation>
+<li class="touch-screens-only-subscribe-link top-nav"><a href="/sign_up">Subscribe</a></li></ul>
+</div>
+<div class="nav-row invalid-email-banner" ng-cloak="" ng-if="ctrl.showEmailUpdateBanner">
+<a ng-href="{{ctrl.userProfileEditPath}}">
+Your account has an invalid email address. Please update it here.
+</a>
+</div>
+</div>
+<rv-header-alert class="alert-nav"></rv-header-alert>
+<a class="cta-header-banner" ng_href="{{ctrl.subscribePath}}" style="display: none;">
+Enjoying JacketsOnline? Get a yearly subscription for $99.95/year or $9.95/month
+</a>
+</nav>
+</header>
+<main class="wrapper"><script src="https://s.yimg.com/ss/rapid3.js"></script>
+<script src="/javascript/ad_beacon.js?path=content&amp;space_id=2022733099" type="text/javascript"></script>
+
+<rv-content-title content-title="Tech dominates UCF in a 30-17 Gasparilla Bowl win" ng-hide="true"></rv-content-title>
+<meta content="summary_large_image" name="twitter:card">
+<meta content="Kelly_Quinlan" name="twitter:site">
+<meta content="Tech dominates UCF in a 30-17 Gasparilla Bowl win" name="twitter:title">
+<meta content="TAMPA, Fla.- Georgia Tech started slow trailing 14-0 to
+UCF, but a forced fumble by Horace Lockett in the first quarter" name="twitter:description">
+<meta content="https://images.rivals.com/image/upload/f_auto,q_auto,t_large/rhcdhmkahbqfxfw8d4pf" name="twitter:image">
+<div class="article-container-wrapper" ng-controller="ContentController" ng-init="init(nil, {&quot;id&quot;:46,&quot;legacy_id&quot;:1032,&quot;name&quot;:&quot;JacketsOnline&quot;,&quot;friendly_name&quot;:&quot;Georgia Tech&quot;,&quot;annual_discount&quot;:null,&quot;subdomain&quot;:&quot;georgiatech&quot;,&quot;primary_color&quot;:&quot;00263a&quot;,&quot;secondary_color&quot;:&quot;b3a369&quot;,&quot;font_color&quot;:&quot;ffffff&quot;,&quot;short_name&quot;:&quot;georgiatech&quot;,&quot;maple_ncaaf_team_id&quot;:4,&quot;maple_ncaaf_endpoint&quot;:&quot;ncaaf/teams/ggc&quot;,&quot;maple_ncaab_team_id&quot;:232,&quot;maple_ncaab_endpoint&quot;:&quot;ncaab/teams/gah&quot;,&quot;maple_college_id&quot;:4,&quot;google_analytics_measurement_id&quot;:&quot;G-DW6R3G34DZ&quot;}, true, 176, nil, {&quot;id&quot;:148,&quot;primary_color&quot;:&quot;00263a&quot;,&quot;secondary_color&quot;:&quot;b3a369&quot;,&quot;font_color&quot;:&quot;ffffff&quot;,&quot;commitment_module_football&quot;:true,&quot;rivals_module_football&quot;:true,&quot;header_name&quot;:&quot;&quot;,&quot;header_logo_cloudinary&quot;:&quot;jp29cisfsncscantco5o&quot;,&quot;mobile_header_logo_cloudinary&quot;:null,&quot;logo_background_shading&quot;:&quot;white&quot;,&quot;football_content&quot;:true,&quot;basketball_content&quot;:true,&quot;baseball_content&quot;:true,&quot;other_content&quot;:true,&quot;site_id&quot;:46,&quot;created_at&quot;:&quot;2016-11-23T13:38:45.021-06:00&quot;,&quot;updated_at&quot;:&quot;2024-01-10T14:45:11.235-06:00&quot;,&quot;max_trending_articles&quot;:6,&quot;enrichments&quot;:[{&quot;active&quot;:true,&quot;type&quot;:&quot;Commitment&quot;,&quot;football&quot;:true,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:1},{&quot;active&quot;:false,&quot;type&quot;:&quot;RecentForecasts&quot;,&quot;football&quot;:null,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:3},{&quot;active&quot;:false,&quot;type&quot;:&quot;Rivals&quot;,&quot;football&quot;:true,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:null},{&quot;active&quot;:false,&quot;type&quot;:&quot;Schedule&quot;,&quot;football&quot;:true,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:null},{&quot;active&quot;:false,&quot;type&quot;:&quot;ScoreboardScores&quot;,&quot;football&quot;:null,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:null},{&quot;active&quot;:false,&quot;type&quot;:&quot;ScoreboardPhotos&quot;,&quot;football&quot;:null,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:null},{&quot;active&quot;:false,&quot;type&quot;:&quot;TeamRankings&quot;,&quot;football&quot;:true,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:null},{&quot;active&quot;:false,&quot;type&quot;:&quot;FanFuturecastLeaderboard&quot;,&quot;football&quot;:null,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:null}],&quot;footer_text&quot;:null,&quot;sections&quot;:[],&quot;supplied_domain&quot;:null,&quot;forums_link_url&quot;:&quot;https://georgiatech.forums.rivals.com&quot;,&quot;scoreboard_scores_id&quot;:null,&quot;scoreboard_photos_id&quot;:null,&quot;aol_player_id&quot;:null,&quot;aol_company_id&quot;:null,&quot;ad_frequency&quot;:5,&quot;display_twitter_follow&quot;:true,&quot;display_fb_follow&quot;:true,&quot;follow_twitter_handle&quot;:&quot;Kelly_Quinlan&quot;,&quot;follow_fb_handle&quot;:&quot;GTRivals&quot;,&quot;forum_id&quot;:null,&quot;premium_forum_id&quot;:null,&quot;facebook_page_id&quot;:null,&quot;max_ticker_articles&quot;:7,&quot;schedule_header_on&quot;:false,&quot;promo_popup_on&quot;:false,&quot;facebook_developer_id&quot;:null,&quot;customized_tos&quot;:[],&quot;show_survey_popup&quot;:false,&quot;survey_popup_link&quot;:null,&quot;header_bottom_border_style&quot;:&quot;solid&quot;,&quot;customized_upsell_banner_text&quot;:null,&quot;email_logo_cloudinary&quot;:null,&quot;target_list_on&quot;:true,&quot;gifting_banner_content&quot;:&quot;Give a Rivals gift subscription this holiday season&quot;,&quot;gifting_banner_title&quot;:&quot;The perfect gift for football recruiting fans!&quot;,&quot;gifting_banner_button_text&quot;:&quot;Give a gift subscription&quot;,&quot;navigation_key&quot;:&quot;georgiatech&quot;,&quot;google_analytics_measurement_id&quot;:&quot;G-DW6R3G34DZ&quot;,&quot;google_analytics_measurement_protocol_secret&quot;:&quot;g1HCUp4-RKifFPSMsDyuXw&quot;,&quot;monitor_analytics_activity&quot;:true,&quot;index_now_key&quot;:&quot;0bd76ba93d86a3ef674d82caf68f1cad&quot;},
+&quot;58e686759efa8936610b8215&quot;, &quot;58e68374c7480e728bcc385f&quot;, &quot;rivals&quot;, 15000,
+false, {&quot;id&quot;:171,&quot;user_id&quot;:8481,&quot;site_id&quot;:46,&quot;updated_at&quot;:&quot;2017-08-01T19:02:15.434-05:00&quot;,&quot;publisher_name&quot;:&quot;Kelly  Quinlan&quot;,&quot;first_name&quot;:&quot;Kelly &quot;,&quot;last_name&quot;:&quot;Quinlan&quot;,&quot;site_title&quot;:&quot;Publisher &quot;,&quot;bio&quot;:&quot;&quot;,&quot;twitter_handle&quot;:&quot;Kelly_Quinlan&quot;,&quot;image_url&quot;:&quot;https://images.rivals.com/image/upload/f_auto,q_auto,t_author_bio/ndje6psdo1kacr4awexq&quot;,&quot;publisher_name_and_title&quot;:&quot;Kelly  Quinlan, Publisher &quot;,&quot;site_name&quot;:&quot;JacketsOnline&quot;,&quot;site_short_name&quot;:&quot;georgiatech&quot;,&quot;has_edited_profile&quot;:true}, null, nil, true)">
+<div class="ra-container">
+<div class="horizontal-ad-container">
+<div class="ad-container" id="boxLDRB">
+<span>Advertisement</span>
+</div>
+</div>
+</div>
+
+<div class="article-container" ng-class="{&quot;no-ad-padding&quot;: &quot;#{@display_ldrb_top}&quot;}">
+<div class="left-side-modules-container siderail">
+<div class="left-modules-container">
+<div class="news-list homepage-module">
+<div class="section-header">
+News
+<a href="/more_news#other-news"><span class="more-news-link">
+More News
+</span>
+</a></div>
+<rv-news-ticker contents="newsList" is_preview="false" is_publisher="isPublisher" profile_page="false" referral_code="referralCode" site_name="JacketsOnline"></rv-news-ticker>
+</div>
+
+<rv-forums ad-referer="https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win" base-api-url="https://georgiatech.forums.rivals.com/" forums-url="https://georgiatech.forums.rivals.com" homepage="false" pub-ad="null" size="size" space-id="2022733099" subscribed-user="subscribedUser"></rv-forums>
+
+<div class="distro_scale_ad">
+<div class="third_party_consent_embed" style="display: none;">
+<div class="encoded_embed_content distro_ad">
+PGRpdiBjbGFzcz0ncmEtY29udGFpbmVyIGRpc3Ryb19hZCc+CjxkaXYgY2xh
+c3M9J3ZpZGVvLWFkLXdyYXBwZXInPgo8c2NyaXB0IGFzeW5jIHNyYz0nLy9j
+LmpzcmRuLmNvbS9zL2NzLmpzP3A9MjI1NDYnIHR5cGU9J3RleHQvamF2YXNj
+cmlwdCc+PC9zY3JpcHQ+CjxkaXYgY2xhc3M9J3ZpZGVvLWNvbnRhaW5lcicg
+aWQ9J2RzX2RlZmF1bHRfYW5jaG9yJz48L2Rpdj4KPC9kaXY+CjwvZGl2PgoK
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="article-display-wrapper">
+<div class="article-content">
+<div class="article-header">
+<div class="pull-right">
+<rv-share-links collapsed="true" print-url="https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win/printable" site-name="JacketsOnline"></rv-share-links>
+</div>
+<span class="article-header-age" ng-cloak="">
+<time datetime="2023-12-22T23:21:43-06:00">12/22/2023</time>
+</span>
+<span class="article-header-sport">football</span>
+<a class="edit-article updated-article-page" href="{{editPath(publishedSite)}}//publishing/contents/2590091/edit" ng-cloak="" ng-show="isPublisher">Edit</a>
+</div>
+<h1 class="article-title">Tech dominates UCF in a 30-17 Gasparilla Bowl win</h1>
+<div class="header-image"></div>
+<div class="author-byline">
+<div class="flex-container">
+<div class="vertical-align">
+<img class="circle-img" src="https://images.rivals.com/image/upload/f_auto,q_auto,t_author_bio/ndje6psdo1kacr4awexq">
+<div>
+<span class="author-name">
+Kelly  Quinlan
+•
+<span class="type-sm">JacketsOnline</span>
+</span>
+<div>
+<span class="author-name">Publisher </span>
+</div>
+<div class="type-sm">
+<a href="//twitter.com/Kelly_Quinlan" target="_blank">@Kelly_Quinlan</a>
+</div>
+</div>
+</div>
+<div class="vertical-align link-button" ng-click="authorBio()" ng-cloak="">
+<div class="caret-down" ng-cloak="" ng-show="!expandProfile"></div>
+<div class="caret-up" ng-cloak="" ng-show="expandProfile"></div>
+</div>
+</div>
+<div class="expanded-content" ng-cloak="" ng-if="expandProfile">
+<div class="flex-container">
+<script async="" charset="utf-8" src="//platform.twitter.com/widgets.js"></script>
+<a class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-size="large" href="//twitter.com/Kelly_Quinlan"></a>
+</div>
+<div class="type-sm" ng-cloak="" ng-if="expandProfile">
+
+</div>
+</div>
+</div>
+
+<div class="article-body-container">
+<div class="body-wrapper">
+<div class="article-body"><div class="st__content-block st__content-block--text article-text">
+<p>TAMPA, Fla.- Georgia Tech started slow trailing 14-0 to UCF, but a forced fumble by Horace Lockett in the first quarter provided the spark for Tech to cut into the lead and ultimately the Jackets went on a 27-0 run to put away the Knights 30-17 to win the Gasparilla Bowl and take home hardware for the first time since the 2016 season when Tech won the Gator Bowl over Kentucky.</p><p>First-year Tech head coach Brent Key finished his first full season with a winning record at 7-6 and picked up the win over the school where he truly began his coaching career and worked from 2006 to 2015 UCF.</p><p>“We’ve been up 14-0 in a game and it didn’t come out the way we wanted. I have heard many times not to waste a failure. Georgia Tech is a school that teaches you how to solve problems and push forward. We have to live in the moment and they did that. They kept playing and kept playing,” Key said after the game. “It was really a capsule of our entire season. Learning how to do things the right way. Play for four quarters and to go into every game expecting to win. They kept fighting and good things happened.”</p><p>The win echoed a momentum early in George O’Leary’s tenure as head coach as he finally guided the Jackets to a bowl game after his third season when the Jacket beat West Virginia in the Carquest Bowl and started a run at the top of the ACC with a 7-5 season. </p><p>O'Leary who coached at both Tech and UCF was the honorary captain before the game. Much of Key's career has been shaped by O'Leary who is his mentor and former coach and boss. </p><p>Key pushed on the question after the game, but the vibe of the program appears to be changing. </p><p>“We challenge each other to come in every day and be the best version of ourselves individually and collectively as a team. We are going to enjoy the heck out of this tonight, but then we will be back in January and it is a new team and new comraderies in the locker room,” Key said. </p>
+</div>
+<figure class="article-image" ng-controller="rvFullImageController as ctrl" ng-init="ctrl.init('https://images.rivals.com/image/upload/f_auto,q_auto,t_large/rhcdhmkahbqfxfw8d4pf','https://images.rivals.com/image/upload/f_auto,q_auto/rhcdhmkahbqfxfw8d4pf')">
+<div class="image-container">
+<div ng-class="{&quot;clickable-image&quot;: ctrl.isFullSizeBigger()}" ng-click="ctrl.showModal()">
+<img class="image-with-caption" alt="Haynes hit the 1,000-yard mark in his first season as a running back" src="https://images.rivals.com/image/upload/f_auto,q_auto,t_large/rhcdhmkahbqfxfw8d4pf">
+<div class="zoom-image"></div>
+</div>
+<div class="team-colors-line">
+<div class="color"></div>
+<div class="color first-opacity"></div>
+<div class="color second-opacity"></div>
+</div>
+<figcaption class="image-caption">Haynes hit the 1,000-yard mark in his first season as a running back (Jasen Vinlove/USAToday)</figcaption>
+</div>
+</figure>
+<div class="ad-block-container">
+<div class="ra-container">
+<div class="lrec-container">
+<div class="ad-container" id="boxLREC4">
+<span>Advertisement</span>
+</div>
+</div>
+</div>
+</div>
+<div class="st__content-block st__content-block--text article-text">
+<p>Jamal Haynes took home the Gasparilla Bowl MVP trophy with 128 yards on 18 carries a career-high for him in a game and he passed the 1,000-yard rushing mark on the season with his longest run of the day, a 32-yard run to start the third quarter.</p><p>The 32-yard run saw Haynes become the first Jacket to rush for 1,000 yards in a season since Kirvonte Benson and TaQuon Marshall both hit 1,000 yards in 2017.</p><p>Haynes made the transition from slot receiver to running back at the request of the offensive staff making his season special.</p><p>“Making the position change wasn’t easy, but it became a lot easier as the season went along. The O-Line does a phenomenal job and work their tails off every game,” he said. “The transition was special, of course you are always gonna have a little doubt about how it's gonna go playing wise but at the end of the day, the coaches believed in me, he told me just put down my head and go to work. And that's exactly what I did.”</p><p>Supersenior running back Dontae Smith ran for 65 yards on 16 carries and a touchdown in his final game as a Yellow Jacket.</p><p>Tech ran 23 straight times to end the day and took the workload off the shoulder of quarterback Haynes King who ended the night with just 13 passing attempts, one touchdown in the air and one interception and just 87 yards passing. However, King did plenty of damage on the ground rolling up 89 yards on 12 carries including his 10th rushing touchdown of the season.</p><p>King’s lone touchdown pass came on a 41-yard strike to Malik Rutherford near the end of the first half that tied the game at 17. He said there was no panic as the Jackets faced a two-score deficit early in the game.</p><p>“We’ve been here before, we are not going to press,” King said. </p><p>With his two touchdowns in the game, King set a record for the most touchdowns responsible for in Tech history with 37.</p><p>“We got into a possession where you start looking at possessions and time on the clock. You also look at timeouts. We had to eat the clock and Haynes did a great job looking at the clock and snapping it with one second,” Key said.</p><p>Tech won the time of possession battle 33:30 to 26:30 and the offense was 5-5 in the red zone.</p>
+</div>
+<figure class="article-image" ng-controller="rvFullImageController as ctrl" ng-init="ctrl.init('https://images.rivals.com/image/upload/f_auto,q_auto,t_large/plal6tnhwaj5ztrvg9gp','https://images.rivals.com/image/upload/f_auto,q_auto/plal6tnhwaj5ztrvg9gp')">
+<div class="image-container">
+<div ng-class="{&quot;clickable-image&quot;: ctrl.isFullSizeBigger()}" ng-click="ctrl.showModal()">
+<img class="image-with-caption" alt="Ahmari Harvey intercepts a pass from Timmy McClain" src="https://images.rivals.com/image/upload/f_auto,q_auto,t_large/plal6tnhwaj5ztrvg9gp">
+<div class="zoom-image"></div>
+</div>
+<div class="team-colors-line">
+<div class="color"></div>
+<div class="color first-opacity"></div>
+<div class="color second-opacity"></div>
+</div>
+<figcaption class="image-caption">Ahmari Harvey intercepts a pass from Timmy McClain (Jasen Vinlove/USAToday)</figcaption>
+</div>
+</figure>
+<div class="st__content-block st__content-block--text article-text">
+<p>Tech’s defense allowed 14 points on the first two USF drives of the game and then held the Knights to three points and 149 yards on 14 plays, they gave up 275 yards on the final 53 plays UCF ran in the game. Eight of the final nine UCF drives yielded no points and UCF had two turnovers on downs, a fumble and an interception.</p><p>Linebacker Kyle Efford led the Jackets with nine tackles in the game and a quarterback hurry. His counterpart at linebacker Paul Moala added three TFLs and two sacks. </p><p>Reserve defensive end Noah Collins recorded his first career sack in the win but left the game with an injury on the play. </p><p>Tech knocked UCF quarterback John Rhys Plumlee out of the game late after he threw for 198 yards and two touchdowns and ran for 32 yards while being sacked three times. Backup Timmy McClain completed one pass to each team.</p><p>Ahmari Harvey had the interception off McClain and losing an early interception because he stepped out of bounds before touching the ball. Harvey said the defense kept fighting regardless of what happened on the field.</p><p>“You will be fined through adversity. You find out who the real man is when their back is against the wall, everything not going their way,” Harvey said.</p><p>The bright spot for UCF on offense was Javon Baker who caught nine passes for 173 yards and a touchdown.</p><p>Running back RJ Harvey ran for 120 yards on 15 carries, but fumbled the ball to change the momentum of the game.</p><p>UCF didn’t help themselves as Kobe Hudson dropped a touchdown pass in the end zone that led to a field goal and kicker Colton Boomer missed a 30-yard field goal before halftime and UCF never scored again in the game.</p><p>“We had some opportunities in the first half [dropped pass in the end zone and missed field goal]. In the second half, we had trouble getting anything going offensively,” UCF head coach Gus Malzahn said. </p>
+</div>
+<figure class="article-image" ng-controller="rvFullImageController as ctrl" ng-init="ctrl.init('https://images.rivals.com/image/upload/f_auto,q_auto,t_large/gahob8gxrqy8gspxift0','https://images.rivals.com/image/upload/f_auto,q_auto/gahob8gxrqy8gspxift0')">
+<div class="image-container">
+<div ng-class="{&quot;clickable-image&quot;: ctrl.isFullSizeBigger()}" ng-click="ctrl.showModal()">
+<img class="image-with-caption" alt="Tech players celebrate with the Gasparilla Bowl trophy" src="https://images.rivals.com/image/upload/f_auto,q_auto,t_large/gahob8gxrqy8gspxift0">
+<div class="zoom-image"></div>
+</div>
+<div class="team-colors-line">
+<div class="color"></div>
+<div class="color first-opacity"></div>
+<div class="color second-opacity"></div>
+</div>
+<figcaption class="image-caption">Tech players celebrate with the Gasparilla Bowl trophy (Jasen Vinlove/USAToday)</figcaption>
+</div>
+</figure>
+<h3 class="article-heading">GAME SUMMARY</h3>
+<div class="st__content-block st__content-block--text article-text">
+<p>The opening kickoff was returned to the UCF49 by Xavier Townsend on a 47-yard return. RJ Harvey ran for 20 yards on second down and then Javon Baker caught a 23-yard touchdown to put the Knights up 7-0.</p><p>Christian Leary returned the ensuing kickoff 23 yards to the GT23. Leary was called for a false start on the play. Jamal Haynes couldn’t handle an underthrown swing pass, but Haynes ran for 16 yards on the next play to covert. UCF was offsides on the next play to move the ball to the GT39. Zach Pyron entered the game and ran for five yards and a first down. Malik Rutherford lost one yard on a quick pass and then couldn’t haul in the second down pass to set up 3rd and long near midfield. King was flushed and had to throw the ball away. David Shanahan’s punt went 57 yards where Nikai Martinez inexplicably fielded the ball and nearly was caught in the end zone for a safety before getting out to the UCF2.</p><p>The first run was stopped for no gain but a deep show to Baker for 36 yards flipped the field and UCF picked up 14 yards more on the next play to Baker in the air again. Harvey ran for 17 yards to the GT31. After converting on a third and short Plumlee threw an interception to Kyle Efford as Paul Moala was sacking him. On replay, it was ruled a sack at the GT22. Plumlee picked up five yards on the next play. Kobe Hudson hauled in a 17-yard touchdown capping a 98-yard scoring drive.</p><p>Tech stalled out hard on the next drive losing four yards on first down on a Haynes run and then Haynes dropped a pass from King on second down, Corey Robinson II had a flash start on the next play and Haynes ran for four yards leading to a punt by Shanahan of 48 yards to the UCF27.</p><p>Plumlee ran for three yards on first down and Harvey picked up 12 yards on the next plays to the UCF42. Horace Lockett forced a fumble on the next play and Myles Sims recovered and returned to the GT42.</p><p>King ran for two yards on first down. Dontae Smith caught a pass for two yards on second down. On third and medium, King spun out of a tackle to pick up 32 yards to the UCF22. King ran for five yards to end the first quarter. Smith lost two yards on the first play of the second quarter and King couldn’t connect with him on third down to force a 36-yard field goal to make it 14-3 UCF.</p><p>After a 31-yard kickoff return to the UCF31, Baker caught a one-yard pass on first down. Harvey lost four yards on second down on a Moala TFL, but Kobe Hudson caught a 30-yard pass to flip the field to the GT40. An illegal man downfield wiped out a catch by Hudson. Baker caught an eight-yard pass. Kevin Harris pressured Plumlee to force an errant throw and Plumlee ran for six yards on third down to set up fourth and one at the GT31. Harvey picked up four yards on second down and Lockett jumped offsides to give UCF a first down at the GT14. The Knight picked up four yards on two runs on the next plays. Ahmari Harvey broke up a touchdown pass to Hudson to force a short field goal.</p><p>King hit Eric Singleton Jr. for eight yards on first down and Dylan Leonard trucked a UCF defender for a 29-yard pass and run on the next play. Haynes ran for 9 yards on the next play. Haynes picked up 11 yards after a timeout to the UCF17. King and Haynes each ran once to set up first and goal at the UCF5. King ran for four yards for a touchdown to make it a one-score game 17-10 UCF with 4:23 left in the half.</p><p>After a touchback, UCF started at their own 25. Plumlee was flushed out of the pocket by the Tech defense on first down and forced to throw the ball away. Plumlee had to throw his second down pass away and then was flushed and forced to throw an errant pass over the middle for a three and out. Rodney Shelley returned the 47-yard punt five yards to the GT33.</p><p>King hit Smith for five yards on a screen pass. King ran for four on second down to set up third and one at the GT42. Smith converted the third down run to the GT48. Smith picked up eight yards on the next play. Rutherford hauled in a 41-yard touchdown pass from King to tie the game at 17 with 56 seconds left in the half.</p><p>Plumlee hit tight end Alec Holler for 13 yards on first down. Baker caught a pass for 13 yards to the UCF38. Kevin Harris was called for roughing the passer on the next play a throwaway giving UCF the ball at the GT34. Baker picked up 14 yards on the next play. Plumlee slid on a scramble to force UCF to use their final timeout. Plumlee held the ball too long on the next play and then threw it away. UCF tried a 30-yard field goal which they missed.</p><p>Tech started the second half with a 27-yard kick return by Leary to the GT34. Haynes ran for 35 yards on the first carry of the half to hit 1,000 yards rushing on the season. Haynes ran for 10 yards on the next play to the UCF21. Haynes ran for two yards on first down, Smith picked up three and King was stopped short of the sticks on third down and Key opted to kick a 29-yard field goal to give Tech the lead 20-17.</p><p>After a short kickoff return to the UCF25, the Knights picked up seven yards on first down, but D’Quan Douse had a TFL on second down and it took diving catch from Holler to convert the third down at the UCF36. After a throwaway and a short run, Harvey broke loose for 27 yards before slipping at the GT29. Myles Sims had a PBU on first down on a pass for Holler. Harvey picked up four yards on second down and Baker caught a tipped ball to set up fourth and one. A hold on fourth down set up fourth and 11. Plumlee was pressured and threw an errant pass for a turnover on downs.</p><p>Jamal Haynes ran two times for 11 yards to the GT41. King threw an interception to Demari Henderson at the UCF25 on a deep shot for Singleton. Key was forced to challenge it after the official did not initiate a review. The review confirmed the call on the field and that gave UCF the ball at their own 25.</p><p>Harvey dropped a first-down pass from Plumlee. Harvey picked up 11 yards after juking a Tech defender to the UCF36. Noah Collins sacked Plumlee on second down to set up 3rd and 14, his first career sack. Eddie Kelly batted the third-down pass to force an incomplete pass and force a punt.</p><p>Smith lost a yard on first down, Luke Benson caught a three-yard pass and then King picked up a first down with a nine-yard run. Smith picked up 11 yards on the next play to the GT47. Smith ran two times for 11 yards to the UCF42. Smith ran for five yards on first down and Haynes picked up three yards on the next play to set up third and three at the UCF35. King had to call a timeout to avoid a delay of game, but it worked out as King picked up the first down on a 17-yard run and UCF had a horsecollar tackle on the play to set up first and goal at the UCF9. Pyron ran for three yards to end the third quarter with GT leading 20-17. Smith picked up three yards to start the fourth quarter. King was stuffed at the one-yard line. Smith scored on the next play to put Tech up two scores 27-17 with 13:37 left.</p><p>After a touchback, UCF started at their 25, and Hudson had a false start on first down. Johnny Richardson picked up 12 yards on first down. Efford stuffed Richardson for a yard on the next play. Plumlee picked up the first down with a two-yard run. Harvey picked up one yard on the next play and Plumlee nearly had a pass picked off by Ahmari Harvey who had a foot out of bounds before touching the ball. Moala sacked Plumlee to force a punt. McCarthy’s punt was returned 11 yards by Shelley to the GT37.</p><p>Haynes ran four straight times to the UCF47 picking up 16 yards. Christian Leary picked up one yard on a run and a penalty on Henderson for unsportsmanlike conduct gave Tech the ball at the UCF31. Smith picked up 11 yards on the next play to the UCF20. King picked up two yards on first down. Smith lost four yards on the next play to set up third and 12. Haynes only picked up one yard on the next play and Birr hit a 38-yard field goal to make it 30-17 with 4:52 left.</p><p>After a touchback, Harvey ran for one yard and Timmy McClain came into the game at quarterback. UCF had a false start. McClain hit Baker for a 57-yard pass to the GT22. McClain tried to find Baker in the end zone on first down but threw it out bounds, Efford tripped him on second down after one yard and then Harvey picked up five yards to set up fourth and four. Jaylon King broke up the fourth down pass to force a turnover on downs.</p><p>Tech started at their own 27, Haynes picked up 11 yards on first down. King lost a yard on first down and UCF burned a timeout. Smith picked up six yards on second down, four yards on third down and Key opted to have King take a delay of game to burn more clock and Shanahan punted the back to the UCF26 where Henry Freer downed the ball.</p><p>McClain threw a pick on first down to Harvey.</p><p>Tech finished the game with three kneel-downs. </p>
+</div>
+</div>
+<div class="text-center">
+<rv-share-links print-url="https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win/printable" site-name="JacketsOnline"></rv-share-links>
+</div>
+<div class="trending" ng-if="trendingArticles">
+<div class="article-subheader">
+trending
+</div>
+<div class="content" ng-cloak="" ng-repeat="article in trendingArticles">
+<a ng-href="/news/{{article.slug}}">
+<div class="title">
+{{ article.title }}
+</div>
+<div class="by-line">
+<div class="premium-icon" ng-if="article.kind === &quot;premium&quot;"><svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.54 12"><defs><style>.cls-1{fill:#777f85;}.cls-2{fill:#fff;}</style></defs><title>premium-icon</title>
+<polygon class="cls-1" points="12.54 12 0 12 2 0 14.54 0 12.54 12"></polygon><path class="cls-2" d="M10.68,5.28H10.44A4.46,4.46,0,0,0,9,5.5a3.8,3.8,0,0,0-1.19.65,3.87,3.87,0,0,0-.53.51,2.64,2.64,0,0,0-.37.56,3.48,3.48,0,0,0-.2.53,4.28,4.28,0,0,0-.18.58L6.27,9.54H3.18l1.43-6H7.68L7.37,4.77a8,8,0,0,1,.8-0.88A4.6,4.6,0,0,1,9,3.32,3.8,3.8,0,0,1,9.85,3a4.6,4.6,0,0,1,1-.12h0.69l-0.49,2.4H10.71"></path></svg></div>
+<div class="live-at">
+{{ timeAgo(article.live_at) }}
+</div>
+<div class="author">
+{{ article.author_name }}
+</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="spacer"></div>
+</div>
+</div>
+</div>
+
+<div class="enrichment-modules-container-updated siderail">
+<rv-enrichment-module ad-two="null" display-lrec1-rightrail="true" display-lrec2-rightrail="true" display-lrec3-rightrail="true" enrichments="[{&quot;active&quot;:true,&quot;type&quot;:&quot;Commitment&quot;,&quot;football&quot;:true,&quot;list_id&quot;:null,&quot;list_title&quot;:null,&quot;position&quot;:1}]" is-super-admin="false" is_schedule_football="true" ncaab-schedule-year="2023" ncaaf-schedule-year="2023" site="{&quot;id&quot;:46,&quot;legacy_id&quot;:1032,&quot;name&quot;:&quot;JacketsOnline&quot;,&quot;friendly_name&quot;:&quot;Georgia Tech&quot;,&quot;annual_discount&quot;:null,&quot;subdomain&quot;:&quot;georgiatech&quot;,&quot;primary_color&quot;:&quot;00263a&quot;,&quot;secondary_color&quot;:&quot;b3a369&quot;,&quot;font_color&quot;:&quot;ffffff&quot;,&quot;short_name&quot;:&quot;georgiatech&quot;,&quot;maple_ncaaf_team_id&quot;:4,&quot;maple_ncaaf_endpoint&quot;:&quot;ncaaf/teams/ggc&quot;,&quot;maple_ncaab_team_id&quot;:232,&quot;maple_ncaab_endpoint&quot;:&quot;ncaab/teams/gah&quot;,&quot;maple_college_id&quot;:4,&quot;google_analytics_measurement_id&quot;:&quot;G-DW6R3G34DZ&quot;}" twitter-feed="{&quot;id&quot;:46,&quot;site_id&quot;:46,&quot;handle&quot;:&quot;Kelly_Quinlan&quot;,&quot;list_name&quot;:&quot;GT-Tweets &quot;,&quot;created_at&quot;:&quot;2016-02-01T12:24:54.561-06:00&quot;,&quot;updated_at&quot;:&quot;2017-03-05T14:30:28.273-06:00&quot;,&quot;hashtags&quot;:[],&quot;usernames&quot;:[&quot;Kelly_Quinlan,Jacketsonline&quot;],&quot;max_number&quot;:5}"></rv-enrichment-module>
+</div>
+<div class="sticky-footer hidden">
+<div class="text-center">
+<rv-share-links collapsed="false" print-url="https://georgiatech.rivals.com/news/tech-dominates-ucf-in-a-30-17-gasparilla-bowl-win/printable" site-name="JacketsOnline"></rv-share-links>
+</div>
+</div>
+</div>
+<script src="/javascript/ad?ad_referrer=https%3A%2F%2Fgeorgiatech.rivals.com%2Fnews%2Ftech-dominates-ucf-in-a-30-17-gasparilla-bowl-win&amp;page_type=content&amp;space_id=2022733099" type="text/javascript"></script>
+
+<rv-chartbeat-config-body ng-hide="" sections="content,content-football,content-football-free,content-article" title="Tech dominates UCF in a 30-17 Gasparilla Bowl win"></rv-chartbeat-config-body>
+
+<script>
+!!window.dataLayer && window.dataLayer.push({"u15":"georgiatech","u16":2590091});
+
+</script>
+
+<div class="article-ads-footer">
+<div class="lrec-ads">
+<div class="ra-container">
+<div class="side-rail-meta lrec-ad" ng-if="showLRECad('footer')">
+<div class="side-rail-box lrec-container">
+<div class="ad-container" id="boxLREC">
+<span>Advertisement</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</main>
+<script src="/javascript/stream_ad.js"></script>
+<footer>
+<div class="flexible-links">
+<a class="link" href="/news/about-us">About</a>
+<a class="link" href="/news/member-services">Help</a>
+<a class="link" href="/news/contact-us-5">Contact Us</a>
+<a class="link" href="/tos">Terms of Service</a>
+</div>
+<div class="flexible-links">
+<a class="link" href="https://policies.yahoo.com/us/en/yahoo/privacy/products/rivals/">Privacy Policy</a>
+</div>
+<div class="logo-container">
+<div class="footer-logo"><!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="159px" height="96px" viewBox="0 0 159 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>logo_yahoo_sports_gray</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Logos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-/-yahoo-sports-/-grayscale">
+            <g id="logo-/-yahoo-sports-MASTER-/-black-on-white" transform="translate(0.000000, 36.000000)">
+                <g id="yahoo-sports-logo-white">
+                    <path d="M24.0702452,5.83111111 L24.0702452,7.06666667 C23.2097927,6.0367158 21.9427054,5.46606759 20.6261035,5.51555556 C17.1389101,5.51555556 14.5428883,8.69333333 14.5428883,12.4222222 C14.5428883,16.2577778 17.1259946,19.3333333 20.6261035,19.3333333 C21.9510266,19.3980812 23.2277754,18.8131965 24.0702452,17.7555556 L24.0702452,18.9911111 L28.4184741,18.9911111 L28.4184741,5.83111111 L24.0702452,5.83111111 Z M29.9209809,0 L29.9209809,18.9911111 L34.4241962,18.9911111 L34.4241962,11.9777778 C34.4241962,10.6088889 35.0613624,9.79555556 36.0773842,9.79555556 C37.093406,9.79555556 37.6315531,10.5066667 37.6315531,11.8177778 L37.6315531,18.9911111 L42.1347684,18.9911111 L42.1347684,10.7155556 C42.1347684,7.51111111 40.4557493,5.51555556 37.7564033,5.51555556 C36.4540592,5.4661141 35.2068557,6.0603675 34.3983651,7.11555556 L34.3983651,0.00444444444 L29.9209809,0 Z M71.1129155,12.4444444 C71.1129155,16.3866667 68.1897003,19.3555556 64.293515,19.3555556 C60.3973297,19.3555556 57.4741144,16.3866667 57.4741144,12.4444444 C57.4741144,8.50222222 60.4016349,5.53777778 64.293515,5.53777778 C68.1853951,5.53777778 71.1129155,8.50666667 71.1129155,12.4444444 Z M56.7120981,12.4444444 C56.7120981,16.3866667 53.7845777,19.3555556 49.8926975,19.3555556 C46.0008174,19.3555556 43.073297,16.3866667 43.073297,12.4444444 C43.073297,8.50222222 46.0008174,5.53777778 49.8926975,5.53777778 C53.7845777,5.53777778 56.7120981,8.50666667 56.7120981,12.4444444 Z M5.68434189e-14,5.85333333 L5.44174387,19.1155556 L3.48288828,23.8977778 L8.26594005,23.8977778 L15.5201635,5.85333333 L10.7844687,5.85333333 L7.83111717,13.5733333 L4.90359673,5.85333333 L5.68434189e-14,5.85333333 Z M21.5258856,15.1511111 C20.0778762,15.1511111 18.9040327,13.9392952 18.9040327,12.4444444 C18.9040327,10.9495937 20.0778762,9.73777778 21.5258856,9.73777778 C22.9738949,9.73777778 24.1477384,10.9495937 24.1477384,12.4444444 C24.1582975,13.1655836 23.8854595,13.8603865 23.3914592,14.3703671 C22.8974589,14.8803478 22.2244277,15.1620118 21.5258856,15.1511111 L21.5258856,15.1511111 Z M52.4155313,12.4444444 C52.3942095,10.9991882 51.2457931,9.84329333 49.8457334,9.85791214 C48.4456737,9.87253095 47.3201395,11.0521694 47.3271064,12.4975752 C47.3341381,13.942981 48.4710404,15.1109435 49.8711717,15.1111111 C50.5556752,15.1211114 51.2144344,14.8420408 51.6948283,14.3385545 C52.1752222,13.8350681 52.4355617,13.150859 52.4155313,12.4444444 Z M66.8163488,12.4444444 C66.795027,10.9991882 65.6466105,9.84329333 64.2465509,9.85791214 C62.8464912,9.87253095 61.720957,11.0521694 61.7279238,12.4975752 C61.7349555,13.942981 62.8718578,15.1109435 64.2719891,15.1111111 C64.9564926,15.1211114 65.6152519,14.8420408 66.0956458,14.3385545 C66.5760396,13.8350681 66.8363791,13.150859 66.8163488,12.4444444 Z M71.6510627,16.2266667 C71.6417293,17.0311249 71.9471656,17.80545 72.4982184,18.3743287 C73.0492712,18.9432074 73.7993326,19.2585242 74.5785831,19.2488889 C76.2429617,19.2488889 77.5922071,17.855997 77.5922071,16.1377778 C77.6063278,15.3326284 77.3030257,14.5560964 76.7518547,13.9862577 C76.2006837,13.416419 75.4489316,13.102163 74.6689918,13.1155556 C73.0046133,13.1155556 71.6553678,14.5084474 71.6553678,16.2266667 L71.6510627,16.2266667 Z M78.0657766,0.0222222222 L73.2999455,11.9244444 L78.6469755,11.9244444 L83.4300272,0 L78.0657766,0.0222222222 Z" id="Shape" fill="#000000"></path>
+                    <path d="M134.510954,5.48444444 C134.287017,5.41042851 134.052932,5.37440508 133.81782,5.37777778 C132.285501,5.33345562 130.885901,6.2707681 130.30049,7.73333333 L130.30049,5.69333333 L125.681035,5.69333333 L125.681035,18.9466667 L130.326322,18.9466667 L130.326322,14.12 C130.326322,11.6577778 131.432752,10.28 133.382997,10.28 C133.766741,10.2725198 134.148703,10.3357311 134.510954,10.4666667 L134.510954,5.48444444 Z M157.586703,14.7066667 C157.586703,12.56 156.174605,11.3911111 153.328883,10.5688889 L152.584087,10.36 C151.529319,10.0666667 151.120327,9.96 151.120327,9.64444444 C151.120327,9.32888889 151.400163,9.08888889 152.093297,9.08888889 C153.450345,9.14730589 154.776143,9.52749663 155.967956,10.2 L157.405886,6.72888889 C155.762922,5.84513411 153.941481,5.37314042 152.088992,5.35111111 C148.778311,5.35111111 146.522398,7.07111111 146.522398,9.85333333 C146.522398,12.2133333 147.981853,13.3511111 150.883542,14.04 L151.550845,14.2 C152.52812,14.44 152.962943,14.5733333 152.962943,14.9422222 C152.962943,15.3866667 152.532425,15.5244444 151.860817,15.5244444 C150.346116,15.4741491 148.867045,15.0374509 147.55564,14.2533333 L145.911063,17.6977778 C147.686591,18.7932991 149.72378,19.3537124 151.791935,19.3155556 C155.180109,19.3155556 157.565177,17.6444444 157.565177,14.7066667 L157.586703,14.7066667 Z M99.466812,23.8755556 L99.466812,17.5422222 C100.358,18.7173685 101.741926,19.3788009 103.186485,19.32 C106.677984,19.32 109.213733,16.2088889 109.213733,12.3244444 C109.213733,8.44 106.69951,5.32888889 103.186485,5.32888889 C101.733545,5.28164108 100.348025,5.96204577 99.466812,7.15555556 L99.466812,5.69777778 L94.7913896,5.69777778 L94.7913896,23.88 L99.466812,23.8755556 Z M99.3376567,12.32 C99.3271861,11.213905 99.9645436,10.210698 100.951431,9.77990287 C101.938319,9.34910772 103.079494,9.57595163 103.84086,10.3542665 C104.602227,11.1325813 104.833158,12.3083876 104.425573,13.3313811 C104.017988,14.3543747 103.052522,15.0221694 101.981035,15.0222222 C101.279555,15.0391913 100.60157,14.760828 100.102982,14.251141 C99.6043938,13.7414539 99.3281085,13.0443046 99.3376567,12.32 L99.3376567,12.32 Z M117.380654,5.32444444 C113.351008,5.32444444 110.3503,8.34666667 110.3503,12.32 C110.3503,16.2933333 113.363924,19.3155556 117.380654,19.3155556 C121.397384,19.3155556 124.389482,16.2933333 124.389482,12.32 C124.389482,8.34666667 121.375858,5.32444444 117.380654,5.32444444 Z M119.925028,12.32 C119.926756,13.3827901 119.307948,14.3419313 118.357325,14.7498901 C117.406702,15.1578489 116.311622,14.9342208 115.583048,14.1833503 C114.854473,13.4324797 114.635998,12.3023557 115.029563,11.3202919 C115.423128,10.338228 116.351165,9.69774364 117.380654,9.69774364 C118.055765,9.6942178 118.704284,9.9692005 119.182069,10.4616073 C119.659855,10.954014 119.927319,11.6230453 119.925028,12.32 L119.925028,12.32 Z M137.378202,1.58666667 L137.378202,5.69333333 L135.656131,5.69333333 L135.656131,9.61333333 L137.378202,9.61333333 L137.378202,14.3288889 C137.378202,17.4844444 139.17346,19.3111111 142.113896,19.3111111 C143.108761,19.3245868 144.098636,19.1637885 145.041417,18.8355556 L145.041417,14.7555556 C144.601078,14.9003846 144.142996,14.9797003 143.680981,14.9911111 C142.600381,14.9911111 142.036403,14.4888889 142.036403,13.2133333 L142.036403,9.65777778 L145.050027,9.65777778 L145.050027,5.76 L142.036403,5.76 L142.036403,1.65333333 L137.378202,1.58666667 Z M93.5342779,14.7066667 C93.5342779,12.56 92.1221798,11.3911111 89.2764578,10.5688889 L88.5316621,10.36 C87.4768937,10.0666667 87.0679019,9.96 87.0679019,9.64444444 C87.0679019,9.32888889 87.3477384,9.08888889 88.0408719,9.08888889 C89.3979195,9.14730589 90.7237182,9.52749663 91.9155313,10.2 L93.3534605,6.72888889 C91.7104967,5.84513411 89.8890562,5.37314042 88.0365668,5.35111111 C84.7258856,5.35111111 82.4699728,7.07111111 82.4699728,9.85333333 C82.4699728,12.2133333 83.9294278,13.3511111 86.8311172,14.04 L87.4984196,14.2 C88.4756948,14.44 88.9105177,14.5733333 88.9105177,14.9422222 C88.9105177,15.3866667 88.48,15.5244444 87.8083924,15.5244444 C86.2936909,15.4741491 84.81462,15.0374509 83.5032153,14.2533333 L81.8586376,17.6977778 C83.6341658,18.7932991 85.6713546,19.3537124 87.7395095,19.3155556 C91.1276839,19.3155556 93.512752,17.6444444 93.512752,14.7066667 L93.5342779,14.7066667 Z" id="Shape" fill="#999999"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg></div>
+</div>
+<div class="copyright-notice" data-philter="angular-data-footer">Certain Data by Sportradar</div>
+<div class="copyright-notice" data-philter="angular-copyright-footer">© 2024 Yahoo. All rights reserved.</div>
+</footer>
+<script src="https://cdn.rivals.com/production/assets/basicFooter-9d8978770b599864f45f914ab3894bf965dc9a0c7e1aa0a1f9bafa10a79f3fd2.js"></script>
+
+
+<div class="third_party_consent_embed" style="display: none;">
+<div class="encoded_embed_content">
+PCEtLSBCZWdpbiBjb21TY29yZSBUYWcgLS0+Cgo8c2NyaXB0PgogIHZhciBf
+Y29tc2NvcmUgPSBfY29tc2NvcmUgfHwgW107CiAgX2NvbXNjb3JlLnB1c2go
+ewogICAgYzE6ICIyIiwKICAgIGMyOiAiNzI0MTQ2OSIsCiAgICBjNTogIjIw
+MjI3MzMwOTkiLAogICAgYzc6ICJodHRwczovL2dlb3JnaWF0ZWNoLnJpdmFs
+cy5jb20vbmV3cy90ZWNoLWRvbWluYXRlcy11Y2YtaW4tYS0zMC0xNy1nYXNw
+YXJpbGxhLWJvd2wtd2luIgogIH0pOwogIChmdW5jdGlvbigpIHsKICAgIHZh
+ciBzID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0IiksIGVsID0g
+ZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoInNjcmlwdCIpWzBdOyBz
+LmFzeW5jID0gdHJ1ZTsKICAgIC8vIGxvYWRpbmcgdGhlIGV2ZXJncmVlbiB2
+ZXJzaW9uIG9mIGNzLmpzIHNvIHdlIGFsd2F5cyBoYXZlIHRoZSBsYXN0IHZl
+cnNpb24KICAgIHMuc3JjID0gImh0dHBzOi8vcy55aW1nLmNvbS9jeC92em0v
+Y3MuanMiOwogICAgZWwucGFyZW50Tm9kZS5pbnNlcnRCZWZvcmUocywgZWwp
+OwogIH0pKCk7Cjwvc2NyaXB0PgoKPG5vc2NyaXB0PgogIDxpbWcgc3JjPSJo
+dHRwczovL3NiLnNjb3JlY2FyZHJlc2VhcmNoLmNvbS9wP2MxPTImYzI9NzI0
+MTQ2OSZjNz1odHRwcyUzQSUyRiUyRmdlb3JnaWF0ZWNoLnJpdmFscy5jb20l
+MkZuZXdzJTJGdGVjaC1kb21pbmF0ZXMtdWNmLWluLWEtMzAtMTctZ2FzcGFy
+aWxsYS1ib3dsLXdpbiZjNT0yMDIyNzMzMDk5JmN2PTIuMCZjaj0xJmNzX3Vj
+ZnI9MCIgLz4KPC9ub3NjcmlwdD4KPCEtLSBFbmQgY29tU2NvcmUgVGFnIC0t
+PgoKCg==
+
+</div>
+</div>
+
+</body></html>

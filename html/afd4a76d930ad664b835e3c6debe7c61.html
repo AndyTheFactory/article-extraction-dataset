@@ -1,0 +1,986 @@
+<!DOCTYPE html><html lang="en-US"><head>
+<title>Path Tracing vs. Ray Tracing, Explained | TechSpot</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="techspot-render-type" content="desktop">
+<style type="text/css">@charset "UTF-8";a,aside,body,embed,figure,form,h1,h2,h3,h4,h5,h6,iframe,img,li,p,table,ul,video{border:0;margin:0;padding:0;font-size:1em}article,aside,figure,footer,header,hgroup,menu,nav,section{display:block}.clear{clear:both}img{color:transparent;font-size:0;vertical-align:middle}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,td,th{font-weight:400;vertical-align:top;text-align:left}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}.article .articleBody p a,.news .articleBody p a{color:inherit;box-shadow:inset 0 -2px 0 #5e9cea;padding-bottom:3px;transition:all 0.15s ease-in-out}.article .articleBody p a:hover,.news .articleBody p a:hover{color:#075bc0;box-shadow:inset 0 -2px 0 #ffc082}.article .articleBody p a:active,.news .articleBody p a:active{position:relative;top:1px}.article .articleBody h2,.news .articleBody h2{padding:25px 0 5px}.article .articleBody h2.subtitle,.news .articleBody h2.subtitle{padding:10px 0 10px}@media only screen and (max-width:760px){.article .articleBody h2,.news .articleBody h2{font-size:1.3em!important}}.article .articleBody h3,.news .articleBody h3{padding:25px 0 5px}@media only screen and (max-width:760px){.article .articleBody h3,.news .articleBody h3{font-size:1.2em!important}}.article .articleBody h4,.news .articleBody h4{padding:15px 0 5px}@media only screen and (max-width:760px){.article .articleBody h4,.news .articleBody h4{font-size:1.1em!important}}.article .articleBody table,.news .articleBody table{margin-bottom:30px;overflow-x:auto}@media only screen and (max-width:500px){.article .articleBody table,.news .articleBody table{display:block}}.article .articleBody .twitter-tweet,.article .articleBody .twitter-tweet-rendered,.news .articleBody .twitter-tweet,.news .articleBody .twitter-tweet-rendered{margin:15px auto!important}.article .articleBody iframe.instagram-media,.article .articleBody iframe.twitter-tweet,.news .articleBody iframe.instagram-media,.news .articleBody iframe.twitter-tweet{margin:15px auto!important}input[type=password],input[type=text]{width:100%;background:#fff;border:none;font-size:.75em;font-style:normal!important;line-height:1.5;padding:6px 8px;box-shadow:0 0 3px 0 rgba(0,0,0,.4);border-radius:2px 2px 2px 2px}input[type=password]:focus,input[type=text]:focus{outline:none}input[type=submit]{display:inline-block;background:#105ab2;line-height:14px;padding:5px 16px;color:#fff;text-align:center;border:none;font-weight:500;font-size:.6em;text-transform:uppercase;border-radius:2px 2px 2px 2px}input[type=submit]:hover{background:#136dd7}input[type=submit]:active{position:relative;top:1px}.button{display:inline-block;text-align:center;line-height:35px;text-transform:uppercase;color:#fff;font-weight:400;font-size:.85em;border-top-left-radius:12px;border-bottom-right-radius:12px;border-top-right-radius:2px;border-bottom-left-radius:2px}.button.padded{padding:0 70px}.button.orange{background:linear-gradient(to bottom,#f68e25 0%,#f4761f 100%)}.button.purple{background:linear-gradient(to bottom,#9b448c 0%,#843d77 100%)}.search-box{margin:25px 0;background-color:#F8F8F8;padding:25px 0;border:2px solid #eee;border-style:solid none solid none;line-height:45px;font-weight:400}@media only screen and (max-width:500px){.search-box{display:none}}.search-box h4{padding-top:10px;color:#0a5499;padding-left:20px;font-weight:500;line-height:1.4}.search-box input[type=text]{margin-top:6px}.search-box input[type=submit]{line-height:1.7;cursor:pointer;margin-left:30px}.slide-sort-selector{border-bottom:2px solid #105ab2;margin-bottom:25px}.slide-sort-selector ul{position:relative}.slide-sort-selector li{display:inline-block;line-height:45px}.slide-sort-selector li.indicator{margin:0!important;display:block;position:absolute;left:0;bottom:0;width:5px;height:7px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:7px solid #105ab2}.slide-sort-selector .post-type-selector{float:left}.slide-sort-selector .post-type-selector ul li{font-family:"Roboto Condensed",sans-serif;font-weight:600;font-size:.95em;text-transform:uppercase;margin-right:30px;text-shadow:0 1px 0 #fff}.slide-sort-selector .post-type-selector ul li a{color:#999}.slide-sort-selector .post-type-selector ul li.active a{color:#4b4b4b!important;text-shadow:none!important}.slide-sort-selector .layout-selector{float:right}.slide-sort-selector .layout-selector li{font-size:.55em;font-weight:500;text-transform:uppercase;letter-spacing:-.333px}.slide-sort-selector .layout-selector li.full,.slide-sort-selector .layout-selector li.standard{margin-right:20px}.slide-sort-selector .layout-selector li.full a,.slide-sort-selector .layout-selector li.standard a{display:block;position:relative;color:#666}.slide-sort-selector .layout-selector li.active a{color:#4b4b4b}.slide-sort-selector .layout-selector li.full{margin-right:10px}@media only screen and (max-width:500px){.slide-sort-selector .layout-selector{display:none!important}}@media only screen and (max-width:760px){ul.category-chicklets{margin:15px 0 10px}}@media only screen and (max-width:760px){ul.category-chicklets{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;white-space:nowrap;width:98%;height:27px}ul.category-chicklets::-webkit-scrollbar{display:none}}ul.category-chicklets li{display:inline-block;border-radius:2px;margin-right:2px}ul.category-chicklets li a{display:block;padding:1px 8px;color:#fff;text-decoration:none;text-transform:uppercase;font-size:.58em;font-weight:500;letter-spacing:.5px;line-height:22px}ul.category-chicklets li a.black{color:#000}ul.category-chicklets li.blue,ul.category-chicklets li.reviews,ul.category-chicklets li.techspot{background-color:#105ab2}ul.category-chicklets li.blue:hover,ul.category-chicklets li.reviews:hover,ul.category-chicklets li.techspot:hover{background-color:#136dd7}ul.category-chicklets li.blue2,ul.category-chicklets li.microsoft,ul.category-chicklets li.tips-tricks,ul.category-chicklets li.windows{background-color:#08C}ul.category-chicklets li.blue2:hover,ul.category-chicklets li.microsoft:hover,ul.category-chicklets li.tips-tricks:hover,ul.category-chicklets li.windows:hover{background-color:#00a0f0}ul.category-chicklets li.ai,ul.category-chicklets li.apple,ul.category-chicklets li.blue3,ul.category-chicklets li.laptops,ul.category-chicklets li.storage{background-color:#3a83a8}ul.category-chicklets li.ai:hover,ul.category-chicklets li.apple:hover,ul.category-chicklets li.blue3:hover,ul.category-chicklets li.laptops:hover,ul.category-chicklets li.storage:hover{background-color:#5da7cc}ul.category-chicklets li.blue4,ul.category-chicklets li.explainers,ul.category-chicklets li.tag1{background-color:#05408f}ul.category-chicklets li.blue4:hover,ul.category-chicklets li.explainers:hover,ul.category-chicklets li.tag1:hover{background-color:#0652b6}ul.category-chicklets li.downloads,ul.category-chicklets li.navy,ul.category-chicklets li.products,ul.category-chicklets li.space{background-color:#00366F}ul.category-chicklets li.downloads:hover,ul.category-chicklets li.navy:hover,ul.category-chicklets li.products:hover,ul.category-chicklets li.space:hover{background-color:#004a98}ul.category-chicklets li.industry,ul.category-chicklets li.navy2{background-color:#4745a3}ul.category-chicklets li.industry:hover,ul.category-chicklets li.navy2:hover{background-color:#5a58b8}ul.category-chicklets li.drivers,ul.category-chicklets li.green,ul.category-chicklets li.hardware{background-color:#1f8539}ul.category-chicklets li.drivers:hover,ul.category-chicklets li.green:hover,ul.category-chicklets li.hardware:hover{background-color:#239640}ul.category-chicklets li.green2,ul.category-chicklets li.science{background-color:#576C2F}ul.category-chicklets li.green2:hover,ul.category-chicklets li.science:hover{background-color:#6e883b}ul.category-chicklets li.features,ul.category-chicklets li.google,ul.category-chicklets li.green3,ul.category-chicklets li.monitors{background-color:#237A3C}ul.category-chicklets li.features:hover,ul.category-chicklets li.google:hover,ul.category-chicklets li.green3:hover,ul.category-chicklets li.monitors:hover{background-color:#2a9248}ul.category-chicklets li.green4,ul.category-chicklets li.mobile,ul.category-chicklets li.smartphones{background-color:#3a927c}ul.category-chicklets li.green4:hover,ul.category-chicklets li.mobile:hover,ul.category-chicklets li.smartphones:hover{background-color:#43a88f}ul.category-chicklets li.culture,ul.category-chicklets li.purple,ul.category-chicklets li.software,ul.category-chicklets li.tech-culture{background-color:#69378c}ul.category-chicklets li.culture:hover,ul.category-chicklets li.purple:hover,ul.category-chicklets li.software:hover,ul.category-chicklets li.tech-culture:hover{background-color:#7940a2}ul.category-chicklets li.audio,ul.category-chicklets li.cases,ul.category-chicklets li.cpu,ul.category-chicklets li.electronics,ul.category-chicklets li.input-devices,ul.category-chicklets li.motherboards,ul.category-chicklets li.purple2{background-color:#5353ac}ul.category-chicklets li.audio:hover,ul.category-chicklets li.cases:hover,ul.category-chicklets li.cpu:hover,ul.category-chicklets li.electronics:hover,ul.category-chicklets li.input-devices:hover,ul.category-chicklets li.motherboards:hover,ul.category-chicklets li.purple2:hover{background-color:#6464b4}ul.category-chicklets li.blog,ul.category-chicklets li.desktop-pcs,ul.category-chicklets li.guides,ul.category-chicklets li.home,ul.category-chicklets li.orange,ul.category-chicklets li.web{background-color:#d26c0a}ul.category-chicklets li.blog:hover,ul.category-chicklets li.desktop-pcs:hover,ul.category-chicklets li.guides:hover,ul.category-chicklets li.home:hover,ul.category-chicklets li.orange:hover,ul.category-chicklets li.web:hover{background-color:#ea790b}ul.category-chicklets li.games,ul.category-chicklets li.gaming,ul.category-chicklets li.graphics-cards,ul.category-chicklets li.must-reads,ul.category-chicklets li.red{background-color:#b61f1f}ul.category-chicklets li.games:hover,ul.category-chicklets li.gaming:hover,ul.category-chicklets li.graphics-cards:hover,ul.category-chicklets li.must-reads:hover,ul.category-chicklets li.red:hover{background-color:#cc2323}ul.category-chicklets li.bestof,ul.category-chicklets li.buying-guides,ul.category-chicklets li.red2,ul.category-chicklets li.video{background-color:#C33}ul.category-chicklets li.bestof:hover,ul.category-chicklets li.buying-guides:hover,ul.category-chicklets li.red2:hover,ul.category-chicklets li.video:hover{background-color:#d14747}ul.category-chicklets li.red3,ul.category-chicklets li.security,ul.category-chicklets li.tablets{background-color:#ac5353}ul.category-chicklets li.red3:hover,ul.category-chicklets li.security:hover,ul.category-chicklets li.tablets:hover{background-color:#b46464}ul.category-chicklets li.crimson,ul.category-chicklets li.red4,ul.category-chicklets li.tag2{background-color:#8f1515}ul.category-chicklets li.crimson:hover,ul.category-chicklets li.red4:hover,ul.category-chicklets li.tag2:hover{background-color:#a51818}ul.category-chicklets li.car-tech,ul.category-chicklets li.dotw,ul.category-chicklets li.yellow2{background-color:#DD9C08}ul.category-chicklets li.car-tech:hover,ul.category-chicklets li.dotw:hover,ul.category-chicklets li.yellow2:hover{background-color:#f1aa09}ul.category-chicklets li.grey,ul.category-chicklets li.natw{background-color:#666}ul.category-chicklets li.grey:hover,ul.category-chicklets li.natw:hover{background-color:#7a7a7a}ul.category-chicklets li.deals{background-color:#779954}ul.category-chicklets li.deals:hover{background-color:#8bad69}ul.category-chicklets li.wof{background-color:#85B200}ul.category-chicklets li.wof:hover{background-color:#94c600}ul.category-chicklets li.desktop-pcs,ul.category-chicklets li.wearables,ul.category-chicklets li.yellow{background-color:#f9d236}ul.category-chicklets li.desktop-pcs:hover,ul.category-chicklets li.wearables:hover,ul.category-chicklets li.yellow:hover{background-color:#fad954}ul.category-chicklets li.desktop-pcs a,ul.category-chicklets li.wearables a,ul.category-chicklets li.yellow a{color:#444}#header-ts{position:fixed;width:100%;z-index:1100001;line-height:88px;height:88px;top:0;left:0}@media only screen and (max-width:760px){#header-ts{height:58px}}#header-ts .header-top{background:#1e2933;position:relative;z-index:2}#header-ts .header-top .wrapper{padding:0;line-height:52px}#header-ts .header-top .right-links{float:right;line-height:52px}@media only screen and (max-width:760px){#header-ts .header-top .right-links{line-height:45px}}#header-ts .header-top .right-links ul li{display:inline-block;line-height:52px}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li{line-height:45px}}#header-ts .header-top .right-links ul li a{font-size:.7em;font-weight:300;color:#fff}#header-ts .header-top .right-links ul li.login{position:relative}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.login{width:40px}}#header-ts .header-top .right-links ul li.login svg{float:left;transform:translate(-4px,12px)}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.login svg{transform:translate(7px,9px)}}#header-ts .header-top .right-links ul li.login.hover{background-color:#ff7f00}#header-ts .header-top .right-links ul li.login.hover .loginEspBlock{display:block}#header-ts .header-top .right-links ul li.login a{display:block;text-transform:uppercase;font-weight:400;letter-spacing:.2px;padding:0 10px 0 8px}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.login a{padding:0;text-indent:-9999px}}#header-ts .header-top .right-links ul li.login .loggedin{text-transform:none!important}#header-ts .header-top .right-links ul li.login .count{position:absolute;right:-5px;top:1px;padding:1px 5px;font-size:12px;font-weight:600;line-height:normal;background:#c00;color:#fff;text-shadow:0 1px 0 #900;-webkit-animation:count_appear 0.35s linear;border-radius:20px;box-shadow:0 1px 0 #900}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.login .count{text-indent:0}}#header-ts .header-top .right-links ul li.login .login-dropdown{display:none;position:absolute;width:280px;left:50%;margin-left:-140px;background:#fff;text-indent:0;line-height:25px;z-index:100;border-bottom:4px solid #105AB2;box-shadow:0 0 5px 0 rgba(0,0,0,.4)}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.login .login-dropdown{right:0%;left:0%;margin-left:-175px}}@media only screen and (max-width:500px){#header-ts .header-top .right-links ul li.login .login-dropdown{margin-left:-212px;width:250px}}#header-ts .header-top .right-links ul li.login .login-dropdown .pad{display:block;padding:10px 15px}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.header{padding-right:68px}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.header .image{position:absolute;background:#fff;top:10px;right:10px;border:1px solid #eee;box-shadow:3px 3px 0 #ddd}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.header h3{margin:3px 0 0;font-weight:400;font-size:1em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.header p{color:#666;margin:4px 0 0;line-height:1.5;font-size:.62em}#header-ts .header-top .right-links ul li.login .login-dropdown .pad .notice{font-weight:700;color:#c00!important}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent{padding:0 13px 5px;font-size:.6em;max-height:250px;overflow:auto;background:#f5f5f5}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent a:hover{color:#c00}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.last{padding-bottom:6px}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent ul{padding:5px 0 5px;margin:0}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent ul li{float:left;width:125px;line-height:2;font-family:"Helvetica Neue",Arial,Helvetica}@media only screen and (max-width:500px){#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent ul li{width:110px}}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts{padding:0 8px 5px 13px}@media only screen and (max-width:500px){#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts{max-height:180px}}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts ul{margin:0}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts li{width:240px;padding:10px 0 3px}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts li .list_item{border-bottom:1px solid #e8e8e8}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts li:last-child .list_item{border-bottom:0!important}@media only screen and (max-width:500px){#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts li{width:210px}}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts .contentRow{display:flex}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts .contentRow-main--close{line-height:1.4;padding-left:6px}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts .contentRow-minor.contentRow-minor--smaller{font-size:11px;line-height:2;color:#969696}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts .contentRow-figure a.avatar.avatar--xxs.avatar--default.avatar--default--dynamic{text-align:center;height:40px;width:40px;line-height:40px;display:block;font-size:30px;border-radius:50%;padding:2px}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts .loading{float:right;margin:9px 0 0;width:16px;height:16px;background:url(https://www.techspot.com/images/loading_blue_small.gif)}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent .list_item{margin:0 -20px 0 -10px;min-height:32px;overflow:hidden;padding:5px 10px 5px;cursor:pointer}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent .list_item .avatar img{float:left;height:32px;width:32px;margin:2px 5px 0 0;padding:0;border:1px solid #fff;border-radius:0}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent .list_item:hover{background:#fcfcfc}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent .list_item h3{display:block;margin:2px 0;font-size:12px;font-weight:400;white-space:normal;line-height:1.3;color:#333}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent .list_item abbr{font-size:11px;color:#666}#header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent .list_item .new{color:#c00;font-weight:700}#header-ts .header-top .right-links ul li.login .login-dropdown .pad p{line-height:1.5;color:#666;margin:8px 0 0}#header-ts .header-top .right-links ul li.login .login-dropdown .pad a img:hover{opacity:.9}#header-ts .header-top .right-links ul li.login .login-dropdown .separator{height:0;font-size:0;line-height:0;border-top:1px solid #e8e8e8}#header-ts .header-top .right-links ul li.login .login-dropdown .top{margin-top:12px}#header-ts .header-top .right-links ul li.login .login-dropdown .padtitle{font-size:.95em;font-weight:400;line-height:12px}#header-ts .header-top .right-links ul li.login .login-dropdown small{font-size:.6em;letter-spacing:-.2px}#header-ts .header-top .right-links ul li.login .login-dropdown a{color:#105ab2;font-size:1em;line-height:normal;padding:0;text-transform:none;display:inline}#header-ts .header-top .right-links ul li.login .login-dropdown .login{background:#EAEAEA}#header-ts .header-top .right-links ul li.login .login-dropdown .login form{padding:5px 0}#header-ts .header-top .right-links ul li.login .login-dropdown .login form label{display:block;margin-bottom:5px;margin-right:15px}#header-ts .header-top .right-links ul li.login .login-dropdown .login form .login_error{color:#c00;font-size:12px;padding:15px 0 0}#header-ts .header-top .right-links ul li.search{width:32px;position:relative;line-height:52px;margin-left:3px;cursor:pointer}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.search{line-height:45px}}#header-ts .header-top .right-links ul li.search svg{transform:translate(6px,5px)}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.search svg{transform:translate(6px,4px)}}#header-ts .header-top .right-links ul li.search.active,#header-ts .header-top .right-links ul li.search.hover{background-color:#ff7f00}#header-ts .header-top .right-links ul li.search.active form,#header-ts .header-top .right-links ul li.search.hover form{display:block}#header-ts .header-top .right-links ul li.search form{display:none;position:absolute;right:0;top:52px;width:220px;height:52px;z-index:90}#header-ts .header-top .right-links ul li.search form input{display:block;width:100%;height:45px;min-height:45px;background:#fff;border:none;color:#333;padding:0 15px;font-size:.85em;line-height:25px;border-radius:0 0 0 0}@media only screen and (max-width:760px){#header-ts .header-top .right-links ul li.search form input{width:90%}}#header-ts .header-top .right-links ul li.search form input::-webkit-input-placeholder{color:#DFDFD0}#header-ts .header-top .right-links ul li.search form input:-ms-input-placeholder{color:#DFDFD0}#header-ts .header-top .right-links ul li.search form input:focus{outline:none}#header-ts .header-top .right-links ul li.dark_mode.active,#header-ts .header-top .right-links ul li.dark_mode.hover{background-color:#ff7f00}#header-ts .header-top .elite{float:left;color:#ccc;font-size:.6em;margin:10px 0 -10px 0}#header-ts .menu{background:#105ab2;line-height:50px;position:relative;z-index:1;box-shadow:0 4px 0 rgba(34,25,25,.1);font-size:.7em;height:36px;line-height:37px}@media only screen and (max-width:960px){#header-ts .menu{font-size:.735em;line-height:35px;height:35px}}#header-ts .menu #dk_menu{height:37px;margin-left:-5px}@media only screen and (max-width:960px){#header-ts .menu #dk_menu{height:35px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;white-space:nowrap}#header-ts .menu #dk_menu::-webkit-scrollbar{display:none}}@media only screen and (max-width:960px){#header-ts .menu .wrapper{width:94%}}#header-ts .menu .wrapper>ul>li{display:inline-block;text-transform:uppercase;font-weight:400;margin-left:-5px}@media only screen and (max-width:960px){#header-ts .menu .wrapper>ul>li{margin-right:0}}#header-ts .menu .wrapper>ul>li>a{color:rgba(255,255,255,.96);font-weight:500;position:relative;display:block;padding:0 16px 0 16px;letter-spacing:.2px}@media only screen and (max-width:760px){#header-ts .menu .wrapper>ul>li>a{padding:0 11px 0 14px}}#header-ts .menu .wrapper>ul>li.active{background:#6D7075}#header-ts .menu .wrapper>ul>li:hover{background-color:#787D81;transition:0.2s ease-in-out}#header-ts .menu .wrapper>ul>li .SubHeader{background:#777D82;text-align:center;height:39px;padding-top:1px}#header-ts .menu .wrapper>ul>li .SubHeader li{text-align:center;margin:0 10px;padding-bottom:0!important;display:inline-block;text-transform:none;color:#fff;line-height:5px;border-left:5px solid #9c9c9c;padding-left:7px}#header-ts .menu .wrapper>ul>li .SubHeader li a{color:#fff;position:relative;display:block;letter-spacing:-.1px}#header-ts .menu .wrapper>ul>li .SubHeader li a:hover{text-decoration:none;color:#ddd}#header-ts .menu .wrapper>ul>li #trending li:first-child{margin-left:-300px}#header-ts .menu .wrapper>ul>li #features li:first-child{margin-left:-460px}#header-ts .menu .wrapper>ul>li #reviews li:first-child{margin-left:-500px}#header-ts .menu .wrapper>ul>li #bestof li:first-child{margin-left:-230px}#header-ts .menu .wrapper>ul>li #downloads li:first-child{margin-left:-300px}#header-ts .menu .wrapper>ul>li #forums li:first-child{margin-left:212px}#header-ts .menu .wrapper>ul>li .nav-submenu{display:none;position:absolute;left:0;top:36px;width:110%;margin-left:-5%;background:#888d91;box-shadow:0 3px 0 rgba(34,25,25,.1),inset 0 3px 0 0 rgba(0,0,0,.15)}@media only screen and (max-width:1200px){#header-ts .menu .wrapper>ul>li .nav-submenu{display:none!important}}#header-ts .menu .wrapper>ul>li .nav-submenu .wrapper{padding:15px 0}@media only screen and (max-width:1200px){#header-ts .menu .wrapper>ul>li .nav-submenu .wrapper{width:85%}}#header-ts .menu .wrapper>ul>li .nav-submenu .pfmenusearch{background:#797D81;text-align:center;padding:15px 0}#header-ts .menu .wrapper>ul>li .nav-submenu .pfmenusearch input{display:inline-block;max-width:600px;margin:0 0 0 8px;font-size:1.3em;box-shadow:none;background:#bfc2c5;padding:6px 10px;color:#222!important}#header-ts .menu .wrapper>ul>li .nav-submenu .pfmenuSideTitle{display:inline-block;color:#fff;font-family:Roboto Condensed}#header-ts #logo{width:225px;height:55px}#header-ts #logo.logoelite{float:left}@media only screen and (max-width:760px){#header-ts #logo{width:205px;height:45px}}#header-ts #logo a{display:block;width:205px;height:55px}#header-ts.interior{line-height:76px;height:76px}@media only screen and (max-width:760px){#header-ts.interior{line-height:88px;height:88px}}#header-ts.interior .header-top .wrapper{line-height:36px}@media only screen and (max-width:760px){#header-ts.interior .header-top .wrapper{line-height:45px}}#header-ts.interior .header-top .right-links{line-height:36px}@media only screen and (max-width:760px){#header-ts.interior .header-top .right-links{line-height:45px}}#header-ts.interior .header-top .right-links ul li{line-height:36px}@media only screen and (max-width:760px){#header-ts.interior .header-top .right-links ul li{line-height:45px}}#header-ts.interior .header-top .right-links ul li.login svg{transform:translate(-4px,4px)}@media only screen and (max-width:760px){#header-ts.interior .header-top .right-links ul li.login svg{transform:translate(7px,9px)}}@media only screen and (max-width:760px){#header-ts.interior .header-top .right-links ul li.login{padding-right:0;width:40px}}#header-ts.interior .header-top .right-links ul li.social.search{line-height:38px}#header-ts.interior .header-top .right-links ul li.social.search form{top:36px}@media only screen and (max-width:760px){#header-ts.interior .header-top .right-links ul li.social.search form{top:45px}}#header-ts.interior .header-top .elite{font-size:.575em;margin:9px 0 -9px -18px}#header-ts.interior #logo{width:205px;height:39px}#header-ts.interior #logo a{display:block;width:205px;height:39px}@media only screen and (max-width:760px){#header-ts.interior #logo{width:205px;height:45px}}#header-ts.interior .menu .wrapper>ul>li .nav-submenu{top:36px}#GlobalWrapper{width:100%;top:0;left:0;background-color:#fff;margin:0 auto}img.responsive{width:100%;height:auto}body{background-color:#fff;font-family:"Roboto",sans-serif;font-size:1.2em;-webkit-font-smoothing:antialiased;padding-top:74px}@media only screen and (max-width:760px){body{font-size:1.22em;padding-top:56px}}body.dark{background-color:#242931}body.dark #content{background-color:#242931}body.dark #content.white{background-color:#242931}:target{scroll-margin-top:91px}@media only screen and (max-width:760px){:target{scroll-margin-top:103px}}@supports (-webkit-hyphens:none){@media only screen and (max-width:760px){#content,#header-ts{top:-2px}}}article,aside,section{display:block}a{text-decoration:none;color:#105ab2}a:hover{color:#b61f1f}ol,ul{margin:0;padding:0}ol li,ul li{margin:0;padding:0;list-style-type:none}h1{color:#1e2833;font-weight:500;font-size:1.3em}h1.lined{border-bottom:2px solid #c3c3c3}h2,h3,h4,h5{font-weight:500}@media only screen and (max-width:760px){.mobile-hide{display:none}}.clearfix:before{content:" ";display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{content:" ";display:block;overflow:hidden;visibility:hidden;width:0;height:0;clear:both}.wrapper{max-width:1200px;margin:0 auto;width:92%}@media only screen and (max-width:1200px){.wrapper{width:94%}}.col-1-2{width:49%;margin-right:2%;display:block;float:left;list-style-type:none;position:relative;box-sizing:border-box}.col-1-2.wide-gut{width:47.5%;margin-right:5%;display:block;float:left;list-style-type:none;position:relative;box-sizing:border-box}@media only screen and (max-width:500px){.col-1-2.wide-gut{width:100%}}.col-1-2-last{width:49%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}.col-1-2-last.wide-gut{width:47.5%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}@media only screen and (max-width:500px){.col-1-2-last.wide-gut{width:100%}}img.b-lazy{transition:ease 0.4s;max-width:100%;opacity:0}img.b-lazy{will-change:opacity}img.b-lazy.b-loaded{opacity:1}.social-column{overflow:visible}.scroll{transform:translateZ(0)}.rating{font-family:"Helvetica Neue",Arial,Helvetica}.hidden{display:none!important;visibility:hidden!important}.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:15px 0}.video-container embed,.video-container iframe,.video-container object{position:absolute;top:0;left:0;width:100%;height:100%}.trust-feat{color:#333;font-size:15px;line-height:1.6;text-align:center;padding:15px 3%;margin:5px auto 10px}.trust-feat a{color:inherit;padding-bottom:3px;border-bottom:2px solid #ff7f00}.trust-feat a.other{padding-bottom:2px;border-bottom:1px solid #ccc}.trust-feat a:hover{color:#2A59AC}@media only screen and (max-width:760px){.trust-feat{padding:15px 3% 3px;margin:0 auto}.trust-feat a{padding-bottom:1px;border-bottom:2px solid #ff7f00}.trust-feat a.other{padding-bottom:1px;border-bottom:1px solid #ccc}}.trust-feat.news{max-width:740px;padding:15px 3% 20px;margin:-20px auto 10px}@media only screen and (max-width:760px){.trust-feat.news{padding:20px 0% 30px;margin:-20px auto 0}}.trust-soft{color:#333;font-size:1.1em;margin:0 0 30px;line-height:1.5;width:300px}.trust-soft a{color:inherit;padding-bottom:3px;border-bottom:2px solid #ff7f00}.trust-soft a:hover{color:#2A59AC}@media only screen and (max-width:760px){.trust-soft{margin:10px 0 30px;width:auto}}.download-list,.forum-list{padding:10px 0}.download-list li,.forum-list li{font-size:.8em;padding:0 0 0 18%;margin:5px 0 12px;line-height:150%}.download-list li>a,.forum-list li>a{display:block;color:#444;line-height:1.2;font-weight:400;padding-bottom:2px}.download-list li>a:hover,.forum-list li>a:hover{color:#b61f1f}.download-list li span,.forum-list li span{line-height:1.5;color:#555;font-weight:400;font-size:.8em;letter-spacing:-.333px}.download-list li span a,.forum-list li span a{color:inherit;font-weight:500}.download-list li span a:hover,.forum-list li span a:hover{color:#b61f1f}.download-list li span a.similar,.forum-list li span a.similar{color:#7393C8}.download-list li span a.similar:hover,.forum-list li span a.similar:hover{text-decoration:none;padding-bottom:2px;border-bottom:1px solid #7393C8}.download-list li em,.forum-list li em{display:inline-block;font-style:normal;padding:0 4px}.download-list li em.editors-pick,.forum-list li em.editors-pick{background-color:#FFCA00;font-weight:500}.download-list li em.popular,.forum-list li em.popular{background-color:#5A00B5;color:#fff;font-weight:500}.download-list li em.popular a,.forum-list li em.popular a{color:#fff}.download-list li em.popular-topic,.forum-list li em.popular-topic{background-color:#ff7f00;color:#fff;font-weight:500}.download-list li em.popular-topic a,.forum-list li em.popular-topic a{color:#fff}.download-list{margin:0 5px 10px -5px}.download-list li{background-image:url(https://www.techspot.com/images/download-arrow.svg);background-position:5% 10%;background-repeat:no-repeat}.download-list li>a{letter-spacing:-.333px}.download-list li span a{font-size:1.05em}.forum-list{margin:0 10px 0 5px}.forum-list li{background-image:url(https://www.techspot.com/images/forum-icon.svg);background-position:5% 15%;background-repeat:no-repeat;background-size:26px;min-height:45px}.forum-list li>a{font-family:Arial;font-size:.9em;padding:3px 0 2px}.forum-list li span a{font-size:1em}.forum-list li .count{margin:20px 0 0 -30px;float:left}.sidebar{width:305px;float:right}@media only screen and (max-width:1200px){.sidebar{width:29%}.sidebar img{width:100%;height:auto}}@media only screen and (max-width:960px){.sidebar{display:none!important}}@media only screen and (max-width:760px){.sidebar{display:none}}.sidebar ul.teaser-list{padding:0 0 28px}.sidebar ul.teaser-list li{padding:26px 0 0}.sidebar ul.teaser-list li:first-child{padding:12px 0 0}.sidebar ul.teaser-list li .comm{background-color:rgba(255,127,0,.8);padding:4px 6px;position:relative;font-size:.7em;font-weight:500;z-index:1;float:right;margin:155px 26px 0 0;border-radius:2px}.sidebar ul.teaser-list li .comm:hover{background-color:rgba(255,127,0,.9);transition:linear 0.1s}.sidebar ul.teaser-list li .comm a{color:white!important;padding:0}.sidebar ul.teaser-list li a{color:#444}.sidebar ul.teaser-list li a .img-wrap{display:block;position:relative;width:88%;height:190px;background-size:cover;background-position:center;margin:0 auto}.sidebar ul.teaser-list li a .trend{font-size:.8em;font-weight:500;text-align:center;width:90%;display:block;list-style-type:none;position:relative;padding-top:8px;margin:0 auto 5px}.sidebar ul.teaser-list li a:hover{color:#b61f1f}.sidebar.left{float:left;padding-top:5px}.sidebar.article-special{padding-top:5px;margin-right:66px}.sidebar.article-special.article-special{margin-right:0}@media screen and (min-width:1300px){.sidebar.article-special{margin-right:0}}@media only screen and (max-width:1200px){.sidebar.article-special{margin-right:62px}}.section-header{font-family:"Roboto Condensed",sans-serif;border-top:5px solid #b61f1f;text-transform:uppercase;white-space:nowrap;line-height:42px;padding-left:13px;font-weight:600!important;font-size:1.25em}.section-header a{color:#333}.section-header span{font-weight:100}.section-header.green{border-top:5px solid #1f8539}.section-header.red{border-top:5px solid #b61f1f}.section-header.orange{border-top:5px solid #ff7f00}.section-header.purple{border-top:5px solid #5A00B5}.section-header.blue{border-top:5px solid #1c4e9a}h3.longtype{font-size:1.3em}@media only screen and (max-width:960px){h3.longtype{font-size:1em}}.mobile-only-social{display:block!important}.mobile-only-social.social-column{display:none!important;height:auto!important}@media only screen and (max-width:500px){.mobile-only-social.social-column{display:block!important;min-height:25px!important}}.col-2-3{width:66%;margin-right:2%;display:block;float:left;list-style-type:none;position:relative;box-sizing:border-box}@media only screen and (max-width:960px){.col-2-3{width:100%!important}.col-2-3 .wrapperMobileOnly{width:0 4%}}@media only screen and (max-width:760px){.col-2-3{width:100%}.col-2-3 .wrapperMobileOnly{width:92%;padding:0 4%}}.col-2-3-last{width:68%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}@media only screen and (max-width:1200px){.col-2-3-last{width:64%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}}.col-2-3-last.special{width:100%!important}.col-2-3-last.special .articleBody{width:82%!important;max-width:none!important;margin:0 auto}@media only screen and (max-width:960px){.col-2-3-last{width:100%}}@media only screen and (max-width:760px){.col-2-3-last{width:100%}.col-2-3-last .wrapperMobileOnly{width:92%;padding:0 4%}}.col-1-3-last{width:32%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}@media only screen and (max-width:760px){.article #content .wrapperMobileOnly{width:92%;padding:0 4%}}.post-load-more{margin:40px auto;width:100%;line-height:45px;text-align:center;font-weight:400;background-color:#fff;border:1px solid #92b8e5}@media only screen and (max-width:760px){.post-load-more{width:93%}}.post-load-more:hover{color:#fff;background-color:#105ab2}table.big{max-width:none;width:1020px}@media screen and (min-width:1300px){table.big{width:1200px}}@media only screen and (max-width:960px){table.big{margin-left:0!important;max-width:100%;width:100%!important}}table.article-table{margin:15px 0 30px;font-size:.85em;letter-spacing:-.333px}table.article-table td,table.article-table th{padding:inherit;text-align:center}table.article-table tr{padding:8px 6px}table.article-table tr.title{background-color:#105ab2;color:#fff;font-family:"Roboto",sans-serif}table.article-table tr.title a{color:#fff}table.article-table tr.title td,table.article-table tr.title th{font-weight:500}table.article-table tr.alt{background-color:#f5f5f5}table.article-table tr.sub{background-color:#ddd}table.article-table td.cat{font-weight:500;text-align:left}table.article-table.alt tr:nth-child(2n){background:#f5f5f5}.pointerHere{cursor:pointer}.repartner{float:right;margin:10px 0 0 20px}@media only screen and (max-width:760px){.repartner{margin:20px 0 20px 10px!important;max-width:110px!important;height:21px!important}}.loading{background:#fff url(https://www.techspot.com/images/loading_blue2.gif) no-repeat center top;height:50px;text-indent:-10000px;overflow:hidden;margin:10px 0}.waiting div{background-image:url(https://www.techspot.com/images/loading_blue_small.gif);background-position:center center;background-repeat:no-repeat;color:transparent!important;overflow:hidden;text-indent:-2000px!important;pointer-events:none}.waiting span{visibility:hidden}.form-email input{width:90%;font-size:1em;margin-top:6px;line-height:1.7;padding:4px 5px 2px;border:2px solid rgba(30,41,51,.1803921569)}.more_description_dw{margin:15px 5px 15px 0;display:block;border:1px solid #92b8e5;text-align:center;font-weight:400;color:#05408f;background-color:#fff;line-height:35px}.more_description_dw:hover{color:#fff;background-color:#105ab2}@media only screen and (max-width:760px){.more_description_dw{margin:0 5px 25px 0;color:#105ab2}}.cta{text-align:center;background-color:#fff}.cta.grey{background-color:#eee}.cta.grey2{background-color:#bbb}.cta.dark{background-color:rgb(30,41,51)}.cta.darkb{background-color:rgba(30,41,51,.95)}.cta.dark2{background-color:rgba(30,41,51,.6)}.cta.trans{background-color:transparent}.cta .wrapper{padding:20px 0 15px!important;text-align:center}@media only screen and (max-width:760px){.cta{display:none}}.billboard_placeholder_home,.billboard_placeholder_min{position:relative;padding:17px 0 15px;margin:0 auto;text-align:center;min-height:90px;height:90px;min-width:970px;width:970px;overflow:hidden}.billboard_placeholder{position:relative;padding:17px 0 15px;margin:0 auto;text-align:center;min-height:250px;height:250px;min-width:970px;width:970px;overflow:hidden}.billboard_placeholder.min{min-height:90px;height:90px}.contentAd{text-align:center;margin:30px 0;min-height:250px;max-height:300px}.contentAd .ad-left,.contentAd .ad-right{width:48%;margin:0}.contentAd .ad-left{float:left;padding-right:.5%}.contentAd .ad-right{float:right;padding-left:.5%}.contentAd:after,.contentAd:before{content:"";display:table}.adContainerSide,.adContainerSide2{width:300px;min-height:250px;margin-bottom:30px;text-align:center;background-color:transparent}.acontinue{top:30px;right:-5px;width:220px;border:1px solid #fff;position:fixed;background:#075bc0;font-family:Arial,sans-serif;padding:18px 27px;color:#fff;transition:all 0.5s;cursor:pointer;text-align:center;z-index:10000000000}@media only screen and (max-width:760px){.acontinue{display:none}}.acontinue span{cursor:pointer;display:inline-block;position:relative;transition:0.5s}.acontinue span:after{content:"»»";position:absolute;opacity:0;top:0;right:-20px;transition:0.5s}.acontinue:hover span{padding-right:19px}.acontinue:hover span:after{opacity:1;right:0}.adContainerNews{margin-left:813px;position:absolute;padding:35px 20px 40px 20px;background-color:#fff;margin-top:66px}.adContainerNewsLeadMid{margin:-5px 0 -10px}.adContainerNewsMob{margin:0 auto 15px;text-align:center;display:block}.adContainerLeader2{padding:25px 0 0;text-align:center;margin:0 auto;width:728px}.top-mobile-ad{margin:-18px 0 45px 0;height:250px}.dark_mode .switcher{z-index:50;cursor:pointer;width:26px;padding:0;position:relative;-webkit-user-select:none;user-select:none;display:block;margin:-2px 0 0;padding:0 8px 0;height:39px}@media only screen and (max-width:760px){.dark_mode .switcher{padding:0 1px 0;line-height:45px}}.dark_mode .switcher.home{height:54px}.dark_mode .switcher svg{transform:translate(5px,2px)!important}.dark_mode .switcher input{display:none}.dark_mode label{color:#1e2933}body.home .jobbioapp{min-height:430px;padding-top:0px!important}body.home .jobbioapp *{font-family:Roboto!important}body.home .jobbioapp .v1_6.type-2 .item{padding:12px 30px 12px 106px!important}body.home .jobbioapp .v1_6 .item .arrow{right:15px!important}body.home .jobbioapp .v1_6 .top-s{display:none!important}body.home .jobbioapp .v1_6 .more{display:block;font-weight:500!important;font-size:1.1em!important;margin:-15px 0 10px!important}body.home.dark .jobbioapp .v1_6 .more{color:#ddd}body.news .jobbioapp{padding:0px!important;min-height:270px}@media only screen and (max-width:760px){body.news .jobbioapp{min-height:600px}}body.news .jobbioapp *{font-family:Roboto!important}body.news .jobbioapp .v1_6 .list{padding:0;margin:0 0 0 -5px}body.news .jobbioapp .v1_6 .list .h-item{padding:10px 5px!important}body.news .jobbioapp .v1_6 .mt2{font-size:15px}@media only screen and (max-width:760px){body.news .jobbioapp .v1_6 .mt2{font-size:16px}}body.news .jobbioapp .v1_6 .more,body.news .jobbioapp .v1_6 .top-s{display:none!important}body.article .jobbioapp{min-height:480px;padding-top:0px!important}body.article .jobbioapp *{font-family:Roboto!important}body.article .jobbioapp .v1_6.type-2 .item{padding:12px 30px 12px 96px!important}body.article .jobbioapp .v1_6 .item .arrow{right:7px!important}body.article .jobbioapp .v1_6 .more,body.article .jobbioapp .v1_6 .top-s{display:none!important}.mobile-leaderboard-320-50{box-shadow:none!important;background:transparent!important}.bordeaux-anchored-close{background:rgba(255,255,255,.2)!important;box-shadow:none!important;cursor:pointer!important;border-radius:12px 0 0 12px!important}@media only screen and (max-width:760px){.bordeaux-anchored-close{display:none!important}}#content{background-color:#fff;z-index:1;position:relative;left:0;width:100%;margin:0 auto;padding:0}#content .wrapper{padding:25px 0 0}@media only screen and (max-width:760px){#content .wrapper{width:100%;padding:25px 0 0 0}}#content p{color:#222;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;line-height:1.6;padding:12px 0 12px}#content p em{font-family:"Helvetica Neue",Arial,Helvetica;letter-spacing:-.333px}#content p.byline,#content p.small{font-size:.75em}#content p sup{font-size:.7em}#content p.grey{font-size:.75em;color:#555}#content p.grey a{color:#555;border-bottom:none;box-shadow:none}#content p.grey a:hover{border-bottom:1px solid #D0DCEB;box-shadow:inset 0 -2px 0 #D0DCEB}#content p.side-quote{font-size:1.45em;line-height:1.4em;margin:5px auto 25px;padding:10px;text-align:center;color:#105ab2}@media only screen and (max-width:500px){#content p.side-quote{margin:-5px auto 25px}}#content p.side-quote-right{float:right;width:270px;margin:5px 0 10px 10px;font-size:1.45em;line-height:1.4em;padding:10px;color:#105ab2}@media only screen and (max-width:500px){#content p.side-quote-right{width:auto;float:none;text-align:center;margin:-5px auto 25px}}#content p.side-quote-left{float:left;width:270px;margin:5px 13px 10px 0;font-size:1.45em;line-height:1.4em;padding:10px;padding-left:0;color:#105ab2}@media only screen and (max-width:500px){#content p.side-quote-left{width:auto;float:none;text-align:center;margin:-5px auto 25px}}#content p.side-guest{width:220px;margin:5px 0 10px 15px;float:right;background-color:#eee;padding:15px;font-size:13px;line-height:23px}@media only screen and (max-width:500px){#content p.side-guest{width:130px}}#content #why-it-matters,#content h5{font-family:"Roboto",sans-serif;font-weight:500;line-height:1.5;padding:8px 0 8px;color:#333;font-size:20px;letter-spacing:-.15px}#content #why-it-matters strong,#content h5 strong{color:#075bc0}#content #why-it-matters sup,#content h5 sup{font-size:.6em}#content #why-it-matters a,#content h5 a{color:inherit;box-shadow:inset 0 -2px 0 #5e9cea;padding-bottom:3px;transition:all 0.15s ease-in-out}#content #why-it-matters a:hover,#content h5 a:hover{color:#075bc0;box-shadow:inset 0 -2px 0 #ffc082}#content #why-it-matters.introhome,#content h5.introhome{font-size:16px;font-weight:400;padding:5px 0 5px;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;color:#444}#content #why-it-matters.introhome strong,#content h5.introhome strong{font-family:"Roboto",sans-serif;font-weight:500}.comments-pager{margin:35px 0 0;width:100%;height:60px}.comments-pager.twoline{height:110px}.comments-pager.twoline ol li{margin-right:8px;margin-bottom:12px}.comments-pager ol{counter-reset:item;list-style-type:none;margin:0 auto;width:fit-content}.comments-pager ol li{float:left;display:block;background:#fff;border-top:1px solid #bbb;border-left:1px solid #bbb;border-bottom:1px solid #bbb;font-size:.75em;font-weight:500;text-align:center;width:34px;height:34px;line-height:35px}.comments-pager ol li.active,.comments-pager ol li:hover{background:#105ab2;color:#fff}.comments-pager ol li.active a,.comments-pager ol li:hover a{color:#fff}.comments-pager ol li a{display:block}@media only screen and (max-width:760px){.comments-pager ol li{width:38px;height:38px;line-height:38px;margin-right:6px;border-right:1px solid #bbb}}.comments-pager li:nth-last-child(2){border-right:1px solid #bbb}.comments-pager #NextButton,.comments-pager #PrevButton{list-style-type:none;margin-left:5px;width:50px;padding-left:10px;border:1px solid #bbb;text-align:left}.comments-pager #NextButton:hover a,.comments-pager #PrevButton:hover a{color:#fff}.comments-pager #NextButton .triangle,.comments-pager #PrevButton .triangle{margin-left:7px;width:6px;height:4px;position:absolute;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid #ff7f00;margin-top:13px}@media only screen and (max-width:760px){.comments-pager #NextButton .triangle,.comments-pager #PrevButton .triangle{margin-top:16px}}body.dark{color:#f5f5f5;background-color:#242931}body.dark #GlobalWrapper{background-color:#242931}body.dark #content p.side-quote{color:#82a9d6}body.dark #comments .signin_text a,body.dark .CommentOpt a,body.dark .bbCodeBlock-sourceJump,body.dark .comments-pager ol li a,body.dark .post-list article .article-content .article-category a,body.dark .post-list article .article-content .byline a,body.dark .post-list article .article-content .intro a,body.dark .post-list article .article-content .intro p a,body.dark .recently-commented-stories a,body.dark table.article-table a,body.dark.about article a{color:#82a9d6}body.dark #comments .signin_text a:hover,body.dark .CommentOpt a:hover,body.dark .bbCodeBlock-sourceJump:hover,body.dark .comments-pager ol li a:hover,body.dark .post-list article .article-content .article-category a:hover,body.dark .post-list article .article-content .byline a:hover,body.dark .post-list article .article-content .intro a:hover,body.dark .post-list article .article-content .intro p a:hover,body.dark .recently-commented-stories a:hover,body.dark table.article-table a:hover,body.dark.about article a:hover{color:#afc8e5}body.dark.article .articleBody p a,body.dark.news .articleBody p a{box-shadow:inset 0 -2px 0 #ffaf5f}body.dark.article .articleBody p a:hover,body.dark.news .articleBody p a:hover{color:#ffaf5f;box-shadow:none}body.dark #content,body.dark #content.white,body.dark.interior.white #content{background-color:#242931}body.dark .adContainerNews,body.dark .cta{background-color:#242931!important}body.dark .post-list .ad_to_list{border-color:#3e464e}body.dark .post-list article{border-bottom:2px solid #3e464e}body.dark .post-list article .article-content h2 a{color:#eee}body.dark .post-list article .article-content h2 a:hover{color:#ffaf5f}body.dark .post-list article .article-content h2 a.hover{color:#ffaf5f}body.dark .post-list article .article-content .byline{color:#c9c9c9}body.dark .post-list article .article-content .byline a.feat{color:#f09942}body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5{color:#eee}body.dark h1 a,body.dark h2 a,body.dark h3 a,body.dark h4 a,body.dark h5 a{color:#eee}body.dark h1 a:hover,body.dark h2 a:hover,body.dark h3 a:hover,body.dark h4 a:hover,body.dark h5 a:hover{color:#ffaf5f}body.dark.interior h1,body.dark.interior h2,body.dark.interior h3,body.dark.interior h4,body.dark.interior h5{color:#eee}body.dark.interior.category #content-header{background:#30363e!important}body.dark.interior .articleBody ul li{color:#ddd}body.dark.interior .articleBody ul li a{color:#82a9d6}body.dark.interior .articleBody ul li a:hover{color:#afc8e5}body.dark .masthead{background-color:#242931}body.dark.reviews .masthead{background-color:#242931}body.dark.features .masthead{background-color:#255a44}body.dark.products .masthead{background-color:#5f6872}body.dark .home .masthead ul.featured-posts li{overflow:hidden}body.dark.about h4{color:#aaa}body.dark.about .intro a{box-shadow:inset 0 -1px 0 #ffaf5f;color:#e0e0e0}body.dark.about .article-index section{background:#3b4753!important}body.dark #content p.byline,body.dark #content p.byline a,body.dark #content p.grey,body.dark #content p.grey a{color:#aaa;border:none}body.dark #content p.grey a:hover{border-bottom:1px solid #ffaf5f;box-shadow:none}body.dark #content p.side-guest{background-color:#535e69}body.dark .download-index .downloads-table h2 a,body.dark .downloads-list ul li .title a,body.dark .downloads-picks li a h3{color:#eee!important}body.dark .download-index .downloads-table h2 a:hover,body.dark .downloads-list ul li .title a:hover{border-bottom:none!important;color:#ffaf5f!important}body.dark h3.subtitle,body.dark h3.subtitle a{color:#5e8bc1!important}body.dark.category .cta,body.dark.download .cta,body.dark.news .cta,body.dark.product .cta{background:#30363e!important}body.dark .grid-posts.grid-section{background:#242931}body.dark #content #why-it-matters,body.dark #content #why-it-matters a:hover,body.dark #content h5,body.dark #content h5 a:hover,body.dark #content h5.introhome{color:#eee}body.dark #content #why-it-matters strong,body.dark #content h5 strong{color:#81ade2}body.dark ul.category-chicklets li{opacity:.9}body.dark ul.category-chicklets li.wof{background-color:#648012}body.dark ul.pills{opacity:.9}body.dark #content p,body.dark .section-header a,body.dark .sidebar ul.teaser-list li a{color:#e0e0e0}body.dark .download-list li>a,body.dark .forum-list li>a{color:#ccc}body.dark .download-list li>a:hover,body.dark .forum-list li>a:hover{color:#eee}body.dark .download-list li span,body.dark .forum-list li span{color:#7d7d7d}body.dark .slide-sort-selector{border-bottom:2px solid #535E69!important}body.dark .slide-sort-selector .post-type-selector ul li{text-shadow:none}body.dark .slide-sort-selector .post-type-selector ul li.active a{color:#eaeaea!important}body.dark .slide-sort-selector li.indicator{border-bottom:5px solid #535E69!important}body.dark .slide-sort-selector .layout-selector li.active a{color:#888}body.dark .slide-sort-selector .layout-selector li.full{margin-right:10px}body.dark .post-list article .article-content .intro,body.dark.interior.download .downloads-list ul li .bio{color:#c9c9c9!important}body.dark.interior.category #content-header .title-group h2,body.dark.interior.download #content-header .title-group h2,body.dark.interior.news #content-header .title-group h2,body.dark.interior.product #content-header .title-group h2{color:#eee!important}body.dark.interior .social-share-svg .social-share-text,body.dark.interior.news #content-header .title-group em,body.dark.interior.news #content-header .title-group em a{color:#c9c9c9!important}body.dark .grid-posts-lineal .gr-title,body.dark .grid-posts-lineal h4,body.dark .grid-posts-lineal h4{color:#ebebeb}body.dark #comments #add-new-comment{background-color:#2a323d;border:1px solid transparent;color:#f5f5f5}body.dark .comments-pager ol li,body.dark .more_description_dw,body.dark .more_similars_dw,body.dark .post-list article .article-content .post-meta a.comment-count span.highlight,body.dark .post-load-more,body.dark.interior.product #content a.wide-button,body.dark.interior.product #content a.wide-button:hover{background-color:#2a323d;border:1px solid transparent;color:#f5f5f5}body.dark .comments-pager ol li:hover,body.dark .more_description_dw:hover,body.dark .more_similars_dw:hover,body.dark .post-list article .article-content .post-meta a.comment-count span.highlight:hover,body.dark .post-load-more:hover,body.dark.interior.product #content a.wide-button:hover,body.dark.interior.product #content a.wide-button:hover:hover{background-color:#3b4652;border:1px solid transparent}body.dark table.article-table.alt tr:nth-child(2n){background:#38444f}body.dark .article nav.page-nav a span:after{border-left:10px solid #ccc}body.dark img.repartner{filter:invert(.84) hue-rotate(175deg) saturate(1)}body.dark img.pf-home-icon{filter:grayscale(1) brightness(2.5)}body.dark .indexmain,body.dark .thisIndex{filter:invert(1) hue-rotate(300deg)}body.dark .indextitle a:hover,body.dark .thisIndex a:hover{box-shadow:inset 0 -3px 0 #75519c!important}body.dark .trust-feat,body.dark .trust-soft{color:#f5f5f5}body.dark .trust-feat a:hover,body.dark .trust-soft a:hover{color:#f5f5f5;border-bottom:1px solid #82a9d6}body.dark .tabbar h3{background:#acaeb0;color:#000}body.dark .tabbar h3:hover{background-color:#92a1b2}body.dark .tabbar h3.active,body.dark .tabbar h3:after{background:#535E69;color:#f5f5f5}body.dark .tabbar h3.active:hover,body.dark .tabbar h3:after:hover{background-color:#535E69!important}body.dark .tabbar h3.pricetab{background-color:#59a059;color:#fff}body.dark .tabbar:after{background:#535E69}body.dark .section-header.purple{border-top:5px solid #654b7e}body.dark .section-header.orange{border-top:5px solid #ffaf5f}body.dark .download-list li em.popular,body.dark .forum-list li em.popular{background-color:#654b7e}body.dark .download-list li em.popular-topic,body.dark .forum-list li em.popular-topic{background-color:#ab6e32}body.dark .download-list li span a:hover,body.dark .forum-list li span a:hover,body.dark .sidebar ul.teaser-list li a:hover{color:#ffaf5f}body.dark textarea{background:#bdbdbd}body.dark input[type=password],body.dark input[type=text]{background:#3f4850;color:#fff!important}body.dark input.gsc-input{color:#333!important}body.dark .social-widget{background:rgba(80,80,80,.2);box-shadow:0 4px 30px rgba(0,0,0,.1);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);border-color:rgba(255,127,0,.7215686275)!important}body.dark .social-widget li.social{background-color:transparent!important}body.dark .social-widget li.social-count{background-color:rgba(255,127,0,.7215686275)!important}body.dark .slide-sort-selector .layout-selector li.full a,body.dark .slide-sort-selector .layout-selector li.standard a{padding-left:5px}body.dark .slide-sort-selector .layout-selector li.full a:before,body.dark .slide-sort-selector .layout-selector li.standard a:before{display:none}body.dark .feature-title{background-color:#212932}body.dark #header-ts .header-top .right-links ul li.social.search form .text{color:#333!important}body.dark #header-ts .header-top .right-links ul li.login .login-dropdown .pad.header h3,body.dark #header-ts .header-top .right-links ul li.login .login-dropdown .pad.subcontent.alerts .contentRow-main--close,body.dark #header-ts .header-top .right-links ul li.social.group .social-dropdown .newsletter{color:#333}body.dark .comments-pager li:nth-last-child(2){border-right:none}body.dark .jobbioapp .v1_6 .item{background-color:#e7e7e7}body.dark footer,body.dark footer .copyright{background:#151b1f}body.dark footer .copyright{border-top:2px solid #24303c}.polls{margin:5px 0 5px}.polls .slide-holder{max-width:100%;margin:0 auto;padding:0}.polls .slide-main{position:relative}.polls .slide-main .question{font-size:1.1em;line-height:1.6;color:#000;text-align:center;margin:.375rem 0 .25rem;padding:0}.polls .explanation{font-size:.9em;padding-left:3px}.polls .poll-answers{display:flex;flex-wrap:wrap}.polls .poll-answers .answer{border:.188rem solid #5482CA;min-height:3.125rem;width:45%;flex-grow:1;margin:.3125rem .25rem;position:relative;text-align:center;transition:all 0.3s ease-in-out;-webkit-user-select:none;user-select:none;cursor:pointer}.polls .poll-answers .answer.selected{border:.188rem solid #CDAAAA}.polls .poll-answers .answer:not(.complete):not(.touch):hover .bar{width:100%}.polls .poll-answers .answer.complete:before{font-size:.75rem;line-height:1;background-color:rgba(255,127,0,.8);color:#fff;content:attr(data-percent) "%";font-weight:700;position:absolute;right:.438rem;padding:.3125rem;top:calc((100% - 1.375rem) / 2);border-radius:3px;z-index:999}.polls .poll-answers .answer.complete:nth-child(odd) .answer-text{padding:.3125rem 2.813rem .3125rem .9375rem}.polls .poll-answers .answer.complete .bar{transition:width 1.3s ease,background-color 1.3s ease;z-index:1}.polls .poll-answers .answer .bar{background-color:#e9e9e9;content:"";transition:width 0.3s ease,background-color 0.3s ease;width:0;position:absolute;top:0;bottom:0;z-index:1}.polls .poll-answers .answer:first-of-type .bar{right:0}.polls .poll-answers .answer:nth-of-type(2) .bar{left:0}.polls .poll-answers .answer .answer-text{font-size:.8em;line-height:1.125rem;color:#2959AC;display:flex;word-break:break-word;box-sizing:border-box;height:100%;min-height:3.125rem;align-items:center;justify-content:center;position:relative;z-index:5999996;transition:all 0.3s ease-in-out;padding:.3125rem}.grid-posts.grid-section{background:#eee;padding:15px 0 5px}@media only screen and (max-width:760px){.grid-posts.secondary{padding:0!important;background:none!important}}.grid-posts.secondary .masthead{background:none}@media only screen and (max-width:760px){.grid-posts.secondary .masthead{height:320px!important}}.grid-posts.secondary .masthead .wrapper{padding:0!important}@media only screen and (max-width:760px){.grid-posts.secondary .masthead .wrapper{height:320px}}.grid-posts.secondary .masthead ul.featured-posts li{width:33%}@media only screen and (max-width:760px){.grid-posts.secondary .masthead ul.featured-posts li{height:320px;width:82%}}@media only screen and (max-width:760px){.grid-posts.secondary .masthead ul.featured-posts li a{height:285px}}@media only screen and (max-width:760px){.grid-posts.home{margin:-5px auto 15px}}.grid-posts.home ul.featured-posts li a hgroup{bottom:40px;text-wrap:balance}@media only screen and (max-width:760px){.grid-posts.home ul.featured-posts li a hgroup{bottom:20px}}.masthead{background:#29333D;position:relative;left:0;width:100%;margin:0 auto;padding:0}.masthead.BigHead{height:722px}.masthead.SmallHead{height:480px}.masthead .FGheadCom{display:none}.masthead .wrapper{position:relative;width:100%}.masthead ul.featured-posts li{width:33%;height:234px;top:0;left:0;position:absolute;background-size:cover;background-position:center center;overflow:hidden}.masthead ul.featured-posts li.tall{height:475px}.masthead ul.featured-posts li.tall a{height:451px}.masthead ul.featured-posts li.tall a hgroup h2{font-size:1.5em}@media only screen and (max-width:960px){.masthead ul.featured-posts li.tall a hgroup h2{font-size:1.3em}}.masthead ul.featured-posts li a{position:relative;display:block;padding:18px;color:#fff;height:210px;background:linear-gradient(195deg,rgba(21,76,143,.1) 40%,rgba(30,41,51,.85) 70%);z-index:100}.masthead ul.featured-posts li a:before{background:linear-gradient(195deg,rgba(34,34,34,.14) 40%,rgba(34,34,34,.85) 90%);content:"";display:block;height:100%;position:absolute;top:0;left:0;opacity:.65;width:100%;z-index:-100;transition:opacity 0.2s}.masthead ul.featured-posts li a:hover:before{opacity:0}.masthead ul.featured-posts li a hgroup{width:90%;position:absolute;bottom:27px;display:block;text-wrap:balance}.masthead ul.featured-posts li a hgroup h3{text-transform:uppercase;font-size:.625em;text-shadow:0 0 2px #000;color:#ffa64e;padding-bottom:5px;letter-spacing:.25px}.masthead ul.featured-posts li a hgroup h2{font-size:1.14em;font-weight:500;text-shadow:1px 1px 3px #444;letter-spacing:-.25px;line-height:1.42;padding-right:8px;display:inline}@media only screen and (max-width:1200px){.masthead ul.featured-posts li a hgroup h2{font-size:.95em}}@media only screen and (max-width:760px){.masthead ul.featured-posts li a hgroup h2{font-size:1.3em}}.masthead ul.variation-3 li{height:219px}.masthead ul.variation-3 li a{padding:15px;height:189px}.masthead ul.variation-3 li a hgroup{width:70%;bottom:16px}.masthead ul.variation-3 li a hgroup h3{font-size:.6em;padding-bottom:5px}.masthead ul.variation-3 li a hgroup h2{font-size:1.2em;max-height:100px;overflow:hidden;line-height:1.35}.masthead ul.variation-3 li:first-child{top:0;left:0}.masthead ul.variation-3 li:nth-child(2){left:calc(33% + 6px)}.masthead ul.variation-3 li:nth-child(3){left:calc(66% + 12px)}.masthead ul.variation-3 li:nth-child(4){top:236px;left:0}.masthead ul.variation-3 li:nth-child(5){left:calc(33% + 6px);top:236px}.masthead ul.variation-3 li:nth-child(6){left:calc(66% + 12px);top:236px}.masthead ul.variation-3.feat li a hgroup{width:90%}.masthead ul.variation-5 li.tall{height:234px}.masthead ul.variation-5 li.tall a{height:210px}.masthead ul.variation-5 li.tall a hgroup h2{font-size:1em}.masthead ul.variation-5 li:first-child{top:0;left:0;height:475px;width:calc(66% + 5px)}.masthead ul.variation-5 li:first-child a{height:451px}.masthead ul.variation-5 li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-5 li:nth-child(2){top:482px;left:0}.masthead ul.variation-5 li:nth-child(3){top:482px;left:33%;margin-left:6px}.masthead ul.variation-5 li:nth-child(4){left:66%;margin-left:12px;top:0}.masthead ul.variation-5 li:nth-child(5){left:66%;margin-left:12px;top:241px;height:475px}.masthead ul.variation-5 li:nth-child(5) a{height:451px}.masthead ul.variation-5 li:nth-child(5) a hgroup h2{font-size:1.5em}.masthead ul.variation-5 li:nth-child(6){display:none}.masthead ul.variation-5 li:nth-child(7){display:none}.masthead ul.variation-5 li:nth-child(8){display:none}.masthead ul.variation-5a li.tall{height:234px}.masthead ul.variation-5a li.tall a{height:210px}.masthead ul.variation-5a li.tall a hgroup h2{font-size:1em}.masthead ul.variation-5a li:first-child{top:0;left:0;height:475px}.masthead ul.variation-5a li:first-child a{height:451px}.masthead ul.variation-5a li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-5a li:nth-child(2){top:0;left:33%;margin-left:6px}.masthead ul.variation-5a li:nth-child(3){top:241px;left:33%;margin-left:6px}.masthead ul.variation-5a li:nth-child(4){top:0;left:66%;margin-left:12px}.masthead ul.variation-5a li:nth-child(5){top:241px;left:66%;margin-left:12px}.masthead ul.variation-5a li:nth-child(6){display:none}.masthead ul.variation-5a li:nth-child(7){display:none}.masthead ul.variation-5a li:nth-child(8){display:none}.masthead ul.variation-5c li{height:228px!important}.masthead ul.variation-5c li:first-child{top:0;left:0}.masthead ul.variation-5c li:nth-child(2){top:236px;left:0}.masthead ul.variation-5c li:nth-child(3){left:calc(33% + 6px);height:464px!important}.masthead ul.variation-5c li:nth-child(4){top:0;left:calc(66% + 12px)}.masthead ul.variation-5c li:nth-child(5){left:calc(66% + 12px);top:236px}.masthead ul.variation-6 li.tall{height:234px}.masthead ul.variation-6 li.tall a{height:210px}.masthead ul.variation-6 li.tall a hgroup h2{font-size:1em}.masthead ul.variation-6 li:first-child{top:0;left:0;height:475px}.masthead ul.variation-6 li:first-child a{height:451px}.masthead ul.variation-6 li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-6 li:nth-child(2){top:482px;left:0}.masthead ul.variation-6 li:nth-child(3){top:0;left:33%;margin-left:6px}.masthead ul.variation-6 li:nth-child(4){top:241px;left:33%;margin-left:6px;height:475px}.masthead ul.variation-6 li:nth-child(4) a{height:451px}.masthead ul.variation-6 li:nth-child(4) a hgroup h2{font-size:1.5em}.masthead ul.variation-6 li:nth-child(5){left:66%;margin-left:12px;top:0;height:475px}.masthead ul.variation-6 li:nth-child(5) a{height:451px}.masthead ul.variation-6 li:nth-child(5) a hgroup h2{font-size:1.5em}.masthead ul.variation-6 li:nth-child(6){left:66%;margin-left:12px;top:482px}.masthead ul.variation-6 li:nth-child(7){display:none}.masthead ul.variation-6 li:nth-child(8){display:none}.masthead ul.variation-6a li.tall{height:234px}.masthead ul.variation-6a li.tall a{height:210px}.masthead ul.variation-6a li.tall a hgroup h2{font-size:1em}.masthead ul.variation-6a li:first-child{top:0;left:0;height:475px}.masthead ul.variation-6a li:first-child a{height:451px}.masthead ul.variation-6a li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-6a li:nth-child(2){top:482px;left:0}.masthead ul.variation-6a li:nth-child(3){left:33%;margin-left:6px;top:0;height:475px}.masthead ul.variation-6a li:nth-child(3) a{height:451px}.masthead ul.variation-6a li:nth-child(3) a hgroup h2{font-size:1.5em}.masthead ul.variation-6a li:nth-child(4){left:33%;margin-left:6px;top:482px;height:234px}.masthead ul.variation-6a li:nth-child(5){left:66%;margin-left:12px;top:0;height:475px}.masthead ul.variation-6a li:nth-child(5) a{height:451px}.masthead ul.variation-6a li:nth-child(5) a hgroup h2{font-size:1.5em}.masthead ul.variation-6a li:nth-child(6){left:66%;margin-left:12px;top:482px}.masthead ul.variation-6a li:nth-child(7){display:none}.masthead ul.variation-6a li:nth-child(8){display:none}.masthead ul.variation-6b li{width:35%}.masthead ul.variation-6b li.tall{height:234px}.masthead ul.variation-6b li.tall a{height:210px}.masthead ul.variation-6b li.tall a hgroup h2{font-size:1em}.masthead ul.variation-6b li:first-child{top:0;left:0;height:475px;width:calc(64% + 5px)}.masthead ul.variation-6b li:first-child a{height:451px}.masthead ul.variation-6b li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-6b li:nth-child(2){top:482px;left:0;width:32%}.masthead ul.variation-6b li:nth-child(3){top:482px;left:32%;width:32%;margin-left:6px}.masthead ul.variation-6b li:nth-child(4){left:64%;margin-left:12px;top:0}.masthead ul.variation-6b li:nth-child(5){left:64%;margin-left:12px;top:241px}.masthead ul.variation-6b li:nth-child(6){left:64%;margin-left:12px;top:482px}.masthead ul.variation-6b li:nth-child(7){display:none}.masthead ul.variation-6b li:nth-child(8){display:none}.masthead ul.variation-6c li{height:228px!important}.masthead ul.variation-6c li:first-child{top:0;left:0}.masthead ul.variation-6c li:nth-child(2){top:236px;left:0}.masthead ul.variation-6c li:nth-child(3){left:calc(33% + 6px)}.masthead ul.variation-6c li:nth-child(4){left:calc(33% + 6px);top:236px}.masthead ul.variation-6c li:nth-child(5){top:0;left:calc(66% + 12px)}.masthead ul.variation-6c li:nth-child(6){left:calc(66% + 12px);top:236px}.masthead ul.variation-7 li.tall{height:234px}.masthead ul.variation-7 li.tall a{height:210px}.masthead ul.variation-7 li.tall a hgroup h2{font-size:1em}.masthead ul.variation-7 li:first-child{top:0;left:0;height:475px}.masthead ul.variation-7 li:first-child a{height:451px}.masthead ul.variation-7 li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-7 li:nth-child(2){top:482px;left:0}.masthead ul.variation-7 li:nth-child(3){top:0;left:33%;margin-left:6px}.masthead ul.variation-7 li:nth-child(4){top:241px;left:33%;margin-left:6px}.masthead ul.variation-7 li:nth-child(5){top:482px;left:33%;margin-left:6px}.masthead ul.variation-7 li:nth-child(6){left:66%;margin-left:12px;top:0}.masthead ul.variation-7 li:nth-child(7){left:66%;margin-left:12px;top:241px;height:475px}.masthead ul.variation-7 li:nth-child(7) a{height:451px}.masthead ul.variation-7 li:nth-child(7) a hgroup h2{font-size:1.5em}.masthead ul.variation-7 li:nth-child(8){display:none}.masthead ul.variation-7a li.tall{height:234px}.masthead ul.variation-7a li.tall a{height:210px}.masthead ul.variation-7a li.tall a hgroup h2{font-size:1em}.masthead ul.variation-7a li:first-child{top:0;left:0;height:475px}.masthead ul.variation-7a li:first-child a{height:451px}.masthead ul.variation-7a li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-7a li:nth-child(2){top:482px;left:0}.masthead ul.variation-7a li:nth-child(3){top:0;left:33%;margin-left:6px}.masthead ul.variation-7a li:nth-child(4){top:241px;left:33%;margin-left:6px;height:475px}.masthead ul.variation-7a li:nth-child(4) a{height:451px}.masthead ul.variation-7a li:nth-child(4) a hgroup h2{font-size:1.5em}.masthead ul.variation-7a li:nth-child(5){top:0;left:66%;margin-left:12px}.masthead ul.variation-7a li:nth-child(6){left:66%;margin-left:12px;top:241px}.masthead ul.variation-7a li:nth-child(7){left:66%;margin-left:12px;top:482px}.masthead ul.variation-7a li:nth-child(8){display:none}.masthead ul.variation-8 li{width:31%}.masthead ul.variation-8 li.tall{height:234px}.masthead ul.variation-8 li.tall a{height:210px}.masthead ul.variation-8 li.tall a hgroup h2{font-size:1em}.masthead ul.variation-8 li:first-child{top:0;left:0;height:475px;width:37%}.masthead ul.variation-8 li:first-child a{height:451px}.masthead ul.variation-8 li:first-child a hgroup h2{font-size:1.5em}.masthead ul.variation-8 li:nth-child(2){top:482px;left:0;width:37%}.masthead ul.variation-8 li:nth-child(3){top:0;left:37%;margin-left:6px}.masthead ul.variation-8 li:nth-child(4){top:241px;left:37%;margin-left:6px}.masthead ul.variation-8 li:nth-child(5){top:482px;left:37%;margin-left:6px}.masthead ul.variation-8 li:nth-child(6){left:68%;margin-left:12px;top:0}.masthead ul.variation-8 li:nth-child(7){left:68%;margin-left:12px;top:241px}.masthead ul.variation-8 li:nth-child(8){left:68%;margin-left:12px;top:482px}.masthead ul.variation-8a li{width:28%}.masthead ul.variation-8a li.tall{height:234px}.masthead ul.variation-8a li.tall a{height:210px}.masthead ul.variation-8a li.tall a hgroup h2{font-size:1em}.masthead ul.variation-8a li:first-child{top:0;left:0}.masthead ul.variation-8a li:nth-child(2){top:241px;left:0}.masthead ul.variation-8a li:nth-child(3){top:482px;left:0}.masthead ul.variation-8a li:nth-child(4){top:0;left:28%;margin-left:6px;height:475px;width:42%}.masthead ul.variation-8a li:nth-child(4) a{height:451px}.masthead ul.variation-8a li:nth-child(4) a hgroup h2{font-size:1.5em}.masthead ul.variation-8a li:nth-child(5){left:28%;margin-left:6px;top:482px;width:42%}.masthead ul.variation-8a li:nth-child(6){left:70%;margin-left:12px;top:0}.masthead ul.variation-8a li:nth-child(7){left:70%;margin-left:12px;top:241px}.masthead ul.variation-8a li:nth-child(8){left:70%;margin-left:12px;top:482px}@media only screen and (max-width:1200px){.masthead{}.masthead .wrapper{position:relative;width:100%}.masthead ul.featured-posts{width:inherit}.masthead ul.featured-posts li{top:0;left:0;position:absolute;background-size:cover!important;background-position:center center}.masthead ul.featured-posts li.tall a hgroup h2{font-size:1.5em}.masthead ul.featured-posts li a{position:relative;display:block;padding:15px;color:#fff}.masthead ul.featured-posts li a hgroup{width:90%;position:absolute;bottom:15px;display:block}}@media only screen and (max-width:760px){.masthead{height:378px!important}.masthead .wrapper{position:relative;width:100%;height:365px;overflow:scroll;-webkit-overflow-scrolling:touch;overflow-y:hidden}.masthead ul.featured-posts li{width:82%;height:365px;margin:2.5%;top:0;left:0;position:absolute;background-size:cover!important;background-position:center center;border-radius:3px}.masthead ul.featured-posts li.tall{height:365px}.masthead ul.featured-posts li.tall a{height:326px}.masthead ul.featured-posts li.tall a hgroup h2{font-size:1.3em}.masthead ul.featured-posts li a{position:relative;display:block;padding:15px;color:#fff;height:326px}.masthead ul.featured-posts li a hgroup{width:90%;position:absolute;bottom:16px;display:block}.masthead ul.featured-posts li:first-child{top:0;left:0}.masthead ul.featured-posts li:nth-child(2){left:84.5%}.masthead ul.featured-posts li:nth-child(3){left:169%}.masthead ul.featured-posts li:nth-child(4){left:253.5%}.masthead ul.featured-posts li:nth-child(5){left:338%}.masthead ul.featured-posts li:nth-child(6){left:422.5%}.masthead ul.featured-posts li:nth-child(7){left:507%}.masthead ul.featured-posts li:nth-child(8){left:591.5%}}body.interior .ListHeader{background:#2C343D;padding:3px 2%}@media only screen and (max-width:760px){body.interior .ListHeader{margin:25px 0 0 0;padding:3px 3%}}body.interior .ListHeader h3{color:#fff;line-height:35px}body.interior .articleBody{font-weight:400;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:18px}body.interior .articleBody b,body.interior .articleBody strong{font-family:"Roboto",sans-serif;font-weight:500}body.interior .articleBody h2{font-family:"Roboto",sans-serif;line-height:1.4;font-size:1.65em}body.interior .articleBody h2.subtitleMob{color:#666;font-weight:400}body.interior .articleBody h3{font-family:"Roboto",sans-serif;line-height:1.4;font-size:1.5em}body.interior .articleBody h4{font-family:"Roboto",sans-serif;font-size:1.35em}body.interior .articleBody .blue{color:#105ab2!important}body.interior .articleBody ul{margin-left:5%;margin:5px 0 15px 5%;line-height:1.5em}body.interior .articleBody ul li{list-style-type:square;margin-bottom:10px}body.interior .articleBody ol{margin-left:5%;margin:5px 0 15px 5%;line-height:1.5em}body.interior .articleBody ol li{list-style-type:decimal-leading-zero;margin-bottom:10px}body.interior .articleBody picture{position:relative;padding-bottom:75%;overflow:hidden;width:100%;height:0;display:block}body.interior .articleBody picture img{position:absolute;top:50%;left:50%;transform:translate3d(-50%,-50%,0)}body.interior .articleBody img{max-width:100%;height:auto}body.interior .articleBody img.dark-image{filter:invert(.9) hue-rotate(180deg)}body.interior .articleBody #feature h3,body.interior .articleBody #news h3{font-size:1.5em;line-height:1.4;color:#222;padding:5px 0 10px}body.interior .articleBody #feature h4,body.interior .articleBody #news h4{color:#105ab2;font-weight:400;font-size:1.3em;line-height:1.4;color:#222;padding:5px 0 10px}body.interior .articleBody .highlights{width:49%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box;margin:0 0 20px 40px;font-size:.95em}@media only screen and (max-width:760px){body.interior .articleBody .highlights{display:none}}body.interior .articleBody .highlights h3{color:#353535;line-height:1.5;padding:0 0 15px 0;font-size:1em}body.interior .articleBody .highlights ul{font-size:.85em;margin-bottom:0}body.interior .articleBody .highlights ul li{margin-bottom:5px}body.interior #content .social-column{display:inline-block;position:relative;z-index:1;width:60px;list-style-type:none}@media only screen and (max-width:760px){body.interior #content .social-column{display:block;width:100%;margin-bottom:25px}}@media only screen and (max-width:760px){body.interior.category #content-header .wrapper,body.interior.download #content-header .wrapper,body.interior.news #content-header .wrapper,body.interior.product #content-header .wrapper{width:94%}}body.interior.category #content-header .title-group h1.large,body.interior.download #content-header .title-group h1.large,body.interior.news #content-header .title-group h1.large,body.interior.product #content-header .title-group h1.large{font-weight:500;letter-spacing:-.333px;margin:17px 0 5px;font-size:2.3em;line-height:1.3;text-wrap:balance}body.interior.category #content-header .title-group h1.large.pad,body.interior.download #content-header .title-group h1.large.pad,body.interior.news #content-header .title-group h1.large.pad,body.interior.product #content-header .title-group h1.large.pad{margin:17px 152px 5px 0}@media only screen and (max-width:760px){body.interior.category #content-header .title-group h1.large.pad,body.interior.download #content-header .title-group h1.large.pad,body.interior.news #content-header .title-group h1.large.pad,body.interior.product #content-header .title-group h1.large.pad{margin:0}}@media only screen and (max-width:760px){body.interior.category #content-header .title-group h1.large,body.interior.download #content-header .title-group h1.large,body.interior.news #content-header .title-group h1.large,body.interior.product #content-header .title-group h1.large{margin:0;font-size:1.7em}}@media only screen and (max-width:500px){body.interior.category #content-header .title-group h1.large,body.interior.download #content-header .title-group h1.large,body.interior.news #content-header .title-group h1.large,body.interior.product #content-header .title-group h1.large{font-size:1.4em;line-height:1.3;letter-spacing:-.5px}}body.interior.category #content-header .title-group h1.large.upper,body.interior.download #content-header .title-group h1.large.upper,body.interior.news #content-header .title-group h1.large.upper,body.interior.product #content-header .title-group h1.large.upper{text-transform:uppercase;font-family:Roboto Condensed}body.interior.category #content-header .title-group h1.medium,body.interior.download #content-header .title-group h1.medium,body.interior.news #content-header .title-group h1.medium,body.interior.product #content-header .title-group h1.medium{font-weight:500;line-height:1.4;letter-spacing:-.333px;font-size:1.9em;text-wrap:balance}@media only screen and (max-width:760px){body.interior.category #content-header .title-group h1.medium,body.interior.download #content-header .title-group h1.medium,body.interior.news #content-header .title-group h1.medium,body.interior.product #content-header .title-group h1.medium{margin-top:0;font-size:1.65em}}@media only screen and (max-width:500px){body.interior.category #content-header .title-group h1.medium,body.interior.download #content-header .title-group h1.medium,body.interior.news #content-header .title-group h1.medium,body.interior.product #content-header .title-group h1.medium{font-size:1.45em}}body.interior.category #content-header .title-group h2,body.interior.download #content-header .title-group h2,body.interior.news #content-header .title-group h2,body.interior.product #content-header .title-group h2{color:#666;font-size:1.25em;font-weight:400;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;letter-spacing:-.25px;padding:5px 0 5px 0;line-height:1.3em;text-wrap:balance}@media only screen and (max-width:760px){body.interior.category #content-header .title-group h2,body.interior.download #content-header .title-group h2,body.interior.news #content-header .title-group h2,body.interior.product #content-header .title-group h2{font-size:1.1em}}body.interior.category article h2,body.interior.download article h2,body.interior.news article h2,body.interior.product article h2{font-size:1.3em}body.interior.white #content{min-height:500px;background:#fff}body.interior .score{font-family:"Helvetica Neue","Roboto",sans-serif!important}body.interior .ShowOnly{max-width:660px;width:96%;float:left}body.interior .ShowOnly ul li{width:96%;height:40px;line-height:40px;background:#fff;margin:10px 0;font-weight:500;padding-left:20px;border:1px solid rgba(202,206,207,.72)}body.interior .ShowOnly ul li a{display:block;text-decoration:none}body.interior .ShowOnly ul li.red a{color:#b61f1f}body.interior .ShowOnly ul li.green a{color:#1f8539}body.interior.download .col-2-3,body.interior.news .col-2-3,body.interior.product .col-2-3,body.interior.trivia .col-2-3,body.interior.trivias .col-2-3{width:70%}@media only screen and (max-width:960px){body.interior.download .col-2-3,body.interior.news .col-2-3,body.interior.product .col-2-3,body.interior.trivia .col-2-3,body.interior.trivias .col-2-3{width:100%}}@media only screen and (max-width:760px){body.interior.download .col-2-3,body.interior.news .col-2-3,body.interior.product .col-2-3,body.interior.trivia .col-2-3,body.interior.trivias .col-2-3{width:100%}body.interior.download .col-2-3 .wrapperMobileOnly,body.interior.news .col-2-3 .wrapperMobileOnly,body.interior.product .col-2-3 .wrapperMobileOnly,body.interior.trivia .col-2-3 .wrapperMobileOnly,body.interior.trivias .col-2-3 .wrapperMobileOnly{width:92%;padding:0 4%}}body.interior.download #content .articleBody,body.interior.news #content .articleBody,body.interior.product #content .articleBody,body.interior.trivia #content .articleBody,body.interior.trivias #content .articleBody{margin-bottom:30px}@media only screen and (max-width:760px){body.interior.download #content .articleBody,body.interior.news #content .articleBody,body.interior.product #content .articleBody,body.interior.trivia #content .articleBody,body.interior.trivias #content .articleBody{width:100%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}}body.interior.download #content .articleBody blockquote,body.interior.news #content .articleBody blockquote,body.interior.product #content .articleBody blockquote,body.interior.trivia #content .articleBody blockquote,body.interior.trivias #content .articleBody blockquote{margin:5px 20px 25px 0;padding:20px 10px 0 20px;font-size:.96em;border-left:3px solid #ccc}@media only screen and (max-width:960px){body.interior.download .sidebar,body.interior.news .sidebar,body.interior.product .sidebar,body.interior.trivia .sidebar,body.interior.trivias .sidebar{display:none!important;width:31.3333333333%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box}}@media only screen and (max-width:760px){body.interior.download .sidebar,body.interior.news .sidebar,body.interior.product .sidebar,body.interior.trivia .sidebar,body.interior.trivias .sidebar{display:none}}body.interior #CategoryList{margin-bottom:21px;text-transform:uppercase;font-family:"Roboto Condensed",sans-serif;font-size:.7em}body.interior #CategoryList a{color:#fff;text-decoration:none}body.interior #CategoryList .SideTitle{line-height:31px;background-color:#3e6696;padding:0 17px}@media only screen and (max-width:960px){body.interior #CategoryList .SideTitle{padding:0 10px}}@media only screen and (max-width:760px){body.interior #CategoryList .SideTitle{background-color:#7d8895}}body.interior #CategoryList .has_more .SideTitle .arrow{width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-right:6px solid #fff;float:right;margin-top:-18px}body.interior #CategoryList .has_more .SideProdContent{display:none}body.interior #CategoryList .open .SideTitle .arrow{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #fff;float:right;margin-top:-18px}body.interior #CategoryList .open .SideProdContent{display:block}body.interior .social-share-svg{margin-left:120px;float:right;font-family:Roboto;letter-spacing:-.333px}body.interior .social-share-svg.article{margin-top:20px}body.interior .social-share-svg .social-share-text{float:left;font-size:.75em;margin:15px 10px 0 0;color:#444}body.interior .social-share-svg .social-share-buttons{display:inline-block}@media only screen and (max-width:500px){body.interior .social-share-svg{margin-left:0;float:none}body.interior .social-share-svg .social-share-text{float:none}body.interior .social-share-svg .social-share-buttons{margin:5px 0 0 -8px}}body.interior .social-share-svg .resp-sharing-button__link{display:inline-block;text-decoration:none;color:#fff;margin:.4em;cursor:pointer}body.interior .social-share-svg .resp-sharing-button__icon{display:inline-block;stroke:#fff;fill:none}body.interior .social-share-svg .resp-sharing-button__icon svg{width:1em;height:1em}body.interior .social-share-svg .resp-sharing-button{border-radius:3px;transition:25ms ease-out;padding:8px 10px 3px}body.interior .social-share-svg .resp-sharing-button span{padding-left:.4em}body.interior .social-share-svg .resp-sharing-button__icon--solid{fill:#fff;stroke:none}body.interior .social-share-svg .resp-sharing-button__icon--solidcircle{fill:#fff;stroke:none}body.interior .social-share-svg .resp-sharing-button--twitter{background-color:#55acee}body.interior .social-share-svg .resp-sharing-button--twitter:hover{background-color:#2795e9}body.interior .social-share-svg .resp-sharing-button--facebook{background-color:#3b5998}body.interior .social-share-svg .resp-sharing-button--facebook:hover{background-color:#2d4373}body.interior .social-share-svg .resp-sharing-button--reddit{background-color:#fd7524}body.interior .social-share-svg .resp-sharing-button--reddit:hover{background-color:#ff6000}.sorter{float:right;font-size:12px;position:relative;color:#333;text-align:right;z-index:1}.sorter.active ul{display:block!important}.sorter #sorted_by{text-transform:lowercase;font-weight:600}.sorter #sorted_by:after{margin-left:4px;content:"";display:inline-block;width:5px;height:6px;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #333}.sorter ul{position:absolute;display:none;right:0;top:28px;width:120px;background:#F4F5F7;text-align:left;border:1px solid #ccc;border-radius:2px 2px 2px 2px;box-shadow:0 1px 2px rgba(0,0,0,.25)}.sorter .arrow{width:10px;height:10px;background:url(https://www.techspot.com/images/pf_show_sorter.png);display:inline-block;zoom:1;display:inline}.sorter a{color:#333;background:none!important;padding:0;text-shadow:none!important}.sorter li{background:none;display:block;border:0;height:25px;line-height:25px;margin:0;padding:0}.sorter li .smaller{font-size:11px}.sorter li a{display:block;padding:0 5px;transition:none}.sorter li a:hover{background:#32404D!important;color:#fff;text-decoration:none}#ShowingFilter{height:33px;border-bottom:1px solid #fff;background:#fff;padding:0 2%;font-size:.7em;font-weight:600;line-height:33px}#ShowingFilter span{margin-right:5px}#ShowingFilter ul{display:inline}#ShowingFilter ul li{display:inline-block;margin-right:2px}.features .featured-posts-title,.reviews .featured-posts-title,.slide-article .featured-posts-title,.trivias .featured-posts-title{width:1200px;margin:0 auto}@media only screen and (max-width:1200px){.features .featured-posts-title,.reviews .featured-posts-title,.slide-article .featured-posts-title,.trivias .featured-posts-title{width:94%;padding:0 3%}}@media only screen and (max-width:760px){.features .featured-posts-title,.reviews .featured-posts-title,.slide-article .featured-posts-title,.trivias .featured-posts-title{margin-top:25px}}.features .featured-posts-title h1,.reviews .featured-posts-title h1,.slide-article .featured-posts-title h1,.trivias .featured-posts-title h1{font-size:1.4em;font-weight:500;color:#fff;line-height:80px}@media only screen and (max-width:760px){.features .featured-posts-title h1,.reviews .featured-posts-title h1,.slide-article .featured-posts-title h1,.trivias .featured-posts-title h1{font-size:1.1em;line-height:3;width:320px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:-12px}}.features .featured-posts-title h4,.reviews .featured-posts-title h4,.slide-article .featured-posts-title h4,.trivias .featured-posts-title h4{font-weight:400;color:#eee;font-size:.75em;line-height:1.5;letter-spacing:-.333px;margin:-15px 0 15px 0}@media only screen and (max-width:760px){.features .featured-posts-title h4,.reviews .featured-posts-title h4,.slide-article .featured-posts-title h4,.trivias .featured-posts-title h4{line-height:1.5;margin:0 0 6px 0}}@media only screen and (max-width:760px){.features .grid-posts .masthead,.reviews .grid-posts .masthead{min-height:270px}}.features .grid-posts .masthead.SmallHead,.reviews .grid-posts .masthead.SmallHead{min-height:585px}.features .grid-posts .masthead.OneRow,.reviews .grid-posts .masthead.OneRow{min-height:320px}#content-header.featured-image{display:block;min-height:650px;position:relative;background-size:cover;background-repeat:no-repeat;background-position:center center}@media only screen and (max-width:760px){#content-header.featured-image{min-height:260px}}@media only screen and (max-width:500px){#content-header.featured-image{min-height:355px}}#content-header.featured-image .wrapper{position:relative;min-height:600px}@media only screen and (max-width:760px){#content-header.featured-image .wrapper{width:100%;min-height:260px}}@media only screen and (max-width:500px){#content-header.featured-image .wrapper{min-height:355px}}#content-header.featured-image:before{content:"";display:block;position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(200deg,rgba(30,41,51,.3) 45%,#1e2933 100%)}#content-header.featured-image .rating{font-family:"Helvetica Neue",Arial,Helvetica;position:absolute;font-weight:500;color:#fff;text-shadow:1px 1px 5px rgba(0,0,0,.5);text-align:center;background-color:rgba(22,176,41,.8);border-radius:3px 3px 3px 3px;cursor:crosshair;width:85px;top:25px;right:55px;font-size:2.5em;line-height:56px;padding:3px}@media only screen and (max-width:760px){#content-header.featured-image .rating{width:46px;top:12px;right:20px;font-size:1.8em;line-height:42px;padding:3px 12px 2px}}#content-header.featured-image .rating.award{background-color:rgba(255,127,0,.7)}#content-header.featured-image .rating.award:hover{background-color:rgba(255,127,0,.9)}#content-header.featured-image .rating.excellent{background-color:rgba(44,141,44,.7)}#content-header.featured-image .rating.excellent:hover{background-color:rgba(44,141,44,.9)}#content-header.featured-image .rating.good{background-color:rgba(7,91,192,.7)}#content-header.featured-image .rating.good:hover{background-color:rgba(7,91,192,.9)}#content-header.featured-image .rating.average{background-color:rgba(111,34,160,.7)}#content-header.featured-image .rating.average:hover{background-color:rgba(111,34,160,.9)}#content-header.featured-image .rating.bad{background-color:rgba(204,0,0,.7)}#content-header.featured-image .rating.bad:hover{background-color:rgba(204,0,0,.9)}#content-header.featured-image .rating .label{display:block;font-family:Roboto;font-size:.24em;text-transform:uppercase;font-weight:500;color:#fff;text-align:center;line-height:1.3;padding:2px 0 4px}.feature-title{background-color:#363E46}.feature-title .title-group{margin:10px 10px -5px 0}@media only screen and (max-width:760px){.feature-title .title-group{margin:10px 3% 15px}}.feature-title .category-chicklets{opacity:.95}.feature-title h1{font-weight:500;padding:17px 0 8px;color:#fff;font-size:2.2em;line-height:1.3;text-wrap:balance}@media only screen and (max-width:760px){.feature-title h1{padding:5px 0 7px;font-size:1.5em}}.feature-title h2{font-size:1.3em}.feature-title h4{font-size:1.15em}.feature-title h2,.feature-title h4{color:#eee;font-weight:400;padding:0 0 5px 3px;line-height:1.3}@media only screen and (max-width:760px){.feature-title h2,.feature-title h4{font-size:1em;padding-left:0}}.feature-title h2 span,.feature-title h4 span{color:#92bdf3}.feature-title em{color:#fff;font-size:.7em;font-style:normal;padding-left:3px}@media only screen and (max-width:760px){.feature-title em{padding-left:0;font-size:.6em}}.feature-title em a{color:#eee;border-bottom:1px solid #ccc;padding-bottom:3px}.feature-title em a:hover{border-bottom:1px solid #ff7f00;padding-bottom:3px}.feature-title time{padding-left:5px}.feature-title time a{border:none}.feature-title.second-page h1{font-size:1.9em}@media only screen and (max-width:760px){.feature-title.second-page h1{font-size:1.25em}}body.interior .categoryindex ul{list-style:none;padding:0;margin:0}body.interior .categoryindex ul li{min-height:130px;border-bottom:1px solid #E5E5E5;position:relative;padding:25px 30px 25px 230px}body.interior .categoryindex ul li:nth-child(odd){background:#f5f5f5}@media only screen and (max-width:500px){body.interior .categoryindex ul li{padding:12px 8px 17px 155px}}body.interior .categoryindex ul li h3 a{color:#333;font-size:1.2em;font-weight:500;line-height:1.4}body.interior .categoryindex ul li h3 a:hover{color:#b61f1f}@media only screen and (max-width:500px){body.interior .categoryindex ul li h3{font-size:.8em;padding-top:5px}}body.interior .categoryindex ul li .desc{font-size:.8em;font-weight:400;padding:7px 0 5px;color:#555;line-height:1.55;letter-spacing:-.333px}@media only screen and (max-width:760px){body.interior .categoryindex ul li .desc{display:none}}body.interior .categoryindex ul li .fbyline{font-weight:400;font-size:.65em;padding:5px 0;color:#666;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;line-height:1.6}@media only screen and (max-width:500px){body.interior .categoryindex ul li .fbyline time{display:block}}body.interior .categoryindex ul li .more_info{float:left;left:155px;bottom:32px;position:absolute}@media only screen and (max-width:760px){body.interior .categoryindex ul li .more_info{display:none}}@media only screen and (max-width:500px){body.interior .categoryindex ul li .more_info{right:2%;top:19px}}body.interior .categoryindex ul li .more_info .excellent{background-color:rgb(0,191,23)}body.interior .categoryindex ul li .more_info .good{background-color:rgb(7,91,192)}body.interior .categoryindex ul li .more_info .average{background-color:rgb(112,33,161)}body.interior .categoryindex ul li .more_info .bad{background-color:rgb(204,0,0)}body.interior .categoryindex ul li .more_info .none{background-color:rgb(153,153,153)}body.interior .categoryindex ul li .more_info .score{font-size:1.25em;color:#fff;text-align:center;font-weight:500;height:40px;line-height:40px;width:45px;border-radius:3px 3px 3px 3px}body.interior .categoryindex ul .alternate{background-color:#fff}body.interior .categoryindex ul .info{position:absolute;opacity:1;margin-top:5px;left:15px}@media only screen and (max-width:760px){body.interior .categoryindex ul .info{left:0}}body.interior .categoryindex ul .img{line-height:115px;text-align:center;overflow:hidden;width:200px;height:150px}@media only screen and (max-width:500px){body.interior .categoryindex ul .img{width:140px}body.interior .categoryindex ul .img a{display:inline-block;height:110px;width:100%}body.interior .categoryindex ul .img a img{height:100%;width:100%;object-fit:cover}}body.interior.features .col-2-3,body.interior.features-cat .col-2-3,body.interior.reviews .col-2-3,body.interior.reviews-cat .col-2-3{width:66.6666666667%;margin-right:0%;display:block;float:right;list-style-type:none;position:relative;box-sizing:border-box;width:80%}@media only screen and (max-width:760px){body.interior.features .col-2-3,body.interior.features-cat .col-2-3,body.interior.reviews .col-2-3,body.interior.reviews-cat .col-2-3{width:100%;padding:0}body.interior.features .col-2-3 .wrapperMobileOnly,body.interior.features-cat .col-2-3 .wrapperMobileOnly,body.interior.reviews .col-2-3 .wrapperMobileOnly,body.interior.reviews-cat .col-2-3 .wrapperMobileOnly{width:auto}}body.interior.features .sidebar,body.interior.features-cat .sidebar,body.interior.reviews .sidebar,body.interior.reviews-cat .sidebar{width:33.3333333333%;margin-right:0%;display:block;float:left;list-style-type:none;position:relative;box-sizing:border-box;text-transform:uppercase;font-family:"Roboto Condensed",sans-serif;font-size:.7em;width:16%}@media only screen and (max-width:760px){body.interior.features .sidebar,body.interior.features-cat .sidebar,body.interior.reviews .sidebar,body.interior.reviews-cat .sidebar{width:100%;padding:10px 3% 0 3%;display:block!important}}@media only screen and (max-width:760px){body.interior.features-cat .col-2-3 .wrapperMobileOnly,body.interior.reviews-cat .col-2-3 .wrapperMobileOnly{padding:0 3%}}body.interior.article .billboard_placeholder{padding:0}body.interior.article #content{position:relative}body.interior.article #content .index-mobile .article-index{display:block;margin:30px 0 0;width:94%;border:none}@media only screen and (max-width:760px){body.interior.article #content .index-mobile .article-index{margin:20px 0 15px;width:100%}}body.interior.article #content .index-mobile .article-index strong{line-height:25px;padding:5px 0;background:#ff7f00;font-size:.9em;color:#fff}body.interior.article #content .index-mobile .article-index section{width:100%;position:relative;left:0;z-index:0;display:block}body.interior.article #content .wrapper{overflow:visible;padding:15px 0 35px}@media only screen and (max-width:760px){body.interior.article #content .wrapper{padding:25px 0 5px}}body.interior.article #content .wrapper.headpic{padding:0 0 30px}@media only screen and (max-width:760px){body.interior.article #content .wrapper.headpic{padding:0 0 18px;margin:0 3%;width:94%}}body.interior.article #content .social-column{position:absolute;right:0;top:50px;z-index:1}@media only screen and (max-width:760px){body.interior.article #content .social-column{position:relative;top:0;margin-bottom:0;padding-bottom:7px}}body.interior.article #content .articleBody{width:100%;max-width:700px;margin:-12px auto 0}@media only screen and (max-width:960px){body.interior.article #content .articleBody{max-width:700px;margin:-12px auto 0;width:90%}}@media only screen and (max-width:760px){body.interior.article #content .articleBody{width:100%}}body.interior.article #content .articleBody blockquote{margin:5px 20px 25px 0;padding:20px 10px 0 20px;border-left:3px solid #ccc}body.interior.article #content .articleBody .blue-quote{color:#105ab2;font-size:1.7em;font-weight:400;text-align:center;margin:20px 10px 40px}body.interior.article #content .articleBody .slide-image{padding:0 0 25px}body.interior.article #content .articleBody p.byline,body.interior.article #content .articleBody p.grey,body.interior.article #content .articleBody p.small{font-size:.85em}body.interior.article .article-index{width:60px;border-top:5px solid #ff7f00;background:#fff;margin-bottom:50px;position:relative}@media only screen and (max-width:760px){body.interior.article .article-index{width:100%;margin-bottom:20px;border-top:none}body.interior.article .article-index span.arrow{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #fff;float:left;margin:15px 0 0 13px;opacity:1}body.interior.article .article-index .sharethis{float:right;width:20px;height:20px;margin:-27px 18px 0 0}}body.interior.article .article-index strong{display:block;line-height:35px;text-align:center;font-size:.7em;cursor:pointer;font-weight:500}@media only screen and (max-width:760px){body.interior.article .article-index strong{text-align:left;font-size:.8em;padding:0 0 0 13px;border-left:35px solid #ff7f00;border-right:5px solid #ff7f00}}body.interior.article .article-index section{font-size:.7em;display:none;width:300px;position:absolute;left:-300px;top:-5px;background:#fff;border-top:5px solid #ff7f00;z-index:10}@media only screen and (max-width:760px){body.interior.article .article-index section{width:100%;position:relative;left:0;top:0;background:#fff;border-top:none}}body.interior.article .article-index section .pad{padding:10px 20px 20px 20px;overflow-y:auto;max-height:470px}@media only screen and (max-width:760px){body.interior.article .article-index section .pad{padding:5px 10px 10px 12px;border-bottom:5px solid #eee;max-height:none}}body.interior.article .article-index section .dropcomments{margin:5px 0 5px 31px;font-weight:500}@media only screen and (max-width:760px){body.interior.article .article-index section .dropcomments{margin:5px 0 5px 36px}}body.interior.article .article-index section h3{font-size:1.5em;line-height:180%;font-weight:400}@media only screen and (max-width:760px){body.interior.article .article-index section h3{display:none}}body.interior.article .article-index section ol{margin:10px 10px 0 12%;line-height:200%}body.interior.article .article-index section ol li{list-style-type:decimal-leading-zero;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;font-weight:400;font-size:1.1em;line-height:1.6;padding-bottom:5px}@media only screen and (max-width:760px){body.interior.article .article-index section ol li{padding-bottom:8px}}body.interior.article .article-index section ol li a:hover{color:#b61f1f}body.interior.article .article-index:hover strong{color:#fff;background:#ff7f00;transition:background 0.1s}body.interior.article .article-index:hover section{display:block}body.interior.article nav.page-nav{float:right;padding-bottom:10px;text-align:right;margin:20px 0 0 0!important}body.interior.article nav.page-nav a{font-weight:400;font-size:1.8em}body.interior.article nav.page-nav a span{display:block;color:#333;font-weight:500;position:relative;text-transform:none;padding-right:20px;font-size:.75em}body.interior.article nav.page-nav a span:after{content:"";display:block;position:absolute;right:0;top:50%;margin-top:-5px;width:10px;height:7px;width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:10px solid #000}body.interior.article nav.page-nav a strong{display:block;color:#105ab2;font-weight:400;font-size:.85em}body.interior.article nav.page-nav a:hover span:after{content:"";display:block;position:absolute;right:0;top:50%;margin-top:-5px;width:10px;height:7px;width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:10px solid #ff7f00}body.interior.article #content-header.featured-image picture img{width:100%;object-fit:cover;height:655px;max-width:1170px;margin:0 auto;border-radius:4px}@media only screen and (max-width:760px){body.interior.article #content-header.featured-image picture img{height:290px}}@media only screen and (max-width:500px){body.interior.article #content-header.featured-image picture img{height:385px}}body.interior.article #content-header.featured-image .container-wrapper{position:absolute;width:100%;top:0}body.interior.article #content-header.featured-image.index-page{min-height:250px;max-height:250px}@media only screen and (max-width:760px){body.interior.article #content-header.featured-image.index-page{min-height:140px;max-height:140px}}@media only screen and (max-width:500px){body.interior.article #content-header.featured-image.index-page{min-height:200px;max-height:200px}}body.interior.article #content-header.featured-image{background-color:#363e46}body.interior.article #content-header.featured-image:before{background:linear-gradient(200deg,rgba(30,41,51,0) 45%,#1e2933 100%)}body.interior.article #content-header.featured-image.index-page:before{top:0;right:0;bottom:0;left:0;background:linear-gradient(180deg,rgba(30,41,51,0) 25%,rgba(30,41,51,.65) 100%)}body.interior.article .col-2-3-last{float:left!important;width:70%;padding-bottom:0}@media only screen and (max-width:1200px){body.interior.article .col-2-3-last{width:64%}}@media only screen and (max-width:960px){body.interior.article .col-2-3-last{width:100%;padding-bottom:20px}}body.interior.article.about .col-2-3{width:100%;margin-right:0}@media only screen and (max-width:760px){body.interior.article.about #content .wrapper{padding-top:0}}body.interior.article.about #content article{width:94%;font-size:.9em}@media only screen and (max-width:760px){body.interior.article.about #content article{font-size:.8em}}body.interior.article.about #content h1{font-weight:500;font-size:1.8em;padding:25px 0 20px}@media only screen and (max-width:760px){body.interior.article.about #content h1{padding-top:10px}}body.interior.article.about #content h2{font-size:1.4em;font-weight:500;padding:20px 0 15px}body.interior.article.about #content .index-mobile{float:right;width:200px}body.interior.article.about #content .index-mobile .article-index{display:block;margin:0 0 25% 25%;width:100%}body.interior.article.about #content .index-mobile .article-index .pad ul{font-size:1.2em;margin:4% 0 0 10%;line-height:1.8}body.interior.article.about #content .index-mobile b,body.interior.article.about #content .index-mobile strong{font-weight:500}@media only screen and (max-width:760px){body.interior.article.about #content .index-mobile{display:none}}.social-widget{width:60px;border-bottom:5px solid #ff7f00}@media only screen and (max-width:760px){.social-widget{width:98%;height:35px;margin-bottom:25px;border-bottom:0 solid #ff7f00}.social-widget.zero{border-right:7px solid #ff7f00}.social-widget.zero li.social.facebook{margin-left:12.5%}.social-widget.zero li.social.twitter{margin-left:29.5%}.social-widget.zero li.social.whatsapp{margin-left:46.5%}.social-widget.zero li.social.reddit{margin-left:63.5%}.social-widget.zero li.social.comments{margin-left:80.5%}.social-widget.featfirst{border-right:5px solid #ff7f00}}.social-widget li.social-count{background-color:#ff7f00;color:#fff;text-align:center;font-size:.7em;line-height:25px;font-weight:500}@media only screen and (max-width:760px){.social-widget li.social-count{display:inline-block;height:inherit;width:25%;margin-bottom:0;font-size:1em;line-height:33px}}.social-widget li.social-count.zero{border-top:5px solid #ff7f00}@media only screen and (max-width:760px){.social-widget li.social-count.zero{border-top:none;display:block;width:7px}}.social-widget li.social{background-image:url(https://www.techspot.com/images/btnShare.svg?v=4.4);background-repeat:no-repeat;background-color:#fff;line-height:16px;position:relative}.social-widget li.social .SocialHover{display:none}.social-widget li.social .SocialHover .WidgetArea{padding:7px 0 0 7px;z-index:999}.social-widget li.social.facebook{background-position:left 0}.social-widget li.social.facebook:hover{background-color:#3b5998;background-position:right 0}.social-widget li.social.twitter{background-position:left -35px}.social-widget li.social.twitter:hover{background-color:#00aced;background-position:right -35px}.social-widget li.social.reddit{background-position:left -175px}.social-widget li.social.reddit:hover{background-color:#E18C4B;background-position:right -175px}.social-widget li.social.rss{background-position:left -105px}.social-widget li.social.rss:hover{background-color:#f07422;background-position:right -105px}.social-widget li.social.whatsapp{background-position:left -175px}.social-widget li.social.whatsapp:hover{background-color:#f07422;background-position:right -175px}.social-widget li.social.comments{background-position:left -140px}.social-widget li.social.comments:hover{background-color:#4b75b7;background-position:right -140px}.social-widget li.social a{display:block;text-indent:-9999px;line-height:35px}.social-widget li.social:hover .SocialHover{width:100px;height:100%;position:absolute;z-index:99999999;background-color:#fff;right:60px;top:0;display:block}@media only screen and (max-width:760px){.social-widget li.social{background-image:url(https://www.techspot.com/images/social-widget-bg-91.svg?v=4.4);margin-left:30%;margin-top:-30px;width:32px}.social-widget li.social.facebook{width:32px;margin-left:30%;background-position:0 1px}.social-widget li.social.twitter{width:32px;margin-left:43.5%;background-position:-32px 1px}.social-widget li.social.reddit{width:32px;margin-left:70.5%;background-position:-189px 1px}.social-widget li.social.whatsapp{width:30px;margin-left:57%;background-position:-158px 1px}.social-widget li.social.comments{width:32px;margin-left:84%;background-position:-125px 2px}.social-widget li.social a{display:block;text-indent:-9999px;line-height:30px}}body.reviews .masthead{background-color:rgba(30,41,51,.95);background-position:center 28px;background-repeat:no-repeat}body.reviews .masthead .wrapper{padding:0!important}body.reviews #content .wrapper{padding:40px 0}@media only screen and (max-width:760px){body.reviews #content .wrapper{padding:10px 0}}body.features .masthead{background-color:#2e7551;background-position:center 28px;background-repeat:no-repeat}body.features .masthead .wrapper{padding:0!important}body.features #content .wrapper{padding:40px 0}@media only screen and (max-width:760px){body.features #content .wrapper{padding:10px 0}}body.trivias .masthead{background-color:rgba(30,41,51,.95)}body.trivias .masthead .wrapper{padding:0!important}body.trivias #content .wrapper{padding:20px 0}.review_box{display:none}body.dark.interior .categoryindex ul li{background:#242931;border-bottom:1px solid #535e69}body.dark.interior .categoryindex ul li:nth-child(odd){background:#37414b}body.dark.interior .categoryindex ul li h3 a{color:#e1e1e1}body.dark.interior .categoryindex ul li h3 a:hover{color:#ffaf5f}body.dark.interior .categoryindex ul li .desc{color:#c5c5c5}body.dark.interior .categoryindex ul li .fbyline{color:#bbb}body.dark.interior .categoryindex ul li .fbyline a{color:#82a9d6}body.dark.interior .categoryindex ul li .fbyline a:hover{color:#afc8e5}body.dark.interior #content-header.featured-image{background-color:#212932}body.dark.interior #content-header.featured-image:before{background:linear-gradient(200deg,rgba(30,41,51,0) 45%,#22242B 100%)}body.dark .comment-count-block{filter:grayscale(50%)}body.dark .comment-count-block:hover{filter:grayscale(30%)}body.dark .comment-count-block a span.comment-count{color:#ffaf5f}body.dark .comment-count-block a span.interactions-count{color:#ccc}body.dark.article .article-index{background:rgba(80,80,80,.2);box-shadow:0 4px 30px rgba(0,0,0,.1);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}body.dark.article .article-index .sharethis{filter:invert(1)}body.dark.article .article-index section{background:#000}body.dark .articleBody .bestof_product .numbers{background-color:transparent;border:none}body.dark .articleBody .bestof_product .numbers a.withTooltip{color:#fff}body.dark .articleBody ul li{color:#ddd}body.dark .bestof_product h2 a{color:#94b6df!important}body.dark .bestof_product h2 a:hover{color:#ffaf5f!important}body.dark .best-categories li{opacity:.9}body.dark .best-category li a.category-name:hover{border:2px solid #3170bb!important}body.dark .review_box{background:transparent;border:none}body.dark .review_box.outstanding{border-top:80px solid #212a33}body.dark .review_box .others_said a{color:#888!important}body.dark .article-index{background:rgba(80,80,80,.2);box-shadow:0 4px 30px rgba(0,0,0,.1);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}body.dark .article-index section{background:#535e69}body.dark .article-index section ol{color:#99adc4}body.dark .article-index section a:hover{color:#ffaf5f!important}body.dark .article-index section a,body.dark .article-index section h3{color:#fff}</style>
+<link rel="preconnect" href="//cmp.quantcast.com">
+<meta name="theme-color" content="#202932">
+<meta name="environment" content="production">
+<meta property="og:site_name" content="TechSpot">
+<meta property="og:locale" content="en_us">
+<meta name="application-name" content="TechSpot">
+<meta name="google" content="notranslate">
+<meta name="google-site-verification" content="8pBdaOxYepAWI-HEyqFYy-l8BQtnuxshvyXqoHAjU_0">
+<link rel="canonical" href="https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/">
+<meta name="robots" content="max-image-preview:large">
+<meta name="description" content="Every few years there's an amazing new technology with the promise of making games ever more realistic. We've had shaders, tessellation, shadow mapping, ray tracing -- and...">
+<meta name="standout" content="https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/">
+<meta property="og:title" content="Path Tracing vs. Ray Tracing, Explained">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/">
+<meta property="og:description" content="Every few years there's an amazing new technology with the promise of making games ever more realistic. We've had shaders, tessellation, shadow mapping, ray tracing -- and...">
+<meta property="og:image" content="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4.jpg">
+<meta property="og:image" content="https://www.techspot.com/articles-info/2485/images/2022-07-10-image.png">
+<meta property="og:image" content="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5.jpg">
+<meta property="og:image" content="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3.jpg">
+<meta property="og:image" content="https://www.techspot.com/articles-info/2485/images/2022-06-26-image.png">
+<meta property="og:image" content="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4.jpg">
+<style>
+ @font-face {
+ font-family: 'Roboto'; font-style: normal; font-weight: 400; font-display: swap;
+ src: local('Roboto'), local('Roboto-Regular'), url(/css/fonts/robotov30/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+ }
+ @font-face {
+ font-family: 'Roboto'; font-style: normal; font-weight: 500; font-display: swap;
+ src: local('Roboto Medium'), local('Roboto-Medium'), url(/css/fonts/robotov30/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2) format('woff2');
+ }
+ </style>
+<script type="application/ld+json">
+{
+ "@context": "http://schema.org",
+ "@type": "Article",
+ "mainEntityOfPage": "https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/",
+ "headline": "Path Tracing vs. Ray Tracing, Explained",
+ "image": [
+ {
+ "@type": "ImageObject",
+ "url": "https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4.jpg",
+ "width": 2558,
+ "height": 1438 },{
+ "@type": "ImageObject",
+ "url": "https://www.techspot.com/articles-info/2485/images/2022-07-10-image.png",
+ "width": 3253,
+ "height": 1863 },{
+ "@type": "ImageObject",
+ "url": "https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5.jpg",
+ "width": 2048,
+ "height": 1536 },{
+ "@type": "ImageObject",
+ "url": "https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3.jpg",
+ "width": 1450,
+ "height": 1088 },{
+ "@type": "ImageObject",
+ "url": "https://www.techspot.com/articles-info/2485/images/2022-06-26-image.png",
+ "width": 2098,
+ "height": 1120 },{
+ "@type": "ImageObject",
+ "url": "https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4.jpg",
+ "width": 3840,
+ "height": 2160 } ],
+ "datePublished": "2023-11-30T13:02:00-05:00",
+ "dateModified": "2023-11-30T13:02:00-05:00",
+ "author": [
+ {
+ "@type": "Person",
+ "name": "Nick Evanson",
+ "url": "https://www.techspot.com/community/staff/neeyik.431367/"
+ } ],
+ "description": "#TBT Every few years it seems like there's an amazing new technology with the promise of making games look ever more realistic. We've had shaders, tessellation, shadow mapping, ray tracing – and now there's path tracing.",
+ "publisher": {
+ "@type": "Organization",
+ "logo": { "@type": "ImageObject", "url": "https://www.techspot.com/images/promos/techspot-logo-amp.png", "width": 600, "height": 60 },
+ "name": "TechSpot"
+ }
+}
+</script>
+<link rel="alternate" type="application/rss+xml" title="TechSpot" href="https://www.techspot.com/backend.xml">
+<link rel="shortcut icon" type="image/x-icon" href="https://www.techspot.com/images/favicon30.ico">
+<link rel="icon" type="image/png" sizes="196x196" href="https://www.techspot.com/images/ts3mobile-badge-196.png">
+<link rel="icon" type="image/png" sizes="512x512" href="https://www.techspot.com/images/ts3mobile-badge.png">
+<link rel="apple-touch-icon" sizes="512x512" href="https://www.techspot.com/images/ts3mobile-badge.png">
+<script data-cfasync="false">function createCookie(name, value, days)
+{
+ if(days){
+ var date = new Date();
+ date.setTime(date.getTime()+(days*24*60*60*1000));
+ var expires = "; expires="+date.toGMTString();
+ }
+ else {
+ var expires = "";
+ }
+ document.cookie = name + "=" + value + expires + "; path=/;SameSite=Lax";
+}
+window.createCookie = createCookie;
+
+function readCookie(name)
+{
+ var nameEQ = name + "=";
+ var ca = document.cookie.split(';');
+ for(var i = 0; i < ca.length; i++) {
+ var c = ca[i];
+ while (c.charAt(0)==' ')
+ c = c.substring(1,c.length);
+ if (c.indexOf(nameEQ) == 0) {
+ return c.substring(nameEQ.length, c.length);
+ }
+ }
+ return null;
+}
+window.readCookie = readCookie;
+
+function eraseCookie(name)
+{
+ createCookie(name,"",-1);
+}
+window.eraseCookie = eraseCookie;
+</script>
+
+<script type="86a98fdb27360c58681a844f-text/javascript" async="true">
+(function() {
+ var host = window.location.hostname;
+ var element = document.createElement('script');
+ var firstScript = document.getElementsByTagName('script')[0];
+ var url = 'https://cmp.inmobi.com'
+ .concat('/choice/', 'a8QgkiX-vjktg', '/', host, '/choice.js?tag_version=V3');
+ var uspTries = 0;
+ var uspTriesLimit = 3;
+ element.async = true;
+ element.type = 'text/javascript';
+ element.src = url;
+
+ firstScript.parentNode.insertBefore(element, firstScript);
+
+ function makeStub() {
+ var TCF_LOCATOR_NAME = '__tcfapiLocator';
+ var queue = [];
+ var win = window;
+ var cmpFrame;
+
+ function addFrame() {
+ var doc = win.document;
+ var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+ if (!otherCMP) {
+ if (doc.body) {
+ var iframe = doc.createElement('iframe');
+
+ iframe.style.cssText = 'display:none';
+ iframe.name = TCF_LOCATOR_NAME;
+ doc.body.appendChild(iframe);
+ } else {
+ setTimeout(addFrame, 5);
+ }
+ }
+ return !otherCMP;
+ }
+
+ function tcfAPIHandler() {
+ var gdprApplies;
+ var args = arguments;
+
+ if (!args.length) {
+ return queue;
+ } else if (args[0] === 'setGdprApplies') {
+ if (
+ args.length > 3 &&
+ args[2] === 2 &&
+ typeof args[3] === 'boolean'
+ ) {
+ gdprApplies = args[3];
+ if (typeof args[2] === 'function') {
+ args[2]('set', true);
+ }
+ }
+ } else if (args[0] === 'ping') {
+ var retr = {
+ gdprApplies: gdprApplies,
+ cmpLoaded: false,
+ cmpStatus: 'stub'
+ };
+
+ if (typeof args[2] === 'function') {
+ args[2](retr);
+ }
+ } else {
+ if(args[0] === 'init' && typeof args[3] === 'object') {
+ args[3] = Object.assign(args[3], { tag_version: 'V3' });
+ }
+ queue.push(args);
+ }
+ }
+
+ function postMessageEventHandler(event) {
+ var msgIsString = typeof event.data === 'string';
+ var json = {};
+
+ try {
+ if (msgIsString) {
+ json = JSON.parse(event.data);
+ } else {
+ json = event.data;
+ }
+ } catch (ignore) {}
+
+ var payload = json.__tcfapiCall;
+
+ if (payload) {
+ window.__tcfapi(
+ payload.command,
+ payload.version,
+ function(retValue, success) {
+ var returnMsg = {
+ __tcfapiReturn: {
+ returnValue: retValue,
+ success: success,
+ callId: payload.callId
+ }
+ };
+ if (msgIsString) {
+ returnMsg = JSON.stringify(returnMsg);
+ }
+ if (event && event.source && event.source.postMessage) {
+ event.source.postMessage(returnMsg, '*');
+ }
+ },
+ payload.parameter
+ );
+ }
+ }
+
+ while (win) {
+ try {
+ if (win.frames[TCF_LOCATOR_NAME]) {
+ cmpFrame = win;
+ break;
+ }
+ } catch (ignore) {}
+
+ if (win === window.top) {
+ break;
+ }
+ win = win.parent;
+ }
+ if (!cmpFrame) {
+ addFrame();
+ win.__tcfapi = tcfAPIHandler;
+ win.addEventListener('message', postMessageEventHandler, false);
+ }
+ };
+
+ makeStub();
+
+ var uspStubFunction = function() {
+ var arg = arguments;
+ if (typeof window.__uspapi !== uspStubFunction) {
+ setTimeout(function() {
+ if (typeof window.__uspapi !== 'undefined') {
+ window.__uspapi.apply(window.__uspapi, arg);
+ }
+ }, 500);
+ }
+ };
+
+ var checkIfUspIsReady = function() {
+ uspTries++;
+ if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+ console.warn('USP is not accessible');
+ } else {
+ clearInterval(uspInterval);
+ }
+ };
+
+ if (typeof window.__uspapi === 'undefined') {
+ window.__uspapi = uspStubFunction;
+ var uspInterval = setInterval(checkIfUspIsReady, 6000);
+ }
+})();
+</script>
+<script type="86a98fdb27360c58681a844f-text/javascript">
+ !function(n,e,i){if(!n){n=n||{},window.permutive=n,n.q=[],n.config=i||{},n.config.apiKey=e,n.config.environment=n.config.environment||"production";for(var o=["addon","identify","track","trigger","query","segment","segments","ready","on","once","user","consent"],r=0;r<o.length;r++){var t=o[r];n[t]=function(e){return function(){var i=Array.prototype.slice.call(arguments,0);n.q.push({functionName:e,arguments:i})}}(t)}}}(window.permutive,"253158cc-875d-4ed4-a52d-e954eca49313",{ "consentRequired": true });
+ window.googletag=window.googletag||{},window.googletag.cmd=window.googletag.cmd||[],window.googletag.cmd.push(function(){if(0===window.googletag.pubads().getTargeting("permutive").length){var g=window.localStorage.getItem("_pdfps");window.googletag.pubads().setTargeting("permutive",g?JSON.parse(g):[])}});
+ </script>
+<script async="" src="https://6093eccf-6734-4877-ac8b-83d6d0e27b46.edge.permutive.app/6093eccf-6734-4877-ac8b-83d6d0e27b46-web.js" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script src="https://freyr.futurecdn.net/freyr.js" async="" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script type="86a98fdb27360c58681a844f-text/javascript">
+ window.freyr = window.freyr ? window.freyr : { cmd: [] };
+ window.freyr.cmd.push(function(){window.freyr.setGaEnabledStatus(false)})
+ window.freyr.cmd.push(function(){window.freyr.pushAndUpdate('pageLoadEvent', {})});
+ </script>
+<script defer="" type="86a98fdb27360c58681a844f-text/javascript" src="https://bordeaux.futurecdn.net/bordeaux.js"></script>
+<script type="86a98fdb27360c58681a844f-text/javascript">
+ window.bordeaux = window.bordeaux || {};
+ window.bordeaux.cmd = window.bordeaux.cmd || [];
+ window.bordeaux.cmd.push(function(){
+ var targeting = JSON.parse('{"kw":["amd","radeon","software","nvidia","geforce","gaming","hardware","pc gaming","rendering","explainer","ray tracing","geforce rtx","computer graphics","must read","path tracing"],"tag":["reviews","tech culture","must reads","gaming","explainers"]}');
+ window.bordeaux.setTargeting(targeting);
+ window.bordeaux.setPageCategory('reviews');
+ window.bordeaux.setPageTemplate('reviews_anchor');
+ window.bordeaux.setSlotAvoidanceDistance({
+ mobile: 1100,
+ tablet: 1100,
+ desktop: 1200,
+ });
+ window.bordeaux.init();
+ });
+ </script>
+<script type="86a98fdb27360c58681a844f-text/javascript">
+ var default_section = 'reviews';
+ var _xf_token = '1703445830,3bb68546fc62a300529ccd9d9756c82a';
+ </script>
+<link rel="alternate" type="application/rss+xml" title="TechSpot Features and Reviews" href="https://www.techspot.com/reviews.xml">
+</head>
+<body class="interior article">
+<script data-cfasync="false">
+ var darkMode = readCookie("dark_mode");
+ if (darkMode === 'true') {
+ const body = document.querySelector("body");
+ body.classList.add("dark");
+
+ document.addEventListener('DOMContentLoaded', () => {
+ const darkModeSwitcher = document.querySelector(".dark_mode .switcher");
+ darkModeSwitcher.classList.add("on");
+
+ const checkbox = darkModeSwitcher.querySelector('input[type="checkbox"]');
+ checkbox.checked = true;
+ });
+ } else if (darkMode !== 'false') {
+ try {
+ var dark = window.matchMedia("(prefers-color-scheme: dark)");
+ if (dark.matches) {
+ const body = document.querySelector("body");
+ body.classList.add("dark");
+
+ document.addEventListener('DOMContentLoaded', () => {
+ const darkModeSwitcher = document.querySelector(".dark_mode .switcher");
+ darkModeSwitcher.classList.add("on");
+
+ const checkbox = darkModeSwitcher.querySelector('input[type="checkbox"]');
+ checkbox.checked = true;
+ });
+ }
+ } catch (e) {
+ }
+ }
+ </script>
+<div id="GlobalWrapper">
+<header id="header-ts" class="interior">
+<div class="header-top">
+<div class="wrapper">
+<div class="right-links">
+<ul>
+<li class="login">
+<a rel="nofollow" class="pointerHere" href="/community/login/"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="194 -104 1000 1000"><title id="title">User login</title><desc id="desc">User icon</desc><path fill="#fff" d="M756 423.6H631.9c-106.3 0-192.4 90.8-192.4 202.5v13c0 45.7 86.1 45.8 192.4 45.8H756c106.2 0 192.4-1.7 192.4-45.8v-13c0-111.7-86.1-202.5-192.4-202.5zm-212.3-178c0-20.2 3.9-40.4 11.5-59.1 7.5-18.7 18.7-35.8 32.6-50 13.9-14.4 30.5-25.8 48.7-33.5 18.2-7.8 37.9-11.8 57.6-11.8s39.3 4 57.6 11.8c18.2 7.7 34.8 19.1 48.8 33.4s25 31.4 32.6 50c7.5 18.7 11.5 38.9 11.5 59.1s-3.9 40.4-11.5 59.1c-7.5 18.7-18.7 35.8-32.6 50-13.9 14.3-30.6 25.7-48.8 33.4-18.2 7.8-37.9 11.8-57.6 11.8s-39.3-4.1-57.6-11.8c-18.2-7.8-34.8-19.1-48.8-33.4-13.9-14.2-25-31.4-32.6-50-7.6-18.7-11.4-38.9-11.4-59z"></path></svg>Login</a>
+</li>
+<li class="dark_mode">
+<div class="switcher">
+<svg version="1.1" width="15" height="15" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88" style="enable-background:new 0 0 122.88 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path fill="#fff" class="st0" d="M122.88,61.44L122.88,61.44L122.88,61.44c0,8.47-1.5,16.34-4.5,23.58c-0.49,1.19-1.02,2.35-1.59,3.49 c-2.92,5.89-6.89,11.35-11.92,16.36l0,0l0,0l0,0l0,0l0,0c-1.67,1.68-3.4,3.24-5.17,4.68c-1.78,1.45-3.61,2.78-5.48,3.98 c-9.65,6.23-20.58,9.34-32.78,9.34h0v0c-8.47,0-16.33-1.5-23.58-4.5c-1.19-0.49-2.35-1.02-3.49-1.59 c-5.89-2.92-11.35-6.89-16.36-11.92l0,0l0,0l0,0l0,0l0,0c-1.68-1.67-3.24-3.4-4.68-5.17c-1.45-1.78-2.78-3.61-3.98-5.48 C3.11,84.58,0,73.64,0,61.44v0h0c0-8.47,1.5-16.33,4.5-23.58c0.49-1.19,1.02-2.35,1.59-3.49c2.92-5.89,6.89-11.35,11.92-16.36l0,0 l0,0l0,0l0,0l0,0c1.67-1.68,3.4-3.24,5.17-4.68c1.78-1.45,3.61-2.78,5.48-3.98C38.3,3.11,49.24,0,61.44,0h0v0 c8.47,0,16.33,1.5,23.58,4.5c1.19,0.49,2.35,1.02,3.49,1.59c5.89,2.92,11.35,6.89,16.36,11.92l0,0l0,0l0,0l0,0l0,0 c1.68,1.67,3.24,3.4,4.68,5.17c1.45,1.78,2.78,3.61,3.98,5.48C119.77,38.3,122.88,49.24,122.88,61.44L122.88,61.44z M61.44,10.96 c0.11,0,0.22,0,0.32,0v100.96c-0.11,0-0.22,0-0.32,0c-27.88,0-50.48-22.6-50.48-50.48C10.96,33.56,33.56,10.96,61.44,10.96 L61.44,10.96z"></path></g></svg>
+<input type="checkbox" id="radio_dark_mode" value="ON">
+</div>
+</li>
+<li class="search social"><a href="#" class="pointerHere"><svg xmlns="http://www.w3.org/2000/svg" id="Search" width="19" height="19" viewBox="0 0 19 19" fill="#fff"><title id="title">Search</title><desc id="desc">A search icon</desc><path d="M17.902 15.847l-2.065 2.063-3.82-3.822 2.065-2.063z"></path><circle cx="16.872" cy="16.879" r="1.469"></circle><path d="M8 2.778a5.1 5.1 0 0 0-5.097 5.097A5.1 5.1 0 0 0 8 12.973a5.1 5.1 0 0 0 5.098-5.098A5.1 5.1 0 0 0 8 2.778zm0 12.638C-2.056 15.416-2.056.334 8 .334s10.056 15.082 0 15.082z"></path></svg></a>
+<form class="search_form" action="/search/" id="cse-search-box-header">
+<input type="hidden" name="cx" value="partner-pub-7395890353660701:j5claj-6kfy">
+<input type="hidden" name="cof" value="FORID:11">
+<input type="hidden" name="ie" value="UTF-8">
+</form>
+</li>
+</ul>
+</div>
+<div id="logo">
+<a href="/">
+<svg width="205" height="39" viewBox="187 25 205 108" preserveAspectRatio="" id="techspot-logo" xmlns="http://www.w3.org/2000/svg"><title id="title">TechSpot logo</title><desc id="desc">The word TechSpot</desc><path d="M95.293 83.98h29.796V72.056H95.293v-11.9h32.74V48.4H80.397v60.212h48.415v-12.9h-33.52zM238.5 72.07h-22.344V48.4h-14.9v60.212h14.9V84.96H238.5v23.654h14.896V48.4H238.5zM21.637 61.075h18.207v47.36h14.898v-47.36H72.95V48.4H21.637zm427.125 0h18.207v47.36h14.898v-47.36h18.207V48.4h-51.312zm-256.507 26.56h-14.74c-.977 5.662-5.4 9.124-11.942 9.383-.262.012-.527.018-.796.018-4.316 0-7.523-1.53-9.82-3.938-3.47-3.635-4.87-9.27-4.87-14.686s1.4-11.053 4.87-14.687c2.298-2.406 5.505-3.937 9.82-3.937a20.81 20.81 0 0 1 .796.018c6.406.27 10.616 3.826 11.768 9.9h14.984c-.02-.178-.048-.352-.07-.527-.824-6.215-3.484-11.396-7.58-15.17-4.785-4.412-11.523-6.907-19.554-6.907a33.18 33.18 0 0 0-3.195.152c-15.675 1.512-26.74 14.144-26.74 31.145s11.064 29.637 26.74 31.15a32.86 32.86 0 0 0 3.195.152c8.03 0 14.77-2.496 19.554-6.907 4.42-3.73 7.457-8.87 7.8-15.17h-.2zm104.73-14.985l-5.468-1.383-.066-.02c-7-1.683-12.527-3.012-12.527-7.114 0-4.214 4.236-5.715 8.197-5.715 2.2 0 6.22.372 8.587 2.852 1.142 1.2 1.73 2.704 1.75 4.5h14.883c-.387-13.77-13.124-18.658-23.938-18.658-12.135 0-24.375 5.58-24.375 18.048 0 10.678 8.412 14.545 17.498 17.128 1.566.438 3.132.834 4.645 1.216 7.115 1.794 13.246 3.347 13.246 8.157 0 4.97-5.293 6.74-10.247 6.74-7.7 0-11.532-3.016-12.013-9.488H262.24c.3 13.022 10.018 20.796 26 20.796 7.84 0 26.085-1.943 26.085-19.932 0-10.792-8.76-14.716-17.33-17.13zM352.3 48.4h-28.48v60.212h14.895V88.088H352.3c14.3 0 21.552-6.903 21.552-20.53C373.86 50.268 358.8 48.4 352.3 48.4zm-2.398 28.38h-11.188V60.136h11.188c5.753 0 9.053 3.108 9.053 8.534 0 5.306-3.13 8.1-9.053 8.1zm86.866-24.07l-22.54-8.204-22.536 8.204L379.7 73.48l4.165 23.616 18.37 15.416h23.984l18.374-15.416 4.163-23.616z" fill="#fff"></path><path fill="#0a0b0b" d="M425.877 99.816H402.58L390.932 79.64l11.648-20.178h23.297l11.65 20.178z"></path><path fill="#ff7f00" d="M425.878 86.365H402.58l11.648-20.176 11.65 20.176z"></path></svg>
+</a>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+<nav id="main-menu" class="menu">
+<div class="wrapper">
+<ul id="dk_menu" class="">
+<li>
+<a href="/trending/" data-source="trending">Trending</a>
+<div class="nav-submenu">
+<ul class="SubHeader" id="trending">
+<li><a href="/article/2702-gpu-compute-ai/">Gaming GPU vs AI</a></li>
+<li><a href="/review/2676-geforce-4070-versus/">RTX 4070 vs 4070 Ti</a></li>
+<li><a href="/article/2678-chiplets-explained/">Chiplets Explained</a></li>
+<li><a href="/review/2642-radeon-7900-xt-vs-geforce-rtx-4070-ti/">Radeon 7900 XT vs RTX 4070 Ti</a></li>
+<li><a href="/tag/years+of/">Outstanding Video Game Series</a></li>
+</ul>
+</div>
+</li>
+<li>
+<a href="/features/" data-source="features">Features</a>
+<div class="nav-submenu">
+<ul class="SubHeader" id="features">
+<li><a href="/features/tech-culture/">Tech Culture</a></li>
+<li><a href="/features/must-reads/">Must Reads</a></li>
+<li><a href="/features/hardware/">Hardware</a></li>
+<li><a href="/features/software/">Software</a></li>
+<li><a href="/features/gaming/">Gaming</a></li>
+<li><a href="/features/explainers/">Explainers</a></li>
+<li><a href="/features/tips-tricks/">Tips &amp; Tricks</a></li>
+</ul>
+</div>
+</li>
+<li>
+<a href="/reviews/" data-source="reviews">Reviews</a>
+<div class="nav-submenu">
+<ul class="SubHeader" id="reviews">
+<li><a href="/reviews/cpu/">CPU</a></li>
+<li><a href="/reviews/graphics-cards/">Graphics Cards</a></li>
+<li><a href="/reviews/laptops/">Laptops</a></li>
+<li><a href="/reviews/storage/">Storage</a></li>
+<li><a href="/reviews/monitors/">Monitors</a></li>
+<li><a href="/reviews/">More Reviews</a></li>
+</ul>
+</div>
+</li>
+<li>
+<a href="/bestof/" data-source="bestof">The Best</a>
+<div class="nav-submenu">
+<ul class="SubHeader" id="bestof">
+<li><a href="/bestof/cpu/">Best CPUs</a></li>
+<li><a href="/bestof/graphics-cards/">Best Graphics Cards</a></li>
+<li><a href="/bestof/gaming-monitors/">Best Monitors</a></li>
+<li><a href="/article/2159-desktop-software-essentials/">Best Software</a></li>
+<li><a href="/bestof/storage/">Best SSD</a></li>
+<li><a href="/bestof/speakers/">Best PC Speakers</a></li>
+</ul>
+</div>
+</li>
+<li>
+<a href="/downloads/" data-source="downloads">Downloads</a>
+<div class="nav-submenu">
+<ul class="SubHeader" id="downloads">
+<li><a href="/downloads/">Latest Updates</a></li>
+<li><a href="/downloads/popular-this-week/">Popular Apps</a></li>
+<li><a href="/downloads/best-apps/">Software We Recommend</a></li>
+<li><a href="/drivers/">Drivers</a></li>
+</ul>
+</div>
+</li>
+<li>
+<a href="/products/" data-source="product-finder">Product Finder</a>
+<div class="nav-submenu">
+<div class="pfmenusearch">
+<div class="form_search">
+<form action="https://www.techspot.com/search/" id="cse-search-box" autocomplete="off">
+<div class="pfmenuSideTitle">Search</div>
+<input type="hidden" name="cx" id="cx" value="f4b018d873b02a56c">
+<input type="text" name="q" id="q" class="text" size="30" placeholder="Search product reviews, pros &amp; cons, pricing">
+</form>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="/community/" data-source="forums">Forums</a>
+<div class="nav-submenu">
+<ul class="SubHeader" id="forums">
+<li><a rel="nofollow" href="/community/register/">Join TechSpot Elite</a></li>
+<li><a rel="nofollow" href="/community/whats-new/posts/">New Posts</a></li>
+<li><a rel="nofollow" href="/community/forums/techspot-news-and-comments.51/">Latest Comments</a></li>
+</ul>
+</div>
+</li>
+<li>
+<a href="https://jobs.techspot.com/?source=navbar&amp;utm_source=navbar&amp;utm_medium=partner_referral" target="_blank" rel="noopener" data-source="jobs">Jobs</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="clearfix"></div>
+</header>
+<section id="content">
+<div>
+<article>
+
+<header id="feature-masthead">
+<div class="feature-title" style="background-color: #101419;">
+<div class="wrapper">
+<section class="title-group">
+<ul class="category-chicklets">
+<li class="features">
+<a href="/features/">Features</a>
+</li>
+<li class="must-reads">
+<a href="https://www.techspot.com/features/must-reads/">Must Reads</a>
+</li>
+</ul>
+<h1 class="large ">Path Tracing vs. Ray Tracing,&nbsp;Explained</h1>
+<h2 class="">1980s Research Hits the Big&nbsp;Time</h2>
+<em>
+By <span class="author">
+<a rel="author" href="https://www.techspot.com/community/staff/neeyik.431367/" target="_blank">Nick Evanson</a>
+</span>
+<time datetime="2023-11-30T13:02:00-05:00" pubdate="pubdate">
+November 30, 2023 </time>
+</em>
+</section>
+</div>
+</div>
+<div id="content-header" class="featured-image" style="background-color: #101419;">
+<div class="wrapper headpic">
+<picture>
+<source type="image/webp" sizes="100vw" srcset="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4-j.webp 2558w">
+<img fetchpriority="high" src="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4.jpg" width="2558" height="1438" sizes="100vw" srcset="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-4-j.webp 2558w">
+</picture>
+</div>
+<div class="container-wrapper">
+<div class="wrapper">
+</div>
+</div>
+</div>
+</header>
+<div class="cta grey">
+<div class="wrapper">
+<div class="billboard_placeholder_min">
+<div class="tsadinc"></div>
+</div>
+</div>
+</div>
+<div class="trust-feat">TechSpot is celebrating its 25th anniversary. TechSpot means tech analysis and advice <a href="https://www.techspot.com/about/" target="_blank">you&nbsp;can&nbsp;trust</a>.<br> When you buy through our links, we may earn a commission. <a href="https://www.techspot.com/ethics.html" class="other" target="_blank">Learn&nbsp;more</a>.</div>
+<div class="wrapper">
+<aside class="sidebar">
+<div class="sidebarContent">
+<div class="adContainerSide">
+<div class="tsadpre"></div>
+</div>
+<div class="section-header red"><a href="/trending/">Most Read</a></div>
+<ul class="teaser-list">
+<li>
+<div class="comm">
+<a href="https://www.techspot.com/review/2783-ryzen-7800x3d-vs-core-i9-14900k/#commentsOffset">27 comments</a>
+</div>
+<a href="https://www.techspot.com/review/2783-ryzen-7800x3d-vs-core-i9-14900k/">
+<div class="img-wrap b-lazy" data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2023/12/2023-12-22-ts3_thumbs-1cd-small.jpg"></div>
+<div class="trend">AMD Ryzen 7 7800X3D vs. Intel Core i9-14900K</div>
+</a>
+</li>
+<li>
+<div class="comm">
+<a href="https://www.techspot.com/news/101294-tesla-model-y-owner-faced-14000-repair-bill.html#commentsOffset">25 comments</a>
+</div>
+<a href="https://www.techspot.com/news/101294-tesla-model-y-owner-faced-14000-repair-bill.html">
+<div class="img-wrap b-lazy" data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2023/12/2023-12-21-ts3_thumbs-3f6-small.jpg"></div>
+<div class="trend">Buyer of new Tesla Model Y faced $14,000 repair bill one day after purchase, company blamed "prior" damage</div>
+</a>
+</li>
+<li>
+<a href="https://www.techspot.com/news/101319-2nm-capable-wafer-fab-come-28-billion-tag.html">
+<div class="img-wrap b-lazy" data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2021/06/2021-06-04-ts3_thumbs-4c8-small.jpg"></div>
+<div class="trend">A 2nm-capable wafer fab will come with a $28 billion tag, up to 50% more costly than 3nm</div>
+</a>
+</li>
+<li>
+<div class="comm">
+<a href="https://www.techspot.com/bestof/laptops-2024/#commentsOffset">13 comments</a>
+</div>
+<a href="https://www.techspot.com/bestof/laptops-2024/">
+<div class="img-wrap b-lazy" data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2023/12/2023-12-18-ts3_thumbs-9d0-small.jpg"></div>
+<div class="trend">The Best Laptops - Early 2024</div>
+</a>
+</li>
+</ul>
+<div class="adContainerSide">
+<div class="techspotgx4" style="margin: 25px auto 0; display: flex; flex-direction: column; width: 300px; height: 1200px; top: 80px;">
+<div style="position: sticky; top: 90px; margin: 0px auto;">
+<div class="section-header orange" style="text-align: left;">
+<a href="https://jobs.techspot.com/search/jobs?source=jobs_widget" target="_blank">Tech Jobs</a>
+</div>
+<div id="sidebar" class="jobbioapp"></div>
+</div>
+</div>
+<div class="tsadinc"></div>
+<div class="tsadinc"></div>
+</div>
+</div>
+</aside>
+<div class="wrapperMobileOnly">
+<div class="social-column">
+<div class="scroll">
+<aside class="article-index">
+<strong>Index</strong>
+<section>
+<div class="pad">
+<h3>Article Index</h3>
+<ol>
+<li><a href="#content">Intro</a></li>
+<li><a href="#What_is_path_tracing">What is path tracing?</a></li>
+<li><a href="#When_more_work_means">When more work means less work</a></li>
+<li><a href="#Why_is_path_tracing">Why is path tracing in the news right now?</a></li>
+<li><a href="#Following_the_path_to">Following the path to a better future</a></li>
+</ol>
+<div class="dropcomments"><a href="#allcomments">69 Comments</a>
+</div>
+</div>
+</section>
+</aside>
+<ul class="social-widget zero">
+<li class="social-count zero"></li>
+<li class="social facebook">
+<a href="#Share" class="btnShare" data-social="{&quot;type&quot;:&quot;facebook&quot;, &quot;url&quot;:&quot;https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/&quot;, &quot;text&quot;: &quot;Path Tracing vs. Ray Tracing, Explained&quot;}">Facebook</a>
+</li>
+<li class="social twitter">
+<a href="#Share" class="btnShare" data-social="{&quot;type&quot;:&quot;twitter&quot;, &quot;url&quot;:&quot;https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/&quot;, &quot;text&quot;: &quot;Path Tracing vs. Ray Tracing, Explained&quot;}">Twitter</a>
+</li>
+<li class="social reddit">
+<a rel="noopener nofollow" href="https://www.reddit.com/submit?url=https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/&amp;title=Path Tracing vs. Ray Tracing, Explained" class="btnShare" target="_blank" data-link="https://www.techspot.com/article/2485-path-tracing-vs-ray-tracing/">Reddit</a>
+</li>
+<li class="social rss">
+<a href="/feeds/" target="_blank" rel="nofollow">RSS</a>
+</li>
+<li class="social comments"><a href="#allcomments" class="showAllComments">Comments</a></li>
+</ul>
+</div>
+</div>
+
+<div class="col-2-3-last">
+
+
+<div class="articleBody" id="feature">
+<p>Every few years, it seems like there's an amazing new technology with the promise of making games look ever more realistic. Over the decades, we've had shaders, tessellation, shadow mapping, ray tracing – and now there's a new kid on the block: path tracing.</p>
+<p>So if you're looking for the skinny on this latest development in graphics technology, you've come to the right place. Let's dive into the world of rendering and follow a path of light and learning.</p>
+<h2 id="What_is_path_tracing">What is path tracing?</h2>
+<p>The short and sweet answer to this question is... "<em>path tracing is just ray tracing</em>." The equations for modeling the behavior of light are the same, the use of data structures to accelerate the searching for ray-triangle interactions are the same, too, and modern GPUs use the same units to accelerate the process. It's also very computationally intensive.</p>
+<p>But, wait. If it's really the same, why does path tracing have a different name, and what benefit does it offer game programmers? Path tracing differs from ray tracing in that instead of following lots of rays, throughout an entire scene, the algorithm only traces the most likely path for the light.</p>
+<p class="side-quote">Path tracing differs from ray tracing in that instead of following lots of rays, throughout an entire scene, the algorithm only traces the most likely path for the light.</p>
+<p>We've explored how rays works (see: <a href="https://www.techspot.com/article/1888-how-to-3d-rendering-rasterization-ray-tracing/">A Deeper Dive: Rasterization and Ray Tracing</a>), but a brief whiz through the process is required here. The frame starts off as normal: the graphics card renders all of the geometry – all of the triangles that make up the scene – and saves it to memory.</p>
+<p>After a little bit of further processing, to organize the information in such a way that the geometry can be searched quicker, the ray tracing kicks in. For each pixel that comprises the frame, a single ray is cast from the camera, out into the scene.</p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image"><picture style="padding-bottom: calc(100% * 1863 / 3253)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-p_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-p_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-p.webp 3253w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="1863" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3253" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image.png" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-p_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-p_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-p.webp 3253w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p class="tsadinc">Well, not in a literal sense – a vector equation is generated, with parameters set on the basis of where the camera and pixel are. Each ray is then checked against the scene's geometry and this is the first part of ray tracing's complexity. Fortunately, the latest GPUs from AMD and Nvidia come with dedicated hardware units to accelerate this process.</p>
+<p class="tsadinc">If a ray and object do interact, another calculation is done to work out exactly what triangle in the model is involved, and the color of the triangle will effectively modify the color of the pixel.</p>
+<p>But light rarely hits an object and that light gets completely absorbed. In reality, there's a lot of reflection and refraction going on, so if you want the most realistic rendering possible, new vector equations are generated, one each for the reflected and refracted rays.</p>
+<p style="text-align: center;"><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-06-26-image-5"><picture style="padding-bottom: calc(100% * 1536 / 2048)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5-j.webp 2048w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="1536" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="2048" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-5-j.webp 2048w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p class="byline tsadinc" style="text-align: center;">A taste of what millions of rays can achieve. Image: <a href="https://bit.ly/3uCJpri" target="_blank">Gilles Tran</a></p>
+<p class="tsadinc">In turn, those rays get traced until they also hit an object, and the sequence continues until a chain of rays is finally bounced all the way back to a source of light in the scene. From the original primary ray, the total number of rays traced across the scene grows exponentially with every bounce.</p>
+<p class="tsadinc">Rinse and repeat across all of the other pixels in the frame, and the end result is a realistically lit scene... although a fair bit of additional processing is still needed to tidy up the final image.</p>
+<p class="tsadinc">But even with the most powerful of GPUs and CPUs, a fully ray traced frame takes an enormous amount of time to make – far, far longer than a traditionally rendered one, using compute and pixel shaders.</p>
+<p class="tsadinc">Now this is where path tracing fits into the picture, if one pardons the pun.</p>
+<h2 id="When_more_work_means">When more work means less work</h2>
+<p>The initial concept of path tracing was <a href="https://dl.acm.org/doi/pdf/10.1145/15922.15902" target="_blank">introduced by James Kajiya</a> way back in 1986, while he was a researcher for Caltech. He showed that the problem of having a processor being ground to halt, working through an ever increasing number of rays, could be solved through the use of statistical sampling of scene (specifically, Monte Carlo algorithms).</p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-3"><picture style="padding-bottom: calc(100% * 1088 / 1450)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3-j.webp 1450w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="1088" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="1450" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-3-j.webp 1450w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p class="byline tsadinc" style="text-align: center;">Not just games... for the movie Finding Dory (2016), RenderMan's implementation of path tracing was used for direct visibility, shadows, reflections, refractions, indirect diffuse illumination, and subsurface scattering.</p>
+<p class="tsadinc">Traditional ray tracing involves calculating the exact path of reflection or refraction of each ray, and tracing them all the way back to one or more light sources. With path tracing, multiple rays are generated for each pixel but they're bounced off in a random direction. This gets repeated when a ray hits an object, and keeps on occurring until a light source is reached or a preset bounce limit is reached.</p>
+<p class="tsadinc">This in itself probably doesn't seem like a huge change in the amount of computing required, so where's the magic part?</p>
+<p>Not all of the rays will be used to create the final color of the pixel in the frame. Only a certain number of them will be sampled and the algorithm uses results in an almost ideal path of light bounces, from camera to light source. One can then scale the number of samples for each pixel, to adjust the accuracy of the final image.</p>
+<p class="img-white full" style="text-align: center;"><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-06-26-image"><picture style="padding-bottom: calc(100% * 1120 / 2098)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-p_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-p_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-p.webp 2098w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="1120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="2098" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-06-26-image.png" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-06-26-image-p_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-p_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-06-26-image-p.webp 2098w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p class="byline tsadinc" style="text-align: center;">Kajiya's own diagram showing the benefits of path tracing over traditional ray tracing</p>
+<p class="tsadinc">Despite an extra pile of math and coding being involved, the end result is that there are far fewer rays to process, even though path tracing typically fires off dozens of rays per pixel. Tracking rays and carrying out their interaction calculations are the reason for the performance hit, in comparison to normal rendering, so using fewer rays to color a pixel is clearly a good thing.</p>
+<p class="tsadinc">But here's the really clever part: ordinarily fewer rays would result in a less realistic lighting, but since the bulk of the color of the frame's pixels are only affected by the primary rays, dumping most or all of the secondary ones doesn't affect things as much as one might think.</p>
+<p class="tsadinc">Now, if the scene does contain lots of surfaces that will reflect <em>and</em> refract light, such as glass or water, then those secondary rays do become important. To get around this problem, either the algorithm is tweaked to account for the distribution of ray types one should be getting in a scene, or those specific surfaces are handled in their own 'fully ray traced' rendering pass.</p>
+<p class="tsadinc">A good developer will use the full gamut of rendering tools at their dispense: rasterization with shaders, path tracing, and full ray tracing. It's a lot more work to figure this all out, but it's ultimately less work for the hardware to deal with.</p>
+<h2 id="Why_is_path_tracing">Why is path tracing in the news right now?</h2>
+<p class="tsadinc">Several times over the past few years we've seen headlines about mods adding ray tracing to old classics, but most of those actually refer to path tracing. We heard it back in 2019 with an experimental mod <a href="https://www.techspot.com/news/80010-experimental-mod-adds-ray-tracing-effect-games-including.html">for Crysis</a> and <a href="https://www.techspot.com/news/78346-quake-ii-looks-better-than-ever-ray-tracing.html">Quake 2</a>, or more recently with the <a href="https://www.techspot.com/news/92934-unofficial-half-life-ray-tracing-mod-coming-year.html">unofficial Half-Life</a> ray tracing mod, the <a href="https://www.techspot.com/news/94029-classic-doom-mod-adds-ray-tracing-support.html">Classic Doom mod</a>, <a href="https://www.techspot.com/news/99208-dutch-game-design-students-add-ray-tracing-classic.html">Descent</a>, and many others. All path tracing.</p>
+<p class="tsadinc">There was also the tweet from a senior R&amp;D graphics engineer at AMD, who <a href="https://twitter.com/diharaw94/status/1535328754192588801" target="_blank">announced his project</a> to update the original Return to Castle Wolfenstein game with a path traced renderer. See below:</p>
+<p><strong>Sample 1</strong></p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-4"><picture style="padding-bottom: calc(100% * 2160 / 3840)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4-j.webp 3840w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="2160" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3840" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-4-j.webp 3840w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p>After, using path tracing...</p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-5"><picture style="padding-bottom: calc(100% * 2160 / 3840)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5-j.webp 3840w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="2160" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3840" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-5-j.webp 3840w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p><strong>Sample 2</strong></p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-2"><picture style="padding-bottom: calc(100% * 2160 / 3840)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2-j.webp 3840w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="2160" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3840" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-2-j.webp 3840w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p>Using path tracing...</p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image"><picture style="padding-bottom: calc(100% * 2160 / 3840)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-j.webp 3840w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="2160" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3840" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-j.webp 3840w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p><strong>Sample 3</strong></p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-7"><picture style="padding-bottom: calc(100% * 2160 / 3840)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7-j.webp 3840w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="2160" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3840" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-7-j.webp 3840w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-6"><picture style="padding-bottom: calc(100% * 2160 / 3840)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6-j.webp 3840w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="2160" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="3840" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-6-j.webp 3840w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p class="tsadinc">As noted above, Nvidia's Quake II remaster sporting a ray traced renderer was launched to help promote RTX technology. This was initially the work of one person, <a href="https://twitter.com/c_schied" target="_blank">Christoph Schied</a>, who created the remaster (technically known as <a href="http://brechpunkt.de/q2vkpt/" target="_blank">Q2VKPT</a>) as part of a research project. With contributions from other experts in graphics technology, <a href="https://www.techspot.com/downloads/7177-quake-2-rtx.html">Quake II RTX</a> was born, and was the first renown game to use path tracing for all its lighting.</p>
+<p class="tsadinc">The original models and textures are still present and the only aspect that was changed was how surfaces were lit and shadows generated. Static images aren't the best medium for demonstrating how effective the new lighting model is, but you can <a href="https://www.techspot.com/downloads/7177-quake-2-rtx.html">grab a free copy</a> for yourself, or check out this video...</p>
+<div class="video-container"><iframe allowfullscreen="" frameborder="0" height="390" src="" width="560" class="b-lazy" data-src="https://www.youtube.com/embed/vrq1T93uLag?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;vq=hd720&amp;autohide=1"></iframe></div>
+<p class="tsadinc">Bandying cools phrases such as <em>stochastic multiple importance sampling</em> and <em>variance reduction algorithms</em>, the project highlighted two things: first of all, path tracing looks seriously cool, and secondly, it's still seriously tough on developers and hardware alike. If you want to see just how complex the math is, have a read of Chapter 47 of <a href="http://www.realtimerendering.com/raytracinggems/rtg2/" target="_blank">Ray Tracing Gems II</a>.</p>
+<p class="tsadinc">But where the likes of Quake II RTX shows what can be achieved path tracing everything, the likes of <a href="https://www.techspot.com/article/1934-the-state-of-ray-tracing/" target="_blank">Control</a> and <a href="https://www.techspot.com/article/2165-cyberpunk-dlss-ray-tracing-performance/" target="_blank">Cyberpunk 2077</a> demonstrate that incredible graphics are achievable through blending all methods of lighting and shadowing – rasterization and shaders still rule the roost, with ray tracing for reflections and shadows.</p>
+<p class="tsadinc">So we're still some way off before we see all games rendered using nothing but path tracing.</p>
+<h2 id="Following_the_path_to">Following the path to a better future</h2>
+<p class="tsadinc">Despite its relatively newness in the world of real-time rendering, path tracing is definitely here to stay. We've already seen the results in the one game and path tracing is already heavily used in offline renders, such as <a href="https://www.techspot.com/downloads/638-blender.html">Blender</a>, as well as the movie industry, with the likes of <a href="https://arnoldrenderer.com/gallery/" target="_blank">Autodesk Arnold</a> and Pixar's <a href="http://renderman.pixar.com/" target="_blank">RenderMan</a>.</p>
+<p>There are no signs of GPUs nearing any kind of limit to their maximum computing power just yet, so while ray tracing, traditional or path tracing, is still very demanding, more powerful hardware will come to market over the years.</p>
+<p style="text-align: center;"><a target="_blank" href="/photos/article/2485-path-tracing-vs-ray-tracing/#2022-07-10-image-8"><picture style="padding-bottom: calc(100% * 1081 / 1920)"><source type="image/webp" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8-j.webp 1920w" data-sizes="(max-width: 960px) 100vw, 680px"><img border="0" height="1081" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%209'%3E%3C/svg%3E" width="1920" alt="" class="b-lazy" data-src="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8.jpg" data-srcset="https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8-j_500.webp 500w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8-j_1100.webp 1100w, https://www.techspot.com/articles-info/2485/images/2022-07-10-image-8-j.webp 1920w" sizes="(max-width: 960px) 100vw, 680px"></picture></a></p>
+<p class="byline tsadinc" style="text-align: center;">Path tracing was used to create the CGI for the likes of Game of Thrones</p>
+<p class="tsadinc">All of which means that developers of future PC games are certainly going to explore any rendering technique that produces amazing graphics at an achievable performance, and path tracing has the potential to do just that.</p>
+<p class="tsadinc">There are consoles to consider, too. The Xbox Series X and PlayStation 5 both offer support for 'traditional' ray tracing, but given that their GPUs will be relatively outdated in just a few years time, developers will be looking to make use of every possible shortcut to squeeze the last dregs of power out of those machines, before moving on to the next generation of consoles.</p>
+<p class="tsadinc">So there you have – path tracing, the fast cousin of ray tracing. Looks almost as good, works a heck of a lot quicker. Given the continued advances of home PC and console graphics technology and performance, it won't be long before we'll see computer graphics from the latest blockbusters in our favorite games, too.</p>
+<h4 style="font-size: 1.15em; padding-bottom: 18px;">Keep Reading. <a href="https://www.techspot.com/tag/explainer/">Explainers</a> at TechSpot</h4>
+<ul>
+<li><a href="https://www.techspot.com/article/2753-how-shazam-works/">Ever Wonder How the Shazam Algorithm Works?</a></li>
+<li><a href="https://www.techspot.com/article/2605-how-hot-too-hot-hardware/">How Hot is Too Hot for PC Hardware?</a></li>
+<li><a href="https://www.techspot.com/article/1851-3d-game-rendering-explained/">3D Game Rendering 101: The Making of Graphics Explained</a></li>
+<li><a href="https://www.techspot.com/article/2039-chip-binning/">Explainer: What is Chip Binning?</a></li>
+</ul>
+<style>
+ .subDriveRevBot { margin: 30px 0 0px; border-radius: 3px; line-height: 1.5; font-size: 0.9em; color: #fff; background-color: #1d4d84; cursor: pointer; background-repeat: no-repeat; background-size: contain; background-position: right; }
+ .subDriveRevBot:hover { background-color: #245996; transition: 0.4s linear; }
+ .subDriveRevBot a { color: #fff; display: block; width: 100%; height: 100%; }
+ .subDriveRevBot a:hover { color: #fff; }
+ .subDriveRevBot .titlerr { background: rgba(30, 41, 51, 0.63); padding: 10px 20px 7px; color: #fff; letter-spacing: -0.1px; display: block; border-radius: 3px; font-size: 0.9em; }
+ .subDriveRevBot .remark { font-weight: 500; color: #f29f26; font-family: Roboto; }
+ .subDriveRevBot .remarknew { font-weight: 500; color: #fea; font-family: Roboto; }
+ .subDriveRevBot .bulll { margin-bottom: 5px !important; padding: 15px 5px }
+ </style>
+<div class="subDriveRevBot b-lazy" data-bg="https://www.techspot.com/images/elite/badge-elite7.png">
+<a href="https://www.techspot.com/community/register/" target="nofollow">
+<div class="titlerr">
+If you enjoy our content, please consider subscribing.
+</div>
+<ul class="bulll">
+<li>Ad-free TechSpot experience while supporting our work</li>
+<li><span class="remark">Our promise:</span> All reader contributions will go toward funding more content</li>
+<li><span class="remark">That means:</span> More tech features, more benchmarks and analysis</li>
+</ul>
+</a>
+</div>
+</div>
+<div id="mainContentEnd"></div>
+</div> <div class="clearfix"></div>
+<input type="hidden" id="url_add_views" value="https://www.techspot.com/news/add-view/95245/">
+
+</div>
+<div class="clearfix"></div>
+</div>
+</article>
+</div>
+</section>
+<section class="grid-posts grid-section secondary">
+<section class="masthead SmallHead">
+<div class="wrapper">
+<ul class="featured-posts variation-5a">
+<li class="b-lazy tall" data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2023/12/2023-12-22-ts3_thumbs-1cd.jpg">
+<a href="https://www.techspot.com/review/2783-ryzen-7800x3d-vs-core-i9-14900k/">
+<hgroup>
+<h3 class="gr-orange">CPU VERSUS</h3>
+<h2 class="gr-title">AMD Ryzen 7 7800X3D vs. Intel Core i9-14900K</h2>
+</hgroup>
+</a>
+</li>
+<li class="b-lazy " data-bg="https://www.techspot.com/articles-info/2782/images/2023-12-20-image.jpg">
+<a href="https://www.techspot.com/bestof/laptops-2024/">
+<hgroup>
+<h3 class="gr-orange">EARLY 2024</h3>
+<h2 class="gr-title">The Best Laptops</h2>
+</hgroup>
+</a>
+</li>
+<li class="b-lazy " data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2020/12/2020-12-10-ts3_thumbs-99f.jpg">
+<a href="https://www.techspot.com/news/101313-researchers-warn-windows-11-restrictions-could-send-240.html">
+<hgroup>
+<h3 class="gr-orange">RESEARCHERS WARN</h3>
+<h2 class="gr-title">Windows 11 restrictions could send 240 million PCs to landfills</h2>
+</hgroup>
+</a>
+</li>
+<li class="b-lazy " data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2023/12/2023-12-20-ts3_thumbs-0f9.jpg">
+<a href="https://www.techspot.com/news/101280-ps5-outsells-xbox-series-3-1-20203-surpassing.html">
+<hgroup>
+<h3 class="gr-orange">CONSOLE WARS</h3>
+<h2 class="gr-title">PS5 is outselling Xbox 3-to-1</h2>
+</hgroup>
+</a>
+</li>
+<li class="b-lazy " data-bg="https://www.techspot.com/images2/news/ts3_thumbs/2023/12/2023-12-20-ts3_thumbs-e35.jpg">
+<a href="https://www.techspot.com/news/101276-study-shows-tesla-owners-involved-most-accidents-but.html">
+<hgroup>
+<h3 class="gr-orange">STUDY</h3>
+<h2 class="gr-title">Tesla owners have most car accidents, but Ram has the worst drivers</h2>
+</hgroup>
+</a>
+</li>
+</ul>
+</div>
+<div class="clearfix"></div>
+</section>
+</section>
+<a class="offset" href="#" id="allcomments"></a>
+<section id="comments">
+<div class="wrapper">
+<div class="col-2-3">
+<div class="title">User Comments: <span id="n_comments">69</span></div>
+<a href="#add-new-comment" class="post-new-comment localScroll">
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" fill="#ff7f00"><path d="M4.075 2.502L11 0l6.857 2.52 3.726 6.307-1.286 7.226-5.606 4.688H7.32l-5.615-4.688L.417 8.828l3.658-6.326zm3.597 2.15l-3.392 5.87L7.654 16.3h6.688l3.377-5.77-3.394-5.865-6.653-.001zm.688 2.135l6.28 3.596-6.295 3.57.015-7.166z"></path></svg>
+Got something to say? Post a comment</a>
+<div id="div_comments">
+<div class="cont_all_comments hidden"></div>
+</div>
+<a id="load_more" href="#allcomments">
+<div class="post-load-more"><span>Load comments…</span></div>
+</a>
+<input type="hidden" id="url_comments" value="https://www.techspot.com/news/ajax-comments/95245/">
+</div>
+<div class="col-1-3-last">
+<div style="margin-top: 45px;"></div>
+<div class="section-header green"><a href="/community/">Discuss</a></div>
+<ul class="forum-list">
+<li>
+<div class="count"><span><a href="https://www.techspot.com/community/topics/activision-apocalypse-sony-forecasts-1-5-billion-loss-by-2027-after-microsoft-merger.283638/" class="replies">29</a></span></div>
+<a href="https://www.techspot.com/community/topics/activision-apocalypse-sony-forecasts-1-5-billion-loss-by-2027-after-microsoft-merger.283638/" target="_blank">Activision apocalypse: Sony forecasts $1.5 billion loss by 2027 after Microsoft merger</a>
+</li>
+<li>
+<div class="count"><span><a href="https://www.techspot.com/community/topics/18-year-old-hacker-behind-gta-vi-leak-sentenced-to-life-in-secure-hospital-facility.283665/" class="replies">18</a></span></div>
+<a href="https://www.techspot.com/community/topics/18-year-old-hacker-behind-gta-vi-leak-sentenced-to-life-in-secure-hospital-facility.283665/" target="_blank">18-year-old hacker behind GTA VI leak sentenced to life in secure hospital facility</a>
+</li>
+<li>
+<div class="count"><span><a href="https://www.techspot.com/community/topics/intel-ceo-claims-18a-node-will-at-least-match-tsmcs-n2-performance-and-beat-it-to-market.283673/" class="replies">10</a></span></div>
+<a href="https://www.techspot.com/community/topics/intel-ceo-claims-18a-node-will-at-least-match-tsmcs-n2-performance-and-beat-it-to-market.283673/" target="_blank">Intel CEO claims 18A node will at least match TSMC's N2 performance and beat it to market</a>
+</li>
+<li>
+<div class="count"><span><a href="https://www.techspot.com/community/topics/out-of-japan-this-ultra-low-end-1-bit-diy-computer-sold-out-immediately-after-launch.283645/" class="replies">8</a></span></div>
+<a href="https://www.techspot.com/community/topics/out-of-japan-this-ultra-low-end-1-bit-diy-computer-sold-out-immediately-after-launch.283645/" target="_blank">Out of Japan: This ultra-low-end 1-bit DIY "computer" sold out immediately after launch</a>
+</li>
+<li>
+<div class="count"><span><a href="https://www.techspot.com/community/topics/ps5-is-outselling-xbox-series-3-to-1-now-surpassing-50-million-units-sold.283635/" class="replies">22</a></span></div>
+<a href="https://www.techspot.com/community/topics/ps5-is-outselling-xbox-series-3-to-1-now-surpassing-50-million-units-sold.283635/" target="_blank">PS5 is outselling Xbox Series 3-to-1, now surpassing 50 million units sold</a>
+</li>
+</ul>
+<div style="margin-top: 25px; margin-bottom:25px; text-align: center;">
+<div class="tsadinc"></div>
+<div class="tsadinc"></div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<a name="postcomment"></a>
+<div id="add-new-comment">
+<div class="wrapper">
+<div class="col-2-3">
+<div class="title">Add your comment to this article</div>
+<div class="tagline">Create your free account to leave a comment. Join thousands of tech enthusiasts and participate.</div>
+<div class="signin">
+<a class="signin_icon" aria-label="Login to TechSpot" rel="nofollow" href="/community/login/"></a>
+<b>TechSpot Account</b>
+<div class="signin_text">
+<a rel="nofollow" href="/community/register/">Sign up for free</a>, it takes 30 seconds.
+<br>Already have an account? <a rel="nofollow" href="/community/login/">Login now</a>.
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+<input type="hidden" id="review_id" value="2485">
+<input type="hidden" id="story_id" value="95245">
+<input type="hidden" id="numCom" value="69">
+<input type="hidden" id="isLastPage" value="1">
+</section>
+<footer>
+<div class="wrapper">
+<nav id="Main" class="menu thin">
+<div class="footitle">Main Sections</div>
+<ul>
+<li><a href="/">Tech News</a></li>
+<li><a href="/features/">Features</a></li>
+<li><a href="/reviews/">Reviews</a></li>
+<li><a href="/bestof/">The Best</a></li>
+<li><a href="/downloads/">Downloads</a></li>
+<li><a href="/products/">Product Finder</a></li>
+<li><a href="/news/">News Archive</a></li>
+<li><a href="https://jobs.techspot.com/?source=footer&amp;utm_source=footer&amp;utm_medium=partner_referral">Tech Jobs</a></li>
+</ul>
+</nav>
+<nav id="Comm" class="menu wide">
+<div class="footitle">Popular Features</div>
+<ul>
+<li><a href="/review/2746-amd-radeon-7900-xtx-vs-nvidia-geforce-rtx-4080/">Radeon 7900 XTX vs GeForce RTX 4080</a></li>
+<li><a href="/review/2777-ddr5-vs-ddr4-gaming/">DDR5 vs DDR4 Performance</a></li>
+<li><a href="/review/2676-geforce-4070-versus/">RTX 4070 vs 4070 Ti: Is the Ti Worth It?</a></li>
+<li><a href="/review/2699-amd-b650-motherboards/">AMD B650 Motherboard Roundup</a></li>
+<li><a href="/review/2739-geforce-4070-vs-4060-ti/">Nvidia RTX 4060 Ti vs RTX 4070</a></li>
+<li><a href="/bestof/pc-games-2h-2023/">The Best PC Games</a></li>
+<li><a href="/review/2700-ryzen-7800x3d-vs-core-i7-13700k/">Ryzen 7 7800X3D vs Core i7-13700K</a></li>
+<li><a href="/review/2642-radeon-7900-xt-vs-geforce-rtx-4070-ti/">Radeon 7900 XT vs RTX 4070 Ti</a></li>
+</ul>
+</nav>
+<nav id="Usef" class="menu">
+<div class="footitle">Buying Guides</div>
+<ul>
+<li><a href="/bestof/cpu/">The Best CPUs</a></li>
+<li><a href="/bestof/gaming-monitors/">Best Gaming Monitors</a></li>
+<li><a href="/review/2699-amd-b650-motherboards/">AMD B650 Motherboard Roundup</a></li>
+<li><a href="/bestof/headphones/">Best Headphones</a></li>
+<li><a href="/bestof/laptops/">The Best Laptops</a></li>
+<li><a href="/bestof/cpu/">Best CPU Coolers</a></li>
+<li><a href="/bestof/storage/">Best SSDs and Storage</a></li>
+<li><a href="/guides/buying/">PC Buying Guide</a></li>
+</ul>
+</nav>
+<div class="follow-subscribe desktop">
+<div id="mlb2-5583763" class="ml-subscribe-form ml-subscribe-form-5583763">
+<form class="ml-block-form" action="//app.mailerlite.com/webforms/submit/v3t1x0" data-id="492661" data-code="v3t1x0" method="POST" rel="noopener" target="_blank" autocomplete="off">
+<div class="footitle"><label for="tsnlemail">Subscribe to the TechSpot Newsletter</label></div>
+<div class="form-email">
+<input type="email" id="tsnlemail" name="fields[email]" class="form-control email" placeholder="email address" value="" autocomplete="off" data-lpignore="true" spellcheck="false" autocapitalize="off">
+</div>
+<div class="form-submit">
+<input type="hidden" name="ml-submit" value="1">
+<input type="submit" value="Subscribe" name="subscribe">
+</div>
+</form>
+</div>
+<nav class="menu">
+<div class="footitle">Follow TechSpot</div>
+<ul>
+<li class="facebook"><a rel="noopener" href="https://www.facebook.com/techspot" target="_blank"><img alt="facebook" class="b-lazy" width="25" height="25" data-src="https://www.techspot.com/images/social/06-facebook.svg"></a></li>
+<li class="twitter"><a rel="noopener" href="https://www.twitter.com/techspot" target="_blank"><img alt="twitter" class="b-lazy" width="25" height="25" data-src="https://www.techspot.com/images/social/03-twitter.svg"></a></li>
+<li class="instagram"><a rel="noopener" href="https://www.instagram.com/thisistechspot/" target="_blank"><img alt="instagram" class="b-lazy" width="25" height="25" data-src="https://www.techspot.com/images/social/38-instagram.svg"></a></li>
+<li class="youtube"><a rel="noopener" href="https://www.youtube.com/techspot" target="_blank"><img alt="youtube" class="b-lazy" width="28" height="28" data-src="https://www.techspot.com/images/social/18-youtube.svg"></a></li>
+<li class="rss"><a rel="nofollow" href="/feeds/" target="_blank"><img alt="rss" class="b-lazy" width="25" height="25" data-src="https://www.techspot.com/images/social/20-rss.svg"></a></li>
+</ul>
+</nav>
+</div>
+<div class="clearfix"></div>
+<input type="hidden" id="ts_section" value="article">
+<input type="hidden" id="cdn_path" value="https://www.techspot.com">
+<input type="hidden" id="ad_block_counter" value="0">
+</div>
+<div class="copyright">
+<div class="wrapper">
+<p>TECHSPOT : Tech Enthusiasts, Power Users, Gamers</p>
+<p>TechSpot is a registered trademark. <a href="/about/" class="pad">About Us</a> <a class="pad" href="/ethics.html">Ethics Statement</a> <a rel="nofollow" class="pad" href="/terms.html">Terms of Use</a> <a class="pad" href="/privacy.html">Privacy Policy</a> <a class="pad" style="cursor:pointer" onclick="if (!window.__cfRLUnblockHandlers) return false; window.__tcfapi('displayConsentUi', 2, function() {} );" data-cf-modified-86a98fdb27360c58681a844f-="">Change Ad Consent</a> <a class="pad" href="/advertising/">Advertise</a></p>
+<p>© 1998 - 2023 TechSpot, Inc. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+<script defer="" src="/css/js/jquery/jquery-3.6.3.min.js" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script defer="" src="https://www.techspot.com/css/js/techspot-js.min/review.min.js?v=11.12.2023.1" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="86a98fdb27360c58681a844f-|49"></script><link rel="stylesheet" type="text/css" media="print" onload="this.media='all'" href="https://www.techspot.com/css/stylesFooterComm.css?v=12.20.2023.2">
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="86a98fdb27360c58681a844f-|49"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&amp;display=swap" media="print" onload="this.media='all'">
+<script async="" data-ad-client="ca-pub-7395890353660701" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script defer="" src="https://widgets.jobbio.com/partner_fluid_widgets_v1.6.1/display.min.js" id="jobbio-display-script" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script type="86a98fdb27360c58681a844f-text/javascript">
+ window.onload = function () {
+ jobbio_display.widget({
+ slug: 'techspot-jobs',
+ container: 'sidebar',
+ style: 'sidebar',
+ count: 4,
+ type: 'multiple',
+ content: 'jobs',
+ searchTerm: '',
+ });
+ }
+ </script>
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-108935-1" type="86a98fdb27360c58681a844f-text/javascript"></script>
+<script type="86a98fdb27360c58681a844f-text/javascript">
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-108935-1');
+ </script>
+
+<script async="" type="86a98fdb27360c58681a844f-text/javascript">
+ (function() {
+ var _sf_async_config = window._sf_async_config = (window._sf_async_config || {});
+ _sf_async_config.uid = 14596;
+ _sf_async_config.domain = 'techspot.com';
+ _sf_async_config.flickerControl = false;
+ _sf_async_config.useCanonical = true;
+ _sf_async_config.useCanonicalDomain = true;
+ _sf_async_config.sections = 'articles, features, must-reads, tech culture, gaming, explainers';
+ _sf_async_config.authors = 'Nick Evanson';
+ var _cbq = window._cbq = (window._cbq || []);
+ _cbq.push(['_acct', 'anon']);
+ function loadChartbeat() {
+ var e = document.createElement('script');
+ var n = document.getElementsByTagName('script')[0];
+ e.type = 'text/javascript';
+ e.async = true;
+ e.src = '//static.chartbeat.com/js/chartbeat.js';;
+ n.parentNode.insertBefore(e, n);
+ }
+ loadChartbeat();
+ })();
+ </script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="86a98fdb27360c58681a844f-|49" defer=""></script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;83ac2c2e4db30557&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;78703119a674413a82362e37f920f3be&quot;}" crossorigin="anonymous"></script>
+
+</body></html>
